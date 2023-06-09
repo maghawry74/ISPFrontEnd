@@ -8,3 +8,17 @@
   box-sizing: border-box;
   font-family: "Cairo";
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* .blue-snackbar {
+  background: rgb(124, 124, 124);
+  color:white;
+  margin: auto!important;
+  position: absolute;
+  right: 25px;
+  top: 60px;
+  width: 50%;
+  
+} */

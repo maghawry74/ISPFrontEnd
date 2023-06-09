@@ -1,0 +1,63 @@
+
+<div class="block w-1/2 m-auto mt-14 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+    <div class="lg:w-1/2 xs:w-full md:w-full m-auto  border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{formTitle}}</h1>
+    </div>
+    <form [formGroup]="governateForm" (ngSubmit)="AddGovernarate()">
+        <!--name input-->
+        <div class="p-3">
+            <div class="mb-8">
+                <label for="govName" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Governorate Name *</label>
+                <input type="text" id="govName" class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" formControlName="Name" name="name" placeholder="Enter Governorate Name" >
+                <div [hidden]="name?.untouched||name?.valid">
+                    <small class="text-red-600 text-base" *ngIf="name?.errors?.['required']">Governate name is
+                        required</small>
+                </div>
+            </div>
+            <!--code input-->
+            <div class="mb-8">
+                <label for="code" class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">Code *</label>
+                <input type="number" formControlName="Code" name="code" id="code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"  placeholder="Enter Governorate Code" >
+                <div [hidden]="code?.untouched||code?.valid" class="mb-5">
+                    <small class="text-red-600 text-base" *ngIf="code?.errors?.['required']">Governate code is required</small>
+                </div>
+            </div>
+            <!--Submit button-->
+            <!--Add button-->
+            <button type="submit"
+                *ngIf="UpdateOrDelete" 
+                class="inline-block rounded-2xl  bg-primary px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                data-te-ripple-init data-te-ripple-color="light"
+                [disabled]="governateForm.invalid"> Add
+            </button>
+            <!--update Button-->
+            <button type="button"
+               *ngIf="!UpdateOrDelete"
+                class="inline-block rounded-2xl  bg-primary px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                data-te-ripple-init data-te-ripple-color="light" 
+                [disabled]="governateForm.invalid"
+                (click)="updateGov()"
+                >Update
+            </button>
+            <button type="button" class="ms-5 delay-300 inline-block rounded-2xl bg-slate-500  px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white  transition duration-150 ease-in-out hover:bg-slate-400  focus:bg-slate-500  focus:outline-none focus:ring-0 active:bg-slate-500 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)]"
+                data-te-ripple-init data-te-ripple-color="light" 
+                (click)="backToGovList()">Back
+            </button>
+        </div>
+    </form>
+</div>
+<br>
+<div>
+    value:{{governateForm.value|json}}
+</div>
+<div>
+    for test:form errors
+    <br>
+    {{governateForm.errors|json}}
+</div>
+<div>
+    name errors:{{name?.errors|json}}
+</div>
+<div>
+    code errors:{{code?.errors|json}}
+</div>
