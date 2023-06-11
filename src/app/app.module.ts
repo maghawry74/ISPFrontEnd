@@ -8,12 +8,14 @@ import { AddGovernarateComponent } from './component/add-governarate/add-governa
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LoginComponent } from './component/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GovernateComponent,
-    AddGovernarateComponent
+    AddGovernarateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
