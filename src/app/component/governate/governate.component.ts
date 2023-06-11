@@ -19,8 +19,11 @@ export class GovernateComponent implements OnInit {
   }
   deleteGovernate(code:number)
   {
-    console.log("enter delete method");
+    let confirmDel = confirm("Are you sure you want to delete this governorate")
+    if(confirmDel==true)
+    {
     this.governateService.delete(code);
+    }
     this.ngOnInit();
   }
   goToAddComp()
