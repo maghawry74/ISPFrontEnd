@@ -2,11 +2,10 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IGovernarate } from 'src/app/models/igovernarate';
-import { StaticGovernarateService } from 'src/app/services/static-governarate.service';
+import { IGovernarate } from '../../models/igovernarate';
 import {Ripple,Input,initTE,} from "tw-elements";
-import { GovernorateService } from 'src/app/services/governorate.service';
-import { AngularMateralService } from 'src/app/services/angular-materal.service';
+import { GovernorateService } from '../../services/governorate.service';
+import { AngularMateralService } from '../../services/angular-materal.service';
 @Component({
   selector: 'app-add-governarate',
   templateUrl: './add-governarate.component.html',
@@ -19,7 +18,6 @@ export class AddGovernarateComponent implements OnInit {
   currentCode:number=0;
   formTitle:string;
   constructor(private fb: FormBuilder,
-   // private govService:StaticGovernarateService,
     private router:Router,
     private locationService:Location,
     private activateRoute:ActivatedRoute,

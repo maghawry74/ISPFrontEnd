@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IGovernarate } from 'src/app/models/igovernarate';
-import { StaticGovernarateService } from 'src/app/services/static-governarate.service';
+import { IGovernarate } from '../../models/igovernarate';
+import { StaticGovernarateService } from '../../services/static-governarate.service';
 import { GovernorateService } from '../../services/governorate.service';
 
 @Component({

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GovernateComponent } from './component/governate/governate.component';
@@ -11,11 +10,14 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginComponent } from './component/login/login.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     GovernateComponent,
-    AddGovernarateComponent
+    AddGovernarateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
