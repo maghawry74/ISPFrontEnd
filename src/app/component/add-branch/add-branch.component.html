@@ -1,0 +1,40 @@
+<div class="flex flex-col justify-center items-center w-1/3 mx-auto h-screen">
+    <h1>Add Central</h1>
+    <form (ngSubmit)="FromSubmit()" [formGroup]="branchFrom" class="w-full">
+        <app-input [id]="'name'" label="Name*" [control]="Name"></app-input>
+        <div class="grid grid-cols-2 gap-2">
+            <app-input [id]="'tel1'" label="Tel1" [control]="Tel1"></app-input>
+            <app-input [id]="'tel2'" label="Tel2" [control]="Tel2"></app-input>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+            <app-input [id]="'phone1'" label="Phone1" [control]="Phone1"></app-input>
+            <app-input [id]="'phone2'" label="Phone2" [control]="Phone2"></app-input>
+        </div>
+        <app-input [id]="'Fax'" label="Fax" [control]="Fax"></app-input>
+        <div class="my-3">
+            <label for="Governorate"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Governorate*</label>
+            <select [formControl]="Governorate" id="Governorate" data-te-select-init data-te-select-filter="true">
+                <option selected value=""></option>
+                <option value="1">Cairo</option>
+                <option value="2">Menofia</option>
+                <option value="3">Giza</option>
+            </select>
+            <p class="text-red-600 text-base " *ngIf="Governorate?.errors?.['required']&&(!Governorate?.['pristine'])">
+                Governorate is
+                Required
+            </p>
+        </div>
+        <div class="my-3">
+            <label for="Manager" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager</label>
+            <select [formControl]="Manager" id="Manager" data-te-select-init data-te-select-filter="true">
+                <option selected value=""></option>
+                <option value="1">Maghawry</option>
+                <option value="2">Mahmoud</option>
+            </select>
+        </div>
+        <button [disabled]="branchFrom.status=='INVALID'"
+            [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':branchFrom.status=='INVALID'}" type="submit"
+            class="add-btn">Submit</button>
+    </form>
+</div>
