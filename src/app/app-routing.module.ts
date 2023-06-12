@@ -4,9 +4,10 @@ import { GovernateComponent } from './component/governate/governate.component';
 import { AddGovernarateComponent } from './component/add-governarate/add-governarate.component';
 import { LoginComponent } from './component/login/login.component';
 import { AddOfferComponent } from './component/add-offer/add-offer.component';
+import { AddCentralComponent } from './component/add-central/add-central.component';
 
 const routes: Routes = [
-  { path: '', component: AddOfferComponent },
+  { path: '', component: AddCentralComponent },
   { path: 'Governarates', component: GovernateComponent },
   { path: 'Governate/Add', component: AddGovernarateComponent },
   { path: 'Governate/Edit/:code', component: AddGovernarateComponent },

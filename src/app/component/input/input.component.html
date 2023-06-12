@@ -1,5 +1,5 @@
 <ng-container *ngIf="isShown">
-    <div *ngIf="type!=='checkbox';else checkbox" class="mb-2">
+    <div *ngIf="type!=='checkbox';else checkbox" class="mb-2 w-full">
         <label [for]="id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{label}}</label>
         <input #In (change)="changeHandler(In)" [placeholder]="placeHolder" [formControl]="control" [type]="type"
             [id]="id"

@@ -48,10 +48,10 @@ export class AddOfferComponent {
       NumberOfMonths: this.NumberOfMonths.value,
       NumberOfFreeMonths: this.NumberOfFreeMonths.value,
       Discount: this.Discount.value,
-      IsPercent: this.IsPercent.value,
-      FreeMonthsFirst: this.FreeMonthsFirst.value,
+      IsPercent: Boolean(this.IsPercent.value),
+      FreeMonthsFirst: Boolean(this.FreeMonthsFirst.value),
       CancelFee: this.CancelFee.value,
-      FreeRouter: this.FreeRouter.value,
+      FreeRouter: Boolean(this.FreeRouter.value),
       RouterFee: this.RouterFee.value,
     };
 

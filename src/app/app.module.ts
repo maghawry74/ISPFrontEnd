@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './component/login/login.component';
 import { AddOfferComponent } from './component/add-offer/add-offer.component';
 import { InputComponent } from './component/input/input.component';
+import { AddCentralComponent } from './component/add-central/add-central.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { InputComponent } from './component/input/input.component';
     AddGovernarateComponent,
     LoginComponent,
     AddOfferComponent,
-    InputComponent
+    InputComponent,
+    AddCentralComponent
   ],
   imports: [
     BrowserModule,
