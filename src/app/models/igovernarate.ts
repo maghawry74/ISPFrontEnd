@@ -1,4 +1,6 @@
 export interface IGovernarate {
-    Code:number,
-    Name:string
+    code:number,
+    name:string,
+    status?:boolean
+
 }

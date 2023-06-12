@@ -9,14 +9,14 @@ private governateList :IGovernarate[]=[];
   constructor() 
   {
     this.governateList = [
-      {Code: 12354, Name:'Alexandria'},
-      {Code: 14258, Name:' Aswan'},
-      {Code: 47596, Name:'Monufia'},
-      {Code:93614,Name:'Port Said'},
-      {Code:9871,Name:'Faiyum'},
-      {Code:93624,Name:'North Sinai'},
-      {Code:93634,Name:'Qalyubia'},
-      {Code:93614,Name:'Gharbia'},
+      {code: 12354, name:'Alexandria',status:true},
+      {code: 14258, name:' Aswan',status:true},
+      {code: 47596, name:'Monufia',status:true},
+      {code:93614,name:'Port Said',status:true},
+      {code:9871,name:'Faiyum',status:true},
+      {code:93624,name:'North Sinai',status:true},
+      {code:93634,name:'Qalyubia',status:true},
+      {code:93614,name:'Gharbia',status:true},
   ]
   }
   getAll()
@@ -25,11 +25,11 @@ private governateList :IGovernarate[]=[];
   }
   getByCode(code:number)
   {
-    return this.governateList.find(g=>g.Code==code);
+    return this.governateList.find(g=>g.code==code);
   }
  delete(code:number)
  {
-  this.governateList = this.governateList.filter(g=>g.Code!==code);
+  this.governateList = this.governateList.filter(g=>g.code!==code);
  }
  addNewGovernate(newGov:IGovernarate)
  {
@@ -39,7 +39,7 @@ private governateList :IGovernarate[]=[];
  {
  
   let newGovList = this.governateList.map((item)=>{
-    if(item.Code==gov.Code)return gov;
+    if(item.code==gov.code)return gov;
     else return item;
   })
   this.governateList = newGovList;

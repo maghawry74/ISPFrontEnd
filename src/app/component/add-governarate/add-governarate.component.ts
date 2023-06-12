@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IGovernarate } from 'src/app/models/igovernarate';
 import { StaticGovernarateService } from 'src/app/services/static-governarate.service';
 import {Ripple,Input,initTE,} from "tw-elements";
-import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar';
+import { GovernorateService } from 'src/app/services/governorate.service';
+import { AngularMateralService } from 'src/app/services/angular-materal.service';
 @Component({
   selector: 'app-add-governarate',
   templateUrl: './add-governarate.component.html',
@@ -18,18 +19,19 @@ export class AddGovernarateComponent implements OnInit {
   currentCode:number=0;
   formTitle:string;
   constructor(private fb: FormBuilder,
-    private govService:StaticGovernarateService,
+   // private govService:StaticGovernarateService,
     private router:Router,
     private locationService:Location,
-    private snackBar:MatSnackBar,
-    private activateRoute:ActivatedRoute
+    private activateRoute:ActivatedRoute,
+    private govService :GovernorateService,
+    private angularMaterailaServ:AngularMateralService
     )
   {
     this.UpdateOrDelete = true;
     this.formTitle = "Add New Governorate",
     this.governateForm = fb.group({
-      Code:['', [Validators.required]],
-      Name:['',[Validators.required,Validators.maxLength(50)]]
+      code:['', [Validators.required]],
+      name:['',[Validators.required,Validators.maxLength(50)]]
     })
   }
   ngOnInit(): void {
@@ -40,11 +42,12 @@ export class AddGovernarateComponent implements OnInit {
       {
         this.UpdateOrDelete = false;
         this.formTitle = "Update Governorate";
-        let currentGov:IGovernarate;
-        currentGov= this.govService.getByCode(this.currentCode) as IGovernarate
-        this.governateForm.setValue({
-          Code:currentGov.Code,
-          Name:currentGov.Name
+        this.govService.getByCode(this.currentCode).subscribe(gov=>{
+          this.governateForm.setValue({
+            code:gov.code,
+            name:gov.name
+          })
+
         })
       }
       })
@@ -52,12 +55,12 @@ export class AddGovernarateComponent implements OnInit {
   //get name
   get name()
   {
-    return  this.governateForm.get('Name');
+    return  this.governateForm.get('name');
   }
   //get code
   get code()
   {
-    return this.governateForm.get('Code');
+    return this.governateForm.get('code');
   }
   //backToGovList
   backToGovList(){
@@ -67,19 +70,33 @@ export class AddGovernarateComponent implements OnInit {
   AddGovernarate()
   {
     let newGov:IGovernarate = this.governateForm.value as IGovernarate;
-    this.govService.addNewGovernate(newGov);
-    this.router.navigate(['/Governarates']);
-    this.snackBar.open("Governarate Added Successfully",'',{
-      duration:3000,
-      verticalPosition:'top',
-      horizontalPosition: 'right',
-      panelClass: ['blue-snackbar'],
-    })
+    newGov.status = true;
+    this.govService.addGov(newGov).subscribe(resp=>
+      {
+        this.router.navigate(['/Governarates']);
+        this.angularMaterailaServ.addAndUpdateSuccess("Governarate Added Successfully");
+        // this.snackBar.open("Governarate Added Successfully",'',{
+        //   duration:3000,
+        //   verticalPosition:'top',
+        //   horizontalPosition: 'right',
+        //   panelClass: ['blue-snackbar'],
+        // })
+      })
+   
   }
-  //
+  //update governorate
   updateGov(){
     let governarate:IGovernarate = this.governateForm.value as IGovernarate;
-    this.govService.updateGov(governarate);
-    this.router.navigate(['/Governarates']);
+    console.log(governarate)
+    this.govService.updateGov(governarate.code,governarate).subscribe(resp=>{
+      this.router.navigate(['/Governarates']);
+      this.angularMaterailaServ.addAndUpdateSuccess("Governarate Updated Successfully")
+      // this.snackBar.open("Governarate Updated Successfully",'',{
+      //   duration:3000,
+      //   verticalPosition:'top',
+      //   horizontalPosition: 'right',
+      //   panelClass: ['blue-snackbar'],
+      // })
+    })
   }
 }

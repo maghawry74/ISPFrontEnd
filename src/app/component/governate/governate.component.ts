@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IGovernarate } from 'src/app/models/igovernarate';
 import { StaticGovernarateService } from 'src/app/services/static-governarate.service';
+import { GovernorateService } from '../../services/governorate.service';
 
 @Component({
   selector: 'app-governate',
@@ -10,21 +11,25 @@ import { StaticGovernarateService } from 'src/app/services/static-governarate.se
 })
 export class GovernateComponent implements OnInit {
   governateList : IGovernarate[] =[];
-  constructor(private governateService:StaticGovernarateService,private router:Router)
-  {
 
-  }
+  constructor(private governateService:StaticGovernarateService,
+    private router:Router,
+    private GovernorateService:GovernorateService
+    ){}
   ngOnInit(): void {
-    this.governateList = this.governateService.getAll();
+    this.GovernorateService.getAll().subscribe(data=>{
+    this.governateList = data; 
+     })
   }
   deleteGovernate(code:number)
   {
     let confirmDel = confirm("Are you sure you want to delete this governorate")
     if(confirmDel==true)
     {
-    this.governateService.delete(code);
+      this.GovernorateService.deleteGov(code).subscribe(resp=>{
+      this.ngOnInit();
+      });
     }
-    this.ngOnInit();
   }
   goToAddComp()
   {
