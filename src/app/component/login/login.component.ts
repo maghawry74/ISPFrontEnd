@@ -8,19 +8,21 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   LoginForm: FormGroup;
-
+  userName = new FormControl('', [Validators.required]);
+  Password = new FormControl('', [Validators.required]);
+  RememberMe = new FormControl('');
   constructor() {
     this.LoginForm = new FormGroup({
-      userName: new FormControl('', [Validators.required]),
-      Password: new FormControl('', [Validators.required]),
-      RememberMe: new FormControl(''),
+      userName: this.userName,
+      Password: this.Password,
+      RememberMe: this.RememberMe,
     });
   }
 
   LoginSubmitHandler() {
-    const Email = this.LoginForm.controls.userName.value;
-    const Password = this.LoginForm.controls.Password.value;
-    const RememberMe = this.LoginForm.controls.RememberMe.value;
+    const Email = this.userName.value;
+    const Password = this.Password.value;
+    const RememberMe = this.RememberMe.value;
 
     console.log(Email, Password, RememberMe);
   }

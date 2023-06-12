@@ -9,13 +9,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LoginComponent } from './component/login/login.component';
+import { AddOfferComponent } from './component/add-offer/add-offer.component';
+import { InputComponent } from './component/input/input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GovernateComponent,
     AddGovernarateComponent,
-    LoginComponent
+    LoginComponent,
+    AddOfferComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
