@@ -11,13 +11,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './component/login/login.component';
+import { AddOfferComponent } from './component/add-offer/add-offer.component';
+import { InputComponent } from './component/input/input.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GovernateComponent,
     AddGovernarateComponent,
-    LoginComponent
+    LoginComponent,
+    AddOfferComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

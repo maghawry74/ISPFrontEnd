@@ -1,0 +1,22 @@
+<div class="flex justify-center flex-col items-center h-screen w-full">
+    <h1 class="text-left">New Offer</h1>
+    <form (ngSubmit)="FormHandler()" [formGroup]="OfferForm" class="w-1/2 mx-auto">
+        <app-input [control]="OfferName" label="Offer Name*" id="offer-name"></app-input>
+        <app-input [control]="NumberOfMonths" label="Number of Months*" id="months-number"
+            [type]="'number'"></app-input>
+        <app-input [control]="NumberOfFreeMonths" label="Number of Free Months*" id="free-month-number"
+            [type]="'number'"></app-input>
+        <app-input [control]="FreeMonthsFirst" label="Free Months First" id="free-month-first"
+            [type]="'checkbox'"></app-input>
+        <app-input [control]="Discount" label="Discount*" id="discount" [type]="'number'"></app-input>
+        <app-input [control]="IsPercent" label="Is Percent" id="is-percent" [type]="'checkbox'"></app-input>
+        <app-input [control]="CancelFee" label="Cancel Fee*" id="cancel-fee" [type]="'number'"></app-input>
+        <app-input [control]="FreeRouter" (Onchecked)="disableRouterfee($event)" label="Free Router" id="free-router"
+            [type]="'checkbox'"></app-input>
+        <app-input *ngIf="showRouterFee" [control]="RouterFee" #routerFee label="Router Fee*" id="router-fee"
+            [type]="'number'"></app-input>
+        <button [disabled]="OfferForm.status=='INVALID'"
+            [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':OfferForm.status=='INVALID'}" type="submit"
+            class="add-btn">Submit</button>
+    </form>
+</div>
