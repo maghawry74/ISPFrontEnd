@@ -39,7 +39,7 @@ export class AddProviderComponent implements OnInit {
       {
         this.UpdateOrDelete = false;
         this.formTitle = "Update Provider";
-        this.ProviderService.getProvById(this.currentCode).subscribe(prov=>{
+        this.ProviderService.GetById(this.currentCode).subscribe(prov=>{
           this.providerForm.setValue({
             name:prov.name
           }) })
@@ -60,7 +60,7 @@ backToProvList()
 addProvider()
 {
   let newProv:Iprovider = this.providerForm.value as Iprovider
-  this.ProviderService.addProvider(newProv).subscribe(resp=>{
+  this.ProviderService.Add(newProv).subscribe(resp=>{
        this.router.navigate(['/Providers']);
        this.angularMaterailaServ.addAndUpdateSuccess("Provider Added Successfully");
   })
@@ -69,7 +69,7 @@ addProvider()
  updateProv()
  {
   let newProv:Iprovider = this.providerForm.value as Iprovider
-  this.ProviderService.updateProvider(this.currentCode,newProv).subscribe(resp=>{
+  this.ProviderService.Update(newProv).subscribe(resp=>{
     this.router.navigate(['/Providers']);
     this.angularMaterailaServ.addAndUpdateSuccess("provider Updated Successfully")
   })

@@ -14,7 +14,7 @@ constructor(private providerService:ProviderService, private router:Router)
 {
 }
   ngOnInit(): void {
-    this.providerService.getAllProviders().subscribe(data=>{
+    this.providerService.GetAll().subscribe(data=>{
       this.providersList = data;
     })
   }
@@ -23,7 +23,7 @@ constructor(private providerService:ProviderService, private router:Router)
     let confirmDel = confirm("Are you sure you want to delete this provider")
     if(confirmDel==true)
     {
-      this.providerService.deleteProvider(id).subscribe(resp=>{
+      this.providerService.Delete(id).subscribe(resp=>{
         this.ngOnInit();
       })
     }

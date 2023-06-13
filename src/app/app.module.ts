@@ -17,7 +17,11 @@ import { ProviderComponent } from './component/provider/provider.component';
 import { AddProviderComponent } from './component/add-provider/add-provider.component';
 import { MatConfirmDialogComponent } from './component/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatIconModule } from '@angular/material/icon';
-
+import { AddCentralComponent } from './component/add-central/add-central.component';
+import { AddBranchComponent } from './component/add-branch/add-branch.component';
+import { CentralsComponent } from './component/centrals/centrals.component';
+import { ModalComponent } from './component/modal/modal.component';
+import { OffersComponent } from './component/offers/offers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +32,12 @@ import { MatIconModule } from '@angular/material/icon';
     InputComponent,
     ProviderComponent,
     AddProviderComponent,
-    MatConfirmDialogComponent
+    MatConfirmDialogComponent,
+    AddCentralComponent,
+    AddBranchComponent,
+    CentralsComponent,
+    ModalComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,

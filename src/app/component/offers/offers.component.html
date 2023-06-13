@@ -1,0 +1,103 @@
+<div *ngIf="isLoading;else Page" class="spinner "></div>
+<ng-template #Page>
+    <div class="mx-4 m flex flex-col items-start justify-center mt-10 gap-5">
+        <h1 class="text-2xl text-left">Centrals</h1>
+        <a type="button" class="add-btn" routerLink="/Offers/Add">
+            <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
+            New
+        </a>
+        <h1 *ngIf="offers.length==0;else Table" class="text-center w-full mt-10">There Are No Offers !</h1>
+        <ng-template #Table>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
+                <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Provider Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Discount
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Cancel Fee
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                #Months
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                #Free Months
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Free Months First ?
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Free Router ?
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Router Fee
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngIf="isError"
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th colspan="4" scope="row"
+                                class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                                An Error Has Occured !
+                            </th>
+                        </tr>
+                        <tr *ngFor="let offer of offers"
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.name}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.provider.name}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.discount}} {{offer.isPercent?"%":"LE"}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.cancelFee}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.numberOfFreeMonths}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.numberOfMonths}}
+                            </th>
+                            <th scope="col" class="px-6 py-3 relative">
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+                                    *ngIf="offer.freeMonthsFirst" src="/assets/Icons/accept.png" />
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    *ngIf="!offer.freeMonthsFirst" src="/assets/Icons/remove.png" />
+                            </th>
+                            <th scope="col" class="px-6 py-3 relative">
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+                                    *ngIf="offer.freeRouter" src="/assets/Icons/accept.png" />
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    *ngIf="!offer.freeRouter" src="/assets/Icons/remove.png" />
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{offer.routerPrice}}
+                            </th>
+                            <td class="px-6 py-4 text-right flex justify-center items-center">
+                                <button (click)="EditOffer(offer.id)"> <i
+                                        class='fa fa-edit edit-btn edit-btn '></i></button>
+                                <app-modal [Message]="'Are You Sure To Delete ' +offer.name + ' Offer'"
+                                    [YesFunction]="DeleteOffer(offer.id)">
+                                </app-modal>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </ng-template>
+    </div>
+</ng-template>
