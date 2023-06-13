@@ -123,7 +123,7 @@ export class AddOfferComponent implements OnInit {
       this.OfferService.Add(Offer).subscribe(sub);
     } else {
       Offer.id = this.activatedRoute.snapshot.params.id;
-      this.OfferService.Update(Offer).subscribe(sub);
+      this.OfferService.Update(Offer.id!, Offer).subscribe(sub);
     }
   }
   disableRouterfee(e: boolean) {

@@ -81,7 +81,7 @@ export class AddCentralComponent implements OnInit {
         name: this.CentralName.value!,
         governorateCode: this.Governorate.value!,
       };
-      this.centralService.Update(Central).subscribe({
+      this.centralService.Update(Central.id, Central).subscribe({
         next: (data) => {
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Updated Successfully'
