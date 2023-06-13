@@ -13,6 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './component/login/login.component';
 import { AddOfferComponent } from './component/add-offer/add-offer.component';
 import { InputComponent } from './component/input/input.component';
+import { ProviderComponent } from './component/provider/provider.component';
+import { AddProviderComponent } from './component/add-provider/add-provider.component';
+import { MatConfirmDialogComponent } from './component/mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,10 @@ import { InputComponent } from './component/input/input.component';
     AddGovernarateComponent,
     LoginComponent,
     AddOfferComponent,
-    InputComponent
+    InputComponent,
+    ProviderComponent,
+    AddProviderComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -31,10 +38,12 @@ import { InputComponent } from './component/input/input.component';
     MatSnackBarModule,
     MatDialogModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule
    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule { }

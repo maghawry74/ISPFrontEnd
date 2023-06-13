@@ -68,33 +68,19 @@ export class AddGovernarateComponent implements OnInit {
   AddGovernarate()
   {
     let newGov:IGovernarate = this.governateForm.value as IGovernarate;
-    newGov.status = true;
     this.govService.addGov(newGov).subscribe(resp=>
       {
         this.router.navigate(['/Governarates']);
         this.angularMaterailaServ.addAndUpdateSuccess("Governarate Added Successfully");
-        // this.snackBar.open("Governarate Added Successfully",'',{
-        //   duration:3000,
-        //   verticalPosition:'top',
-        //   horizontalPosition: 'right',
-        //   panelClass: ['blue-snackbar'],
-        // })
       })
    
   }
   //update governorate
   updateGov(){
     let governarate:IGovernarate = this.governateForm.value as IGovernarate;
-    console.log(governarate)
     this.govService.updateGov(governarate.code,governarate).subscribe(resp=>{
       this.router.navigate(['/Governarates']);
       this.angularMaterailaServ.addAndUpdateSuccess("Governarate Updated Successfully")
-      // this.snackBar.open("Governarate Updated Successfully",'',{
-      //   duration:3000,
-      //   verticalPosition:'top',
-      //   horizontalPosition: 'right',
-      //   panelClass: ['blue-snackbar'],
-      // })
     })
   }
 }
