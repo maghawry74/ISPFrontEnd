@@ -38,6 +38,25 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 11.2px #58588e double;
+  border-left-style: solid;
+  border-radius: 50%;
+  animation: spinner-aib1d7 0.75s infinite linear;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -28px;
+  margin-left: -28px;
+}
+
+@keyframes spinner-aib1d7 {
+  to {
+    transform: rotate(360deg);
+  }
+}
 /* .blue-snackbar {
   background: rgb(124, 124, 124);
   color:white;

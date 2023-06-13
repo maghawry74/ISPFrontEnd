@@ -7,8 +7,10 @@ import { AddOfferComponent } from './component/add-offer/add-offer.component';
 import { AddCentralComponent } from './component/add-central/add-central.component';
 import { AddBranchComponent } from './component/add-branch/add-branch.component';
 import { CentralsComponent } from './component/centrals/centrals.component';
+import { ModalComponent } from './component/modal/modal.component';
 
 const routes: Routes = [
+  { path: '', component: ModalComponent },
   { path: 'Centrals', component: CentralsComponent },
   { path: 'Centrals/Add', component: AddCentralComponent },
   { path: 'Centrals/Edit/:id', component: AddCentralComponent },
