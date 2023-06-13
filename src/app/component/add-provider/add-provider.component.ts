@@ -69,7 +69,7 @@ addProvider()
  updateProv()
  {
   let newProv:Iprovider = this.providerForm.value as Iprovider
-  this.ProviderService.Update(newProv).subscribe(resp=>{
+  this.ProviderService.Update(newProv.id,newProv).subscribe(resp=>{
     this.router.navigate(['/Providers']);
     this.angularMaterailaServ.addAndUpdateSuccess("provider Updated Successfully")
   })

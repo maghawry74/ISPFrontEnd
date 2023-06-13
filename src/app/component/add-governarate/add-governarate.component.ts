@@ -73,7 +73,7 @@ export class AddGovernarateComponent implements OnInit {
   //update governorate
   updateGov(){
     let governarate:IGovernarate = this.governateForm.value as IGovernarate;
-    this.govService.Update(governarate).subscribe(resp=>{
+    this.govService.Update(governarate.code,governarate).subscribe(resp=>{
       this.router.navigate(['/Governarates']);
       this.angularMaterailaServ.addAndUpdateSuccess("Governarate Updated Successfully")
     })
