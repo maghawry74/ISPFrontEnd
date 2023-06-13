@@ -3,8 +3,14 @@ import { environment } from 'src/environment/environment';
 
 export abstract class GenericService<T, ID> {
   private Url = '';
+  private headersOptions: any;
   constructor(Url: string, private client: HttpClient) {
     this.Url = `${environment.APIURL}/${Url}`;
+    this.headersOptions = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
   }
 
   GetAll() {
@@ -14,19 +20,11 @@ export abstract class GenericService<T, ID> {
     return this.client.get<T>(`${this.Url}/${id}`);
   }
   Add(data: any) {
-    return this.client.post(this.Url, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    return this.client.post(this.Url, data, this.headersOptions);
   }
 
-  Update(data: any) {
-    return this.client.put(this.Url, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  Update(id: ID, data: any) {
+    return this.client.put(`${this.Url}/${id}`, data, this.headersOptions);
   }
 
   Delete(id: ID) {

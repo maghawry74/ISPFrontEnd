@@ -10,4 +10,5 @@ export class CentralService extends GenericService<ICentralView, number> {
   constructor(client: HttpClient) {
     super('Central', client);
   }
+  
 }
