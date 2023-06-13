@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ICentralView } from 'src/app/models/ICentral';
 import { IGovernarate } from 'src/app/models/igovernarate';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
-import { APIService } from 'src/app/services/api.service';
+import { CentralService } from 'src/app/services/central.service';
 import { GovernorateService } from 'src/app/services/governorate.service';
 import { Select, initTE } from 'tw-elements';
 @Component({
@@ -17,14 +17,14 @@ export class AddCentralComponent implements OnInit {
   governorates: IGovernarate[] = [];
   constructor(
     private activeRoute: ActivatedRoute,
-    private centralService: APIService,
-    private APIService: GovernorateService,
+    private centralService: CentralService,
+    private governorateService: GovernorateService,
     private angularMaterialService: AngularMateralService
   ) {
     const id = activeRoute.snapshot.params.id;
     if (id) {
       this.state = 'update';
-      centralService.GetById<ICentralView>('Central', id).subscribe({
+      centralService.GetById(id).subscribe({
         next: (data) => {
           console.log(data);
           this.centralFrom.setValue({
@@ -34,7 +34,7 @@ export class AddCentralComponent implements OnInit {
         },
       });
     }
-    APIService.getAll().subscribe({
+    governorateService.GetAll().subscribe({
       next: (data) => {
         this.governorates = data;
       },
@@ -62,7 +62,7 @@ export class AddCentralComponent implements OnInit {
         name: this.CentralName.value!,
         governorateCode: this.Governorate.value!,
       };
-      this.centralService.Add('Central', Central).subscribe({
+      this.centralService.Add(Central).subscribe({
         next: (data) => {
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Added Successfully'
@@ -80,7 +80,7 @@ export class AddCentralComponent implements OnInit {
         name: this.CentralName.value!,
         governorateCode: this.Governorate.value!,
       };
-      this.centralService.Update('Central', Central).subscribe({
+      this.centralService.Update(Central).subscribe({
         next: (data) => {
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Updated Successfully'

@@ -22,9 +22,6 @@
                                 Discount
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Percent?
-                            </th>
-                            <th scope="col" class="px-6 py-3">
                                 Cancel Fee
                             </th>
                             <th scope="col" class="px-6 py-3">
@@ -64,10 +61,7 @@
                                 {{offer.provider.name}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.discount}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{offer.isPercent}}
+                                {{offer.discount}} {{offer.isPercent?"%":"LE"}}
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 {{offer.cancelFee}}
@@ -78,18 +72,24 @@
                             <th scope="col" class="px-6 py-3">
                                 {{offer.numberOfMonths}}
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{offer.freeMonthsFirst}}
+                            <th scope="col" class="px-6 py-3 relative">
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+                                    *ngIf="offer.freeMonthsFirst" src="/assets/Icons/accept.png" />
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    *ngIf="!offer.freeMonthsFirst" src="/assets/Icons/remove.png" />
                             </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{offer.freeRouter}}
+                            <th scope="col" class="px-6 py-3 relative">
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
+                                    *ngIf="offer.freeRouter" src="/assets/Icons/accept.png" />
+                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    *ngIf="!offer.freeRouter" src="/assets/Icons/remove.png" />
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 {{offer.routerPrice}}
                             </th>
                             <td class="px-6 py-4 text-right flex justify-center items-center">
                                 <button (click)="EditOffer(offer.id)"> <i
-                                        class='fa fa-edit edit-btn edit-btn'></i></button>
+                                        class='fa fa-edit edit-btn edit-btn '></i></button>
                                 <app-modal [Message]="'Are You Sure To Delete ' +offer.name + ' Offer'"
                                     [YesFunction]="DeleteOffer(offer.id)">
                                 </app-modal>

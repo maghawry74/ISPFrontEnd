@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOfferView } from 'src/app/models/IOffer';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
-import { APIService } from 'src/app/services/api.service';
+import { OfferService } from 'src/app/services/offer.service';
 
 @Component({
   selector: 'app-offers',
@@ -15,12 +15,12 @@ export class OffersComponent implements OnInit {
 
   offers: IOfferView[] = [];
   constructor(
-    private APIService: APIService,
+    private OfferService: OfferService,
     private router: Router,
     private ngMaterialService: AngularMateralService
   ) {}
   ngOnInit(): void {
-    this.APIService.GetAll<IOfferView>('Offer').subscribe({
+    this.OfferService.GetAll().subscribe({
       next: (data) => {
         console.log(data);
         this.isLoading = false;
@@ -39,7 +39,7 @@ export class OffersComponent implements OnInit {
   }
   DeleteOffer(id: number) {
     return () => {
-      this.APIService.Delete('Offer', id).subscribe({
+      this.OfferService.Delete(id).subscribe({
         next: () => {
           this.ngMaterialService.addAndUpdateSuccess(
             'Offer Has Been Deleted Successfully'

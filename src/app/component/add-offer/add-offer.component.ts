@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FreeMonthsValidator } from 'src/app/Validation/FreeMonthsValidator';
 import { RouterFeeRequiredValidator } from 'src/app/Validation/RouterFeeRequiredValidator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { APIService } from 'src/app/services/api.service';
 import {
   IOfferAddOrUpdate,
   IOfferView,
@@ -12,6 +11,8 @@ import {
 } from 'src/app/models/IOffer';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { Select, initTE } from 'tw-elements';
+import { OfferService } from 'src/app/services/offer.service';
+import { ProviderService } from 'src/app/services/provider.service';
 @Component({
   selector: 'app-add-offer',
   templateUrl: './add-offer.component.html',
@@ -55,21 +56,22 @@ export class AddOfferComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private APIService: APIService,
+    private OfferService: OfferService,
+    private ProviderService: ProviderService,
     private ngMaterial: AngularMateralService,
     private router: Router
   ) {}
   ngOnInit(): void {
     initTE({ Select });
     const id = this.activatedRoute.snapshot.params.id;
-    this.APIService.GetAll<IProvider>('Provider').subscribe({
+    this.ProviderService.GetAll().subscribe({
       next: (data) => {
         this.Providers = data;
       },
     });
     if (id) {
       this.state = 'update';
-      this.APIService.GetById<IOfferView>('Offer', id).subscribe({
+      this.OfferService.GetById(id).subscribe({
         next: (data) => {
           this.OfferForm.setValue({
             OfferName: data.name,
@@ -118,10 +120,10 @@ export class AddOfferComponent implements OnInit {
       },
     };
     if (this.state == 'add') {
-      this.APIService.Add('offer', Offer).subscribe(sub);
+      this.OfferService.Add(Offer).subscribe(sub);
     } else {
       Offer.id = this.activatedRoute.snapshot.params.id;
-      this.APIService.Update('Offer', Offer).subscribe(sub);
+      this.OfferService.Update(Offer).subscribe(sub);
     }
   }
   disableRouterfee(e: boolean) {

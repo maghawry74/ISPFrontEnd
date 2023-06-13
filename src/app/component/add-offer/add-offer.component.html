@@ -33,5 +33,7 @@
         <button [disabled]="OfferForm.status=='INVALID'"
             [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':OfferForm.status=='INVALID'}" type="submit"
             class="add-btn">Submit</button>
+        <a type="button" class="cancel-btn" routerLink="/offers" data-te-ripple-init data-te-ripple-color="light">Back
+        </a>
     </form>
 </div>
