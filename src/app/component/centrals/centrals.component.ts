@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICentralView } from 'src/app/models/ICentral';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
-import { CentralService } from 'src/app/services/central.service';
+import { APIService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-centrals',
@@ -14,12 +14,12 @@ export class CentralsComponent implements OnInit {
   isLoading = true;
   isError = false;
   constructor(
-    private CentralService: CentralService,
+    private APIService: APIService,
     private router: Router,
     private ngMaterialService: AngularMateralService
   ) {}
   ngOnInit(): void {
-    this.CentralService.GetAllCentrals().subscribe({
+    this.APIService.GetAll<ICentralView>('Central').subscribe({
       next: (data) => {
         this.isLoading = false;
         this.centrals = data;
@@ -33,15 +33,12 @@ export class CentralsComponent implements OnInit {
   }
 
   EditCentral(id: number) {
-    console.log(id);
     this.router.navigateByUrl(`/Centrals/Edit/${id}`);
   }
 
   DeleteCentral(id: number) {
-    console.log('Out');
     return () => {
-      console.log('in');
-      this.CentralService.DeleteCentral(id).subscribe({
+      this.APIService.Delete('Central', id).subscribe({
         next: (data) => {
           this.centrals = this.centrals.filter((c) => c.id != id);
           this.ngMaterialService.addAndUpdateSuccess(

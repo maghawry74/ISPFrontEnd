@@ -8,15 +8,19 @@ import { AddCentralComponent } from './component/add-central/add-central.compone
 import { AddBranchComponent } from './component/add-branch/add-branch.component';
 import { CentralsComponent } from './component/centrals/centrals.component';
 import { ModalComponent } from './component/modal/modal.component';
+import { OffersComponent } from './component/offers/offers.component';
 
 const routes: Routes = [
-  { path: '', component: ModalComponent },
+  { path: '', component: LoginComponent },
   { path: 'Centrals', component: CentralsComponent },
   { path: 'Centrals/Add', component: AddCentralComponent },
   { path: 'Centrals/Edit/:id', component: AddCentralComponent },
   { path: 'Governarates', component: GovernateComponent },
   { path: 'Governate/Add', component: AddGovernarateComponent },
   { path: 'Governate/Edit/:code', component: AddGovernarateComponent },
+  { path: 'offers', component: OffersComponent },
+  { path: 'Offers/Add', component: AddOfferComponent },
+  { path: 'Offers/Edit/:id', component: AddOfferComponent },
   { path: 'Login', component: LoginComponent },
 ];
 

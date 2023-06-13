@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ICentralView } from 'src/app/models/ICentral';
 import { IGovernarate } from 'src/app/models/igovernarate';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
-import { CentralService } from 'src/app/services/central.service';
+import { APIService } from 'src/app/services/api.service';
 import { GovernorateService } from 'src/app/services/governorate.service';
 import { Select, initTE } from 'tw-elements';
 @Component({
@@ -16,15 +17,16 @@ export class AddCentralComponent implements OnInit {
   governorates: IGovernarate[] = [];
   constructor(
     private activeRoute: ActivatedRoute,
-    private centralService: CentralService,
-    private governorateService: GovernorateService,
+    private centralService: APIService,
+    private APIService: GovernorateService,
     private angularMaterialService: AngularMateralService
   ) {
     const id = activeRoute.snapshot.params.id;
     if (id) {
       this.state = 'update';
-      centralService.GetCentralById(id).subscribe({
+      centralService.GetById<ICentralView>('Central', id).subscribe({
         next: (data) => {
+          console.log(data);
           this.centralFrom.setValue({
             CentralName: data.name,
             Governorate: data.governorate.code.toString(),
@@ -32,10 +34,9 @@ export class AddCentralComponent implements OnInit {
         },
       });
     }
-    governorateService.getAll().subscribe({
+    APIService.getAll().subscribe({
       next: (data) => {
         this.governorates = data;
-        console.log(data);
       },
       error: (e) => {
         console.log(e);
@@ -61,7 +62,7 @@ export class AddCentralComponent implements OnInit {
         name: this.CentralName.value!,
         governorateCode: this.Governorate.value!,
       };
-      this.centralService.AddCentral(Central).subscribe({
+      this.centralService.Add('Central', Central).subscribe({
         next: (data) => {
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Added Successfully'
@@ -79,7 +80,7 @@ export class AddCentralComponent implements OnInit {
         name: this.CentralName.value!,
         governorateCode: this.Governorate.value!,
       };
-      this.centralService.UpdateCentral(Central).subscribe({
+      this.centralService.Update('Central', Central).subscribe({
         next: (data) => {
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Updated Successfully'

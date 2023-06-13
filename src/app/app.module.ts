@@ -17,6 +17,7 @@ import { AddCentralComponent } from './component/add-central/add-central.compone
 import { AddBranchComponent } from './component/add-branch/add-branch.component';
 import { CentralsComponent } from './component/centrals/centrals.component';
 import { ModalComponent } from './component/modal/modal.component';
+import { OffersComponent } from './component/offers/offers.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ModalComponent } from './component/modal/modal.component';
     AddCentralComponent,
     AddBranchComponent,
     CentralsComponent,
-    ModalComponent
+    ModalComponent,
+    OffersComponent
   ],
   imports: [
     BrowserModule,

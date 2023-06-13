@@ -2,6 +2,19 @@
     <h1 class="text-5xl text-left">New Offer</h1>
     <form (ngSubmit)="FormHandler()" [formGroup]="OfferForm" class="">
         <app-input [control]="OfferName" label="Offer Name*" id="offer-name"></app-input>
+        <div class="my-3">
+            <label for="Providers"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Providers*</label>
+            <select [formControl]="Provider" id="Providers" data-te-select-init data-te-select-filter="true">
+                <ng-container *ngFor="let Provider of Providers;let first=first">
+                    <option [selected]="first" [value]="Provider.id">{{Provider.name}}</option>
+                </ng-container>
+            </select>
+            <p class="text-red-600 text-base " *ngIf="Provider?.errors?.['required']&&Provider?.['touched']">
+                Provider is
+                Required
+            </p>
+        </div>
         <div class="flex justify-between gap-x-10">
             <app-input [control]="NumberOfMonths" label="Number of Months*" id="months-number"
                 [type]="'number'"></app-input>
