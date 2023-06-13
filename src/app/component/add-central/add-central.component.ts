@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { IGovernarate } from 'src/app/models/igovernarate';
+import { AngularMateralService } from 'src/app/services/angular-materal.service';
+import { CentralService } from 'src/app/services/central.service';
+import { GovernorateService } from 'src/app/services/governorate.service';
 import { Select, initTE } from 'tw-elements';
 @Component({
   selector: 'app-add-central',
@@ -7,6 +12,37 @@ import { Select, initTE } from 'tw-elements';
   styleUrls: ['./add-central.component.css'],
 })
 export class AddCentralComponent implements OnInit {
+  private state: 'update' | 'add' = 'add';
+  governorates: IGovernarate[] = [];
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private centralService: CentralService,
+    private governorateService: GovernorateService,
+    private angularMaterialService: AngularMateralService
+  ) {
+    const id = activeRoute.snapshot.params.id;
+    if (id) {
+      this.state = 'update';
+      centralService.GetCentralById(id).subscribe({
+        next: (data) => {
+          this.centralFrom.setValue({
+            CentralName: data.name,
+            Governorate: data.governorate.code.toString(),
+          });
+        },
+      });
+    }
+    governorateService.getAll().subscribe({
+      next: (data) => {
+        this.governorates = data;
+        console.log(data);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+    });
+  }
+
   CentralName = new FormControl('', [Validators.required]);
   Governorate = new FormControl('', [Validators.required]);
 
@@ -20,10 +56,42 @@ export class AddCentralComponent implements OnInit {
   }
 
   FromSubmit() {
-    const newCentral = {
-      CentralName: this.CentralName.value,
-      Governorate: this.Governorate.value,
-    };
-    console.log(newCentral);
+    if (this.state == 'add') {
+      const Central = {
+        name: this.CentralName.value!,
+        governorateCode: this.Governorate.value!,
+      };
+      this.centralService.AddCentral(Central).subscribe({
+        next: (data) => {
+          this.angularMaterialService.addAndUpdateSuccess(
+            'Central Has Been Added Successfully'
+          );
+        },
+        error: (e) => {
+          this.angularMaterialService.addAndUpdateSuccess(
+            'An Error Occured Try Again Later'
+          );
+        },
+      });
+    } else {
+      const Central = {
+        id: this.activeRoute.snapshot.params.id!,
+        name: this.CentralName.value!,
+        governorateCode: this.Governorate.value!,
+      };
+      this.centralService.UpdateCentral(Central).subscribe({
+        next: (data) => {
+          this.angularMaterialService.addAndUpdateSuccess(
+            'Central Has Been Updated Successfully'
+          );
+        },
+        error: (e) => {
+          console.log(e);
+          this.angularMaterialService.addAndUpdateSuccess(
+            'An Error Occured Try Again Later'
+          );
+        },
+      });
+    }
   }
 }

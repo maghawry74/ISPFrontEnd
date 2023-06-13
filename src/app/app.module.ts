@@ -15,6 +15,7 @@ import { AddOfferComponent } from './component/add-offer/add-offer.component';
 import { InputComponent } from './component/input/input.component';
 import { AddCentralComponent } from './component/add-central/add-central.component';
 import { AddBranchComponent } from './component/add-branch/add-branch.component';
+import { CentralsComponent } from './component/centrals/centrals.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AddBranchComponent } from './component/add-branch/add-branch.component'
     AddOfferComponent,
     InputComponent,
     AddCentralComponent,
-    AddBranchComponent
+    AddBranchComponent,
+    CentralsComponent
   ],
   imports: [
     BrowserModule,

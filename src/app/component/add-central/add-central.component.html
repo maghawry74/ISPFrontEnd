@@ -6,10 +6,9 @@
             <label for="Governorate"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Governorate*</label>
             <select [formControl]="Governorate" id="Governorate" data-te-select-init data-te-select-filter="true">
-                <option selected value=""></option>
-                <option value="1">Cairo</option>
-                <option value="2">Menofia</option>
-                <option value="3">Giza</option>
+                <ng-container *ngFor="let Governorate of governorates;let first=first">
+                    <option [selected]="first" [value]="Governorate.code">{{Governorate.name}}</option>
+                </ng-container>
             </select>
             <p class="text-red-600 text-base " *ngIf="Governorate?.errors?.['required']&&Governorate?.['touched']">
                 Governorate is
@@ -19,5 +18,7 @@
         <button [disabled]="centralFrom.status=='INVALID'"
             [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':centralFrom.status=='INVALID'}" type="submit"
             class="add-btn">Submit</button>
+        <a routerLink="/Centrals" class="cancel-btn" data-te-ripple-init data-te-ripple-color="light">Back
+        </a>
     </form>
 </div>

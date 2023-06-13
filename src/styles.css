@@ -17,7 +17,7 @@
     @apply text-[#F59E0B] text-3xl me-3;
   }
   .remove-btn {
-    @apply text-red-500 text-3xl;
+    @apply text-red-500 text-3xl me-3;
   }
 
   .submit-btn {
