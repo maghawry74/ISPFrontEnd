@@ -5,7 +5,6 @@ export class FreeMonthsValidator {
     return (FormGroup: AbstractControl): ValidationErrors | null => {
       const targetEle = FormGroup.get(target);
       const compare = FormGroup.get(eleToCompare);
-
       const error =
         targetEle?.value > compare?.value ? { freeMonths: true } : null;
       targetEle?.setErrors(error);

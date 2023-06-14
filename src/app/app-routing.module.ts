@@ -11,17 +11,21 @@ import { AddCentralComponent } from './component/add-central/add-central.compone
 import { AddBranchComponent } from './component/add-branch/add-branch.component';
 import { CentralsComponent } from './component/centrals/centrals.component';
 import { ModalComponent } from './component/modal/modal.component';
+import { BranchsComponent } from './component/branchs/branchs.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'branch', component: BranchsComponent },
+  { path: 'branch/add', component: AddBranchComponent },
+  { path: 'branch/edit/:id', component: AddBranchComponent },
   { path: 'Centrals', component: CentralsComponent },
   { path: 'Centrals/Add', component: AddCentralComponent },
   { path: 'Centrals/Edit/:id', component: AddCentralComponent },
   { path: 'Governarates', component: GovernateComponent },
   { path: 'Governate/Add', component: AddGovernarateComponent },
   { path: 'Governate/Edit/:code', component: AddGovernarateComponent },
-  {path:'Providers',component:ProviderComponent},
-  {path:'Provider/Add',component: AddProviderComponent},
-  {path:'Provider/Edit/:id',component: AddProviderComponent},
+  { path: 'Providers', component: ProviderComponent },
+  { path: 'Provider/Add', component: AddProviderComponent },
+  { path: 'Provider/Edit/:id', component: AddProviderComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'Offers/Add', component: AddOfferComponent },
   { path: 'Offers/Edit/:id', component: AddOfferComponent },

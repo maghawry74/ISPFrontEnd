@@ -73,6 +73,7 @@ export class AddOfferComponent implements OnInit {
       this.state = 'update';
       this.OfferService.GetById(id).subscribe({
         next: (data) => {
+          this.showRouterFee = !data.freeRouter;
           this.OfferForm.setValue({
             OfferName: data.name,
             NumberOfMonths: data.numberOfMonths.toString(),

@@ -11,6 +11,8 @@
             Must
             Be Lower Than or Equal Number Of Months
         </p>
+        <p class="text-red-600 text-base " *ngIf="control?.errors?.['isNan']&&control?.['touched']">Enter A Valid Number
+        </p>
     </div>
     <ng-template #checkbox>
         <div class="flex items-start mb-2">
