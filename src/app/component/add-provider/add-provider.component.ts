@@ -47,6 +47,35 @@ export class AddProviderComponent implements OnInit {
     });
   }
   //get name
+  // get name() {
+  //   return this.providerForm.get('name');
+  // }
+  // //backToProvidersList
+  // backToProvList() {
+  //   this.location.back();
+  // }
+  // //add provider
+  // addProvider() {
+  //   let newProv: Iprovider = this.providerForm.value as Iprovider;
+  //   this.ProviderService.Add(newProv).subscribe((resp) => {
+  //     this.router.navigate(['/Providers']);
+  //     this.angularMaterailaServ.addAndUpdateSuccess(
+  //       'Provider Added Successfully'
+  //     );
+  //   });
+  // }
+  // //update Provider
+  // updateProv() {
+  //   let newProv: Iprovider = this.providerForm.value as Iprovider;
+  //   this.ProviderService.Update(newProv).subscribe((resp) => {
+  //     this.router.navigate(['/Providers']);
+  //     this.angularMaterailaServ.addAndUpdateSuccess(
+  //       'provider Updated Successfully'
+  //     );
+  //   });
+  // }
+
+  //get name
   get name() {
     return this.providerForm.get('name');
   }
@@ -67,7 +96,7 @@ export class AddProviderComponent implements OnInit {
   //update Provider
   updateProv() {
     let newProv: Iprovider = this.providerForm.value as Iprovider;
-    this.ProviderService.Update(newProv).subscribe((resp) => {
+    this.ProviderService.Update(newProv.id, newProv).subscribe((resp) => {
       this.router.navigate(['/Providers']);
       this.angularMaterailaServ.addAndUpdateSuccess(
         'provider Updated Successfully'
