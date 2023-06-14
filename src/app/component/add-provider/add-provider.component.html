@@ -15,6 +15,9 @@
                 <div [hidden]="name?.untouched||name?.valid">
                     <small class="text-red-600 text-base" *ngIf="name?.errors?.['required']">Provider Name Is
                         Required</small>
+                    <small class="text-red-600 text-base" *ngIf="name?.errors?.['maxlength']">
+                        Provider Name Must Be Does Not Exceed 50 Letter
+                    </small>
                 </div>
             </div>            
             <!--Submit button-->
