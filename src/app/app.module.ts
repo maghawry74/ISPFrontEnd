@@ -22,6 +22,8 @@ import { AddBranchComponent } from './component/add-branch/add-branch.component'
 import { CentralsComponent } from './component/centrals/centrals.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { OffersComponent } from './component/offers/offers.component';
+import { PackageComponent } from './component/package/package.component';
+import { AddPackageComponent } from './component/add-package/add-package.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +39,9 @@ import { OffersComponent } from './component/offers/offers.component';
     AddBranchComponent,
     CentralsComponent,
     ModalComponent,
-    OffersComponent
+    OffersComponent,
+    PackageComponent,
+    AddPackageComponent
   ],
   imports: [
     BrowserModule,

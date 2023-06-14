@@ -1,5 +1,4 @@
 import { IGovernarate } from './igovernarate';
-
 export interface ICentralView {
   id: number;
   name: string;
