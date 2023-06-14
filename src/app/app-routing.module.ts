@@ -13,8 +13,12 @@ import { CentralsComponent } from './component/centrals/centrals.component';
 import { ModalComponent } from './component/modal/modal.component';
 import { PackageComponent } from './component/package/package.component';
 import { AddPackageComponent } from './component/add-package/add-package.component';
+import { BranchsComponent } from './component/branchs/branchs.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'branch', component: BranchsComponent },
+  { path: 'branch/add', component: AddBranchComponent },
+  { path: 'branch/edit/:id', component: AddBranchComponent },
   { path: 'Centrals', component: CentralsComponent },
   { path: 'Centrals/Add', component: AddCentralComponent },
   { path: 'Centrals/Edit/:id', component: AddCentralComponent },

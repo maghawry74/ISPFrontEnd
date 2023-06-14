@@ -24,6 +24,7 @@ import { ModalComponent } from './component/modal/modal.component';
 import { OffersComponent } from './component/offers/offers.component';
 import { PackageComponent } from './component/package/package.component';
 import { AddPackageComponent } from './component/add-package/add-package.component';
+import { BranchsComponent } from './component/branchs/branchs.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { AddPackageComponent } from './component/add-package/add-package.compone
     ModalComponent,
     OffersComponent,
     PackageComponent,
-    AddPackageComponent
+    AddPackageComponent,
+    BranchsComponent
   ],
   imports: [
     BrowserModule,

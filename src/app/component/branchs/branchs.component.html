@@ -1,12 +1,12 @@
 <div *ngIf="isLoading;else Page" class="spinner "></div>
 <ng-template #Page>
     <div class="mx-4 m flex flex-col items-start justify-center mt-10 gap-5">
-        <h1 class="text-2xl text-left">Centrals</h1>
-        <a type="button" class="add-btn" routerLink="/Offers/Add">
+        <h1 class="text-2xl text-left">Branchs</h1>
+        <a type="button" class="add-btn" routerLink="/branch/add">
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New
         </a>
-        <h1 *ngIf="offers.length==0;else Table" class="text-center w-full mt-10">There Are No Offers !</h1>
+        <h1 *ngIf="branchs.length==0;else Table" class="text-center w-full mt-10">There Are No Branchs !</h1>
         <ng-template #Table>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
                 <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
@@ -16,28 +16,25 @@
                                 Name
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Provider Name
+                                Tel1
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Discount
+                                Tel2
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Cancel Fee
+                                Phone1
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                #Months
+                                Phone2
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                #Free Months
+                                Fax
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Free Months First ?
+                                Governrate
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Free Router ?
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Router Fee
+                                Manager
                             </th>
                             <th scope="col" class="px-6 py-3">
                                 Actions
@@ -52,46 +49,37 @@
                                 An Error Has Occured !
                             </th>
                         </tr>
-                        <tr *ngFor="let offer of offers"
+                        <tr *ngFor="let branch of branchs"
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="col" class="px-6 py-3">
-                                {{offer.name}}
+                                {{branch.name}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.provider.name}}
+                                {{branch.tel1}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.discount}} {{offer.isPercent?"%":"LE"}}
+                                {{branch.tel2}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.cancelFee}}
+                                {{branch.phone1}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.numberOfFreeMonths}}
+                                {{branch.phone2}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.numberOfMonths}}
-                            </th>
-                            <th scope="col" class="px-6 py-3 relative">
-                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
-                                    *ngIf="offer.freeMonthsFirst" src="/assets/Icons/accept.png" />
-                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    *ngIf="!offer.freeMonthsFirst" src="/assets/Icons/remove.png" />
-                            </th>
-                            <th scope="col" class="px-6 py-3 relative">
-                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
-                                    *ngIf="offer.freeRouter" src="/assets/Icons/accept.png" />
-                                <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                                    *ngIf="!offer.freeRouter" src="/assets/Icons/remove.png" />
+                                {{branch.fax}}
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                {{offer.routerPrice?offer.routerPrice:"Free"}}
+                                {{branch.governorateCode}}
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                {{branch.managerName||"N/A"}}
                             </th>
                             <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <button (click)="EditOffer(offer.id)"> <i
-                                        class='fa fa-edit edit-btn edit-btn '></i></button>
-                                <app-modal [Message]="'Are You Sure To Delete ' +offer.name + ' Offer'"
-                                    [YesFunction]="DeleteOffer(offer.id)">
+                                <a [routerLink]="'/branch/edit/'+branch.name" (click)="EditBranch(branch.name)"> <i
+                                        class='fa fa-edit edit-btn edit-btn '></i></a>
+                                <app-modal [Message]="'Are You Sure To Delete ' +branch.name + ' Offer'"
+                                    [YesFunction]="DeleteBranch(branch.name)">
                                 </app-modal>
                             </td>
                         </tr>
