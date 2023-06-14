@@ -37,10 +37,8 @@ export class AddProviderComponent implements OnInit {
       this.currentId = Number(param.get('id'));
       if (this.currentId != 0) {
         this.UpdateOrDelete = false;
-        this.formTitle = "Update Provider";
-        this.ProviderService.GetById(this.currentId).subscribe(prov=>{
         this.formTitle = 'Update Provider';
-        this.ProviderService.GetById(this.currentCode).subscribe((prov) => {
+        this.ProviderService.GetById(this.currentId).subscribe((prov) => {
           this.providerForm.setValue({
             name: prov.name,
           });
@@ -48,76 +46,6 @@ export class AddProviderComponent implements OnInit {
       }
     });
   }
-//get name
-get name()
-{
-return  this.providerForm.get('name');
-}
-//backToProvidersList
-backToProvList()
-{
-  this.location.back();
-}
-//add provider
-addProvider()
-{
-  let newProv:Iprovider = this.providerForm.value as Iprovider
-  this.ProviderService.Add(newProv).subscribe({
-    next:(resp)=>{
-      this.router.navigate(['/Providers']);
-      this.angularMaterailaServ.addAndUpdateSuccess("Provider Added Successfully");
-    },
-    error:(e)=>{
-      this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
-    }
-  })
-}
- //update Provider
- updateProv()
- {
-  const newProv = {
-    id:this.currentId,
-    name:this.providerForm.get('name')!.value
-  }
-  this.ProviderService.Update(this.currentId,newProv).subscribe({
-    next:(resp)=>{
-      this.router.navigate(['/Providers']);
-      this.angularMaterailaServ.addAndUpdateSuccess("provider Updated Successfully")
-    },
-    error:(e)=>{
-      this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
-    }
-  })
- }
-  //get name
-  // get name() {
-  //   return this.providerForm.get('name');
-  // }
-  // //backToProvidersList
-  // backToProvList() {
-  //   this.location.back();
-  // }
-  // //add provider
-  // addProvider() {
-  //   let newProv: Iprovider = this.providerForm.value as Iprovider;
-  //   this.ProviderService.Add(newProv).subscribe((resp) => {
-  //     this.router.navigate(['/Providers']);
-  //     this.angularMaterailaServ.addAndUpdateSuccess(
-  //       'Provider Added Successfully'
-  //     );
-  //   });
-  // }
-  // //update Provider
-  // updateProv() {
-  //   let newProv: Iprovider = this.providerForm.value as Iprovider;
-  //   this.ProviderService.Update(newProv).subscribe((resp) => {
-  //     this.router.navigate(['/Providers']);
-  //     this.angularMaterailaServ.addAndUpdateSuccess(
-  //       'provider Updated Successfully'
-  //     );
-  //   });
-  // }
-
   //get name
   get name() {
     return this.providerForm.get('name');
@@ -129,21 +57,38 @@ addProvider()
   //add provider
   addProvider() {
     let newProv: Iprovider = this.providerForm.value as Iprovider;
-    this.ProviderService.Add(newProv).subscribe((resp) => {
-      this.router.navigate(['/Providers']);
-      this.angularMaterailaServ.addAndUpdateSuccess(
-        'Provider Added Successfully'
-      );
+    this.ProviderService.Add(newProv).subscribe({
+      next: (resp) => {
+        this.router.navigate(['/Providers']);
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          'Provider Added Successfully'
+        );
+      },
+      error: (e) => {
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          "'An Error Occured Try Again Later'"
+        );
+      },
     });
   }
   //update Provider
   updateProv() {
-    let newProv: Iprovider = this.providerForm.value as Iprovider;
-    this.ProviderService.Update(newProv.id, newProv).subscribe((resp) => {
-      this.router.navigate(['/Providers']);
-      this.angularMaterailaServ.addAndUpdateSuccess(
-        'provider Updated Successfully'
-      );
+    const newProv = {
+      id: this.currentId,
+      name: this.providerForm.get('name')!.value,
+    };
+    this.ProviderService.Update(this.currentId, newProv).subscribe({
+      next: (resp) => {
+        this.router.navigate(['/Providers']);
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          'provider Updated Successfully'
+        );
+      },
+      error: (e) => {
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          "'An Error Occured Try Again Later'"
+        );
+      },
     });
   }
 }
