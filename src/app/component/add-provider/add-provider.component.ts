@@ -14,7 +14,7 @@ import { AngularMateralService } from 'src/app/services/angular-materal.service'
 export class AddProviderComponent implements OnInit {
   providerForm;
   UpdateOrDelete: boolean;
-  currentCode: number = 0;
+  currentId: number = 0;
   formTitle: string;
 
   constructor(
@@ -34,9 +34,11 @@ export class AddProviderComponent implements OnInit {
   ngOnInit(): void {
     initTE({ Ripple, Input });
     this.activateRoute.paramMap.subscribe((param) => {
-      this.currentCode = Number(param.get('id'));
-      if (this.currentCode != 0) {
+      this.currentId = Number(param.get('id'));
+      if (this.currentId != 0) {
         this.UpdateOrDelete = false;
+        this.formTitle = "Update Provider";
+        this.ProviderService.GetById(this.currentId).subscribe(prov=>{
         this.formTitle = 'Update Provider';
         this.ProviderService.GetById(this.currentCode).subscribe((prov) => {
           this.providerForm.setValue({
@@ -46,6 +48,47 @@ export class AddProviderComponent implements OnInit {
       }
     });
   }
+//get name
+get name()
+{
+return  this.providerForm.get('name');
+}
+//backToProvidersList
+backToProvList()
+{
+  this.location.back();
+}
+//add provider
+addProvider()
+{
+  let newProv:Iprovider = this.providerForm.value as Iprovider
+  this.ProviderService.Add(newProv).subscribe({
+    next:(resp)=>{
+      this.router.navigate(['/Providers']);
+      this.angularMaterailaServ.addAndUpdateSuccess("Provider Added Successfully");
+    },
+    error:(e)=>{
+      this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
+    }
+  })
+}
+ //update Provider
+ updateProv()
+ {
+  const newProv = {
+    id:this.currentId,
+    name:this.providerForm.get('name')!.value
+  }
+  this.ProviderService.Update(this.currentId,newProv).subscribe({
+    next:(resp)=>{
+      this.router.navigate(['/Providers']);
+      this.angularMaterailaServ.addAndUpdateSuccess("provider Updated Successfully")
+    },
+    error:(e)=>{
+      this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
+    }
+  })
+ }
   //get name
   // get name() {
   //   return this.providerForm.get('name');
