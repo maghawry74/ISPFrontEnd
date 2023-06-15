@@ -14,6 +14,8 @@ import { ModalComponent } from './component/modal/modal.component';
 import { PackageComponent } from './component/package/package.component';
 import { AddPackageComponent } from './component/add-package/add-package.component';
 import { BranchsComponent } from './component/branchs/branchs.component';
+import { RolesComponent } from './component/roles/roles.component';
+import { AddRoleComponent } from './component/add-role/add-role.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'branch', component: BranchsComponent },
@@ -25,15 +27,18 @@ const routes: Routes = [
   { path: 'Governarates', component: GovernateComponent },
   { path: 'Governate/Add', component: AddGovernarateComponent },
   { path: 'Governate/Edit/:code', component: AddGovernarateComponent },
-  {path:'Packages', component:PackageComponent},
-  {path:'Package/Add', component:AddPackageComponent},
-  {path:'Package/Edit/:id',component:AddPackageComponent},
-  {path:'Providers',component:ProviderComponent},
-  {path:'Provider/Add',component: AddProviderComponent},
-  {path:'Provider/Edit/:id',component: AddProviderComponent},
+  { path: 'Packages', component: PackageComponent },
+  { path: 'Package/Add', component: AddPackageComponent },
+  { path: 'Package/Edit/:id', component: AddPackageComponent },
+  { path: 'Providers', component: ProviderComponent },
+  { path: 'Provider/Add', component: AddProviderComponent },
+  { path: 'Provider/Edit/:id', component: AddProviderComponent },
   { path: 'offers', component: OffersComponent },
   { path: 'Offers/Add', component: AddOfferComponent },
   { path: 'Offers/Edit/:id', component: AddOfferComponent },
+  { path: 'roles', component: RolesComponent },
+  { path: 'role/add', component: AddRoleComponent },
+  { path: 'role/edit/:id', component: AddRoleComponent },
   { path: 'Login', component: LoginComponent },
 ];
 

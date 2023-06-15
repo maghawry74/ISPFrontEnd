@@ -25,6 +25,8 @@ import { OffersComponent } from './component/offers/offers.component';
 import { PackageComponent } from './component/package/package.component';
 import { AddPackageComponent } from './component/add-package/add-package.component';
 import { BranchsComponent } from './component/branchs/branchs.component';
+import { AddRoleComponent } from './component/add-role/add-role.component';
+import { RolesComponent } from './component/roles/roles.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,9 @@ import { BranchsComponent } from './component/branchs/branchs.component';
     OffersComponent,
     PackageComponent,
     AddPackageComponent,
-    BranchsComponent
+    BranchsComponent,
+    AddRoleComponent,
+    RolesComponent
   ],
   imports: [
     BrowserModule,
