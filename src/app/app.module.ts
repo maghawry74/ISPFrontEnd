@@ -27,6 +27,9 @@ import { AddPackageComponent } from './component/add-package/add-package.compone
 import { BranchsComponent } from './component/branchs/branchs.component';
 import { AddRoleComponent } from './component/add-role/add-role.component';
 import { RolesComponent } from './component/roles/roles.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,7 +61,8 @@ import { RolesComponent } from './component/roles/roles.component';
     MatDialogModule,
     MatButtonModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    NgxPaginationModule,
    
   ],
   providers: [],

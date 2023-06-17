@@ -8,6 +8,6 @@ import { GenericService } from './generic.service';
 })
 export class GovernorateService extends GenericService<IGovernarate, number> {
   constructor(httpClient: HttpClient) {
-    super('Governarate', httpClient);
+    super('Governorate', httpClient);
   }
 }

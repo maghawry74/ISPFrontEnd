@@ -49,9 +49,9 @@ export class GovernateComponent implements OnInit {
     })
   }
   goToAddComp() {
-    this.router.navigate(['/Governate/Add']);
+    this.router.navigate(['/Governorate/Add']);
   }
   toEditGov(code: number) {
-    this.router.navigate(['Governate/Edit', code]);
+    this.router.navigate(['Governorate/Edit', code]);
   }
 }

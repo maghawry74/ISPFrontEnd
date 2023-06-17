@@ -66,8 +66,8 @@ export class AddGovernarateComponent implements OnInit {
     this.govService.Add(newGov).subscribe({
       next:(resp)=>
       {
-        this.router.navigate(['/Governarates']);
-        this.angularMaterailaServ.addAndUpdateSuccess("Governarate Added Successfully");
+        this.router.navigate(['/Governorates']);
+        this.angularMaterailaServ.addAndUpdateSuccess("Governorate Added Successfully");
       },
       error:(e)=>{
       this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
@@ -80,8 +80,8 @@ export class AddGovernarateComponent implements OnInit {
     let governarate:IGovernarate = this.governateForm.value as IGovernarate;
     this.govService.Update(governarate.code,governarate).subscribe({
       next:(resp)=>{
-        this.router.navigate(['/Governarates']);
-        this.angularMaterailaServ.addAndUpdateSuccess("Governarate Updated Successfully")
+        this.router.navigate(['/Governorates']);
+        this.angularMaterailaServ.addAndUpdateSuccess("Governorate Updated Successfully")
       },
       error:(e)=>{
         this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");

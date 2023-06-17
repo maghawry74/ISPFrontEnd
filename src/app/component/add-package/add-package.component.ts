@@ -34,6 +34,7 @@ export class AddPackageComponent implements OnInit {
       name:['',[Validators.required]],
       type:['',[Validators.required]],
       price:['',[Validators.required]],
+      purchasePrice:['',[Validators.required]],
       note:['',],
       providerId:['',[Validators.required]]
     })
@@ -54,7 +55,8 @@ export class AddPackageComponent implements OnInit {
           this.packageForm.patchValue({
             name:pack.name,
             type:pack.type,
-            price:String(pack.price),
+            price:pack.price.toString(),
+            purchasePrice:pack.purchasePrice.toString(),
             note:pack.note,
             providerId:String(pack.provider.id)
           })
@@ -79,6 +81,10 @@ export class AddPackageComponent implements OnInit {
   {
     return this.packageForm.get('note');
   }
+  get purchasePrice()
+  {
+    return this.packageForm.get('purchasePrice');
+  }
   get providerId()
   {
     return this.packageForm.get('providerId');
@@ -88,8 +94,8 @@ export class AddPackageComponent implements OnInit {
    let newPackage = this.packageForm.value;
     this.packageService.Add(newPackage).subscribe({
     next:(resp)=>{
-      this.router.navigate(['/Packages']);
       this.angularMaterailaServ.addAndUpdateSuccess("Package Added Successfully");
+      this.packageForm.reset();
     },
     error:(e)=>{
       this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
@@ -104,6 +110,7 @@ export class AddPackageComponent implements OnInit {
       name:this.name?.value,
       type:this.type?.value,
       price:this.price?.value,
+      purchasePrice:this.purchasePrice?.value,
       note:this.note?.value,
       providerId:this.providerId?.value
     };

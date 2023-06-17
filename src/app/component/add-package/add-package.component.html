@@ -5,10 +5,10 @@
     </div>
     <form [formGroup]="packageForm" (ngSubmit)="addPackage()">
         <div class="p-3">
-           <!--name input-->
+            <!--name input-->
             <div class="mb-8">
-                <label for="packName"
-                    class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Package Name *</label>
+                <label for="packName" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Package
+                    Name *</label>
                 <input type="text" id="packName"
                     class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     formControlName="name" name="name" placeholder="Enter Package Name">
@@ -17,29 +17,27 @@
                         Package Name Is Required
                     </small>
                 </div>
-            </div> 
-             <!--type input-->
-             <div class="mb-8">
-                <label for="packType"
-                    class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Package Type *</label>
-                    <select
-                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                         name="packType"
-                         id="packType"
-                         formControlName="type"
-                         >
-                        <option value="Limited">Limited</option>
-                        <option value="UnLimited">UnLimited</option>
-                    </select>
+            </div>
+            <!--type input-->
+            <div class="mb-8">
+                <label for="packType" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Package
+                    Type *</label>
+                <select
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="packType" id="packType" formControlName="type">
+                    <option value="Limited">Limited</option>
+                    <option value="UnLimited">UnLimited</option>
+                </select>
                 <div [hidden]="type?.untouched||type?.valid">
                     <small class="text-red-600 text-base" *ngIf="type?.errors?.['required']">
                         Package Type Is Required
                     </small>
                 </div>
-            </div>   
+            </div>
             <!--price input-->
             <div class="mb-8">
-                <label for="price" class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">price *</label>
+                <label for="price" class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">price
+                    *</label>
                 <input type="number" formControlName="price" name="price" id="price"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Enter Package Price">
@@ -47,33 +45,42 @@
                     <small class="text-red-600 text-base" *ngIf="price?.errors?.['required']">Package price Is
                         Required</small>
                 </div>
-            </div>  
+            </div>
+            <!--purchasePrice input-->
+            <div class="mb-8">
+                <label for="purchasePrice" class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">purchasePrice
+                    *</label>
+                <input type="number" formControlName="purchasePrice" name="purchasePrice" id="purchasePrice"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter Package purchasePrice">
+                <div [hidden]="purchasePrice?.untouched||purchasePrice?.valid" class="mb-5">
+                    <small class="text-red-600 text-base" *ngIf="price?.errors?.['required']">Package purchasePrice Is
+                        Required</small>
+                </div>
+            </div>
             <!--notes input-->
             <div class="mb-8">
-                <label for="note"
-                    class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Notes </label>
+                <label for="note" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Notes
+                </label>
                 <input type="text" id="packName"
                     class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     formControlName="note" name="note" placeholder="Enter Notes">
-            </div>  
+            </div>
             <!--provider input-->
             <div class="mb-8">
                 <label for="providerId"
                     class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Provider Name *</label>
-                    <select data-te-select-filter="true" 
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                         name="providerId"
-                         id="providerId"
-                         formControlName="providerId"
-                         >
-                        <option *ngFor="let provider of providerList" value="{{provider.id}}">{{provider.name}}</option>
-                    </select>
+                <select data-te-select-filter="true"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="providerId" id="providerId" formControlName="providerId">
+                    <option *ngFor="let provider of providerList" value="{{provider.id}}">{{provider.name}}</option>
+                </select>
                 <div [hidden]="providerId?.untouched||providerId?.valid">
                     <small class="text-red-600 text-base" *ngIf="providerId?.errors?.['required']">
                         Provider Is Required
                     </small>
                 </div>
-            </div>           
+            </div>
             <!--Submit button-->
             <!--Add button-->
             <button type="submit" *ngIf="UpdateOrDelete"
@@ -99,4 +106,3 @@
     <br>
     {{packageForm.errors|json}}
 </div>
-

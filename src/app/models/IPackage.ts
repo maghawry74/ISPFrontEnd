@@ -5,6 +5,7 @@ export interface IPackageView {
     name:string;
     type:string;
     price:number;
+    purchasePrice:number,
     note:string;
     isActive:boolean;
     provider:Iprovider;

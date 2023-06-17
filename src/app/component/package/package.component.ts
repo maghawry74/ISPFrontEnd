@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPackageView } from 'src/app/models/IPackage';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
@@ -9,18 +9,17 @@ import { PackageService } from 'src/app/services/package.service';
   templateUrl: './package.component.html',
   styleUrls: ['./package.component.css']
 })
-export class PackageComponent implements OnInit {
+export class PackageComponent implements OnInit{
   packageList:IPackageView[]=[];
   isLoading = true;
   isError = false;
+  p: number = 1;
   constructor(private packageService:PackageService,
                private router:Router,
                private AngularMateralService:AngularMateralService
-    )
-  {
-
-  }
+    ){}
   ngOnInit(): void {
+
     this.packageService.GetAll().subscribe({
       next:(data)=>{
         this.isLoading = false;
@@ -32,7 +31,7 @@ export class PackageComponent implements OnInit {
       }
     })
   }
-  toEditPackage(id:number)
+ toEditPackage(id:number)
   {
     this.router.navigate(['Package/Edit',id]);
   }

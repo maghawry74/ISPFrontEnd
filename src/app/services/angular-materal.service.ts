@@ -29,7 +29,7 @@ export class AngularMateralService {
     panelClass:'confirm-dialog-container',
     disableClose:true,
     enterAnimationDuration:"1500ms",
-    exitAnimationDuration:"1500ms",
+    exitAnimationDuration:"1000ms",
     position:{top:"20px"},
     data:{
       message:msg
