@@ -12,7 +12,8 @@
         <div class="flex flex-col ">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <h1 *ngIf="governateList.length==0;else Table" class="text-center w-full mt-10">There Are No Governorates !</h1>
+                    <h1 *ngIf="governateList.length==0;else Table" class="text-center w-full mt-10">There Are No
+                        Governorates !</h1>
                     <ng-template #Table>
                         <div class="overflow-hidden">
                             <table class="min-w-full text-center text-sm font-light">
@@ -34,7 +35,7 @@
                                         </th>
                                     </tr>
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
-                                        *ngFor="let item of governateList">
+                                        *ngFor="let item of governateList paginate: { itemsPerPage: 10, currentPage: p }">
                                         <td scope="row"
                                             class="px-6 py-4 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{item.name}}</td>
@@ -47,6 +48,9 @@
                                         </td>
                                     </tr>
                                 </tbody>
+                                <div class="mt-6 ">
+                                    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                </div>
                             </table>
                         </div>
                     </ng-template>

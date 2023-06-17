@@ -13,6 +13,7 @@ export class GovernateComponent implements OnInit {
   governateList: IGovernarate[] = [];
   isLoading = true;
   isError = false;
+  p:number = 1;
   constructor(
     private router:Router,
     private GovernorateService:GovernorateService,
