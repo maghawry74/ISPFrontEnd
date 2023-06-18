@@ -34,13 +34,14 @@
                                 An Error Has Occured !
                             </th>
                         </tr>
-                        <tr *ngFor="let central of centrals;let i=index"
+                        <tr *ngFor="let central of centrals|paginate: { itemsPerPage: 10, currentPage:p};let i=index"
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <th scope="row"
                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{i+1}}
                             </th>
-                            <td class="px-6 py-4">
+                            <td scope="row"
+                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {{central.name}}
                             </td>
                             <td class="px-6 py-4">
@@ -49,12 +50,14 @@
                             <td class="px-6 py-4 text-right flex justify-center items-center">
                                 <button (click)="EditCentral(central.id)"> <i
                                         class='fa fa-edit edit-btn edit-btn'></i></button>
-                                <app-modal [Message]="'Are You Sure To Delete ' +central.name + ' Central'"
-                                    [YesFunction]="DeleteCentral(central.id)">
-                                </app-modal>
+                                <button (click)="DeleteCentral(central.id)"><i
+                                        class="fa fa-trash-o remove-btn remove-btn"></i></button>
                             </td>
                         </tr>
                     </tbody>
+                    <div class="mt-6 ">
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </div>
                 </table>
             </div>
         </ng-template>

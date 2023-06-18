@@ -14,7 +14,7 @@ import { AngularMateralService } from '../../services/angular-materal.service';
 export class AddGovernarateComponent implements OnInit {
   governateForm: FormGroup;
   UpdateOrDelete: boolean;
-  currentCode: number = 0;
+  currentCode: number=0;
   formTitle: string;
   constructor(
     private fb: FormBuilder,
@@ -35,7 +35,7 @@ export class AddGovernarateComponent implements OnInit {
     initTE({ Ripple, Input });
     this.activateRoute.paramMap.subscribe((param) => {
       this.currentCode = Number(param.get('code'));
-      if (this.currentCode != 0) {
+      if (this.currentCode) {
         this.UpdateOrDelete = false;
         this.formTitle = 'Update Governorate';
         this.govService.GetById(this.currentCode).subscribe((gov) => {
