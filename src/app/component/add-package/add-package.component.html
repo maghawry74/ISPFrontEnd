@@ -48,7 +48,8 @@
             </div>
             <!--purchasePrice input-->
             <div class="mb-8">
-                <label for="purchasePrice" class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">purchasePrice
+                <label for="purchasePrice"
+                    class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">purchasePrice
                     *</label>
                 <input type="number" formControlName="purchasePrice" name="purchasePrice" id="purchasePrice"
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -85,11 +86,13 @@
             <!--Add button-->
             <button type="submit" *ngIf="UpdateOrDelete"
                 class="inline-block rounded-2xl  bg-primary px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
-                data-te-ripple-init data-te-ripple-color="light" [disabled]="packageForm.invalid"> Add
+                data-te-ripple-init data-te-ripple-color="light" [disabled]="packageForm.invalid"
+                [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':packageForm.invalid}"> Add
             </button>
             <!--update Button-->
             <button type="button" *ngIf="!UpdateOrDelete" class="submit-btn" data-te-ripple-init
-                data-te-ripple-color="light" [disabled]="packageForm.invalid" (click)="updatePack()">Update
+                data-te-ripple-color="light" [disabled]="packageForm.invalid" (click)="updatePack()"
+                [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':packageForm.invalid}">Update
             </button>
             <button type="button" class="cancel-btn" data-te-ripple-init data-te-ripple-color="light"
                 (click)="backToPackList()">Back

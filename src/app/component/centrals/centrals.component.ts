@@ -13,6 +13,7 @@ export class CentralsComponent implements OnInit {
   centrals: ICentralView[] = [];
   isLoading = true;
   isError = false;
+  p:number=1;
   constructor(
     private CentralService: CentralService,
     private router: Router,
@@ -37,19 +38,24 @@ export class CentralsComponent implements OnInit {
   }
 
   DeleteCentral(id: number) {
-    return () => {
-      this.CentralService.Delete(id).subscribe({
-        next: (data) => {
-          this.centrals = this.centrals.filter((c) => c.id != id);
-          this.ngMaterialService.addAndUpdateSuccess(
-            'Central Has Been Deleted Successfully'
-          );
-        },
-        error: (e) =>
-          this.ngMaterialService.addAndUpdateSuccess(
-            'An Error Occured. Try Again Later !'
-          ),
-      });
-    };
+    this.ngMaterialService.openConfirmDialog("Are you sure you want to delete this central?")
+    .afterClosed().subscribe(resp=>{
+      if(resp)
+      {
+          this.CentralService.Delete(id).subscribe({
+            next: (data) => {
+              this.centrals = this.centrals.filter((c) => c.id != id);
+              this.ngMaterialService.addAndUpdateSuccess(
+                'Central Has Been Deleted Successfully'
+              );
+            },
+            error: (e) =>
+              this.ngMaterialService.addAndUpdateSuccess(
+                'An Error Occured. Try Again Later !'
+              ),
+          });
+      }
+    })
+   
   }
 }
