@@ -28,6 +28,7 @@ import { BranchsComponent } from './component/branchs/branchs.component';
 import { AddRoleComponent } from './component/add-role/add-role.component';
 import { RolesComponent } from './component/roles/roles.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EntityChecksComponent } from './component/entity-checks/entity-checks.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddPackageComponent,
     BranchsComponent,
     AddRoleComponent,
-    RolesComponent
+    RolesComponent,
+    EntityChecksComponent
   ],
   imports: [
     BrowserModule,
