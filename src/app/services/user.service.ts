@@ -9,6 +9,7 @@ import { IUser, LoginCredentials, LoginResponse } from '../models/IUser';
 export class UserService extends GenericService<IUser, string> {
   IsLogged = false;
   Permissions: string[] = [];
+  private token = '';
   constructor(httpClient: HttpClient) {
     super('User', httpClient);
     let tokenString = decodeURIComponent(document.cookie).split('token=')[1];
@@ -20,9 +21,12 @@ export class UserService extends GenericService<IUser, string> {
     if (token) {
       this.IsLogged = true;
       this.Permissions = token.permissions;
+      this.token = token.token;
     }
   }
-
+  GetToken() {
+    return this.token;
+  }
   Login(Credentials: LoginCredentials) {
     return this.client.post<LoginResponse>(`${this.Url}/Login`, Credentials);
   }

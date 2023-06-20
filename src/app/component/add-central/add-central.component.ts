@@ -14,7 +14,7 @@ import { Select, initTE } from 'tw-elements';
 })
 export class AddCentralComponent implements OnInit {
   private state: 'update' | 'add' = 'add';
-  formTitle:string ="Add New  Central"
+  formTitle: string = 'Add New  Central';
   governorates: IGovernarate[] = [];
   constructor(
     private activeRoute: ActivatedRoute,
@@ -26,18 +26,18 @@ export class AddCentralComponent implements OnInit {
     const id = activeRoute.snapshot.params.id;
     if (id) {
       this.state = 'update';
-      this.formTitle = "Update Central"
+      this.formTitle = 'Update Central';
       centralService.GetById(id).subscribe({
         next: (data) => {
           console.log(data);
           this.centralFrom.patchValue({
             CentralName: data.name,
-           // Governorate: data.governorate.code.toString(),
+            Governorate: data.governorate.code.toString(),
           });
         },
       });
     }
-   this.governorateService.GetAll().subscribe({
+    this.governorateService.GetAll().subscribe({
       next: (data) => {
         this.governorates = data;
       },
@@ -87,11 +87,10 @@ export class AddCentralComponent implements OnInit {
       };
       this.centralService.Update(Central.id, Central).subscribe({
         next: (data) => {
-          this.router.navigate(['/Centrals'])
+          this.router.navigate(['/Centrals']);
           this.angularMaterialService.addAndUpdateSuccess(
             'Central Has Been Updated Successfully'
           );
-          
         },
         error: (e) => {
           console.log(e);
