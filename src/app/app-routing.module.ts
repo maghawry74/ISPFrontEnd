@@ -16,30 +16,152 @@ import { AddPackageComponent } from './component/add-package/add-package.compone
 import { BranchsComponent } from './component/branchs/branchs.component';
 import { RolesComponent } from './component/roles/roles.component';
 import { AddRoleComponent } from './component/add-role/add-role.component';
+import { LoggedIn } from './component/RouteGuards/LoggedInGuard';
+import {
+  Branch,
+  Central,
+  Governorate,
+  Offer,
+  Package,
+  Provider,
+  Role,
+} from './models/Permission';
+import { ForbiddenComponent } from './component/forbidden/forbidden.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { HomeComponent } from './component/home/home.component';
+import { HasPermission } from './component/RouteGuards/HasPermission';
+import { AlreadyLogged } from './component/RouteGuards/AlreadyLogged';
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'branch', component: BranchsComponent },
-  { path: 'branch/add', component: AddBranchComponent },
-  { path: 'branch/edit/:id', component: AddBranchComponent },
-  { path: 'Centrals', component: CentralsComponent },
-  { path: 'Centrals/Add', component: AddCentralComponent },
-  { path: 'Centrals/Edit/:id', component: AddCentralComponent },
-  { path: 'Governorates', component: GovernateComponent },
-  { path: 'Governorate/Add', component: AddGovernarateComponent },
-  { path: 'Governorate/Edit/:code', component: AddGovernarateComponent },
-  { path: 'Packages', component: PackageComponent },
-  { path: 'Package/Add', component: AddPackageComponent },
-  { path: 'Package/Edit/:id', component: AddPackageComponent },
-  { path: 'Providers', component: ProviderComponent },
-  { path: 'Provider/Add', component: AddProviderComponent },
-  { path: 'Provider/Edit/:id', component: AddProviderComponent },
-  { path: 'offers', component: OffersComponent },
-  { path: 'Offers/Add', component: AddOfferComponent },
-  { path: 'Offers/Edit/:id', component: AddOfferComponent },
-  { path: 'roles', component: RolesComponent },
-  { path: 'role/add', component: AddRoleComponent },
-  { path: 'role/edit/:id', component: AddRoleComponent },
-  { path: 'Login', component: LoginComponent },
+  { path: '', component: HomeComponent, canActivate: [LoggedIn] },
+  {
+    path: 'branch',
+    component: BranchsComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Branch.Read },
+  },
+  {
+    path: 'branch/add',
+    component: AddBranchComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Branch.Create },
+  },
+  {
+    path: 'branch/edit/:id',
+    component: AddBranchComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Branch.Update },
+  },
+  {
+    path: 'Centrals',
+    component: CentralsComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Central.Read },
+  },
+  {
+    path: 'Centrals/Add',
+    component: AddCentralComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Central.Create },
+  },
+  {
+    path: 'Centrals/Edit/:id',
+    component: AddCentralComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Central.Update },
+  },
+  {
+    path: 'Governorates',
+    component: GovernateComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Governorate.Read },
+  },
+  {
+    path: 'Governorate/Add',
+    component: AddGovernarateComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Governorate.Create },
+  },
+  {
+    path: 'Governorate/Edit/:code',
+    component: AddGovernarateComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Governorate.Update },
+  },
+  {
+    path: 'Packages',
+    component: PackageComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Package.Read },
+  },
+  {
+    path: 'Package/Add',
+    component: AddPackageComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Package.Create },
+  },
+  {
+    path: 'Package/Edit/:id',
+    component: AddPackageComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Package.Update },
+  },
+  {
+    path: 'Providers',
+    component: ProviderComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Provider.Read },
+  },
+  {
+    path: 'Provider/Add',
+    component: AddProviderComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Provider.Create },
+  },
+  {
+    path: 'Provider/Edit/:id',
+    component: AddProviderComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Provider.Update },
+  },
+  {
+    path: 'offers',
+    component: OffersComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Offer.Read },
+  },
+  {
+    path: 'Offers/Add',
+    component: AddOfferComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Offer.Create },
+  },
+  {
+    path: 'Offers/Edit/:id',
+    component: AddOfferComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Offer.Update },
+  },
+  {
+    path: 'roles',
+    component: RolesComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Role.Read },
+  },
+  {
+    path: 'role/add',
+    component: AddRoleComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Role.Create },
+  },
+  {
+    path: 'role/edit/:id',
+    component: AddRoleComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Role.Update },
+  },
+  { path: 'Login', component: LoginComponent, canActivate: [AlreadyLogged] },
+  { path: 'forbidden', component: ForbiddenComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

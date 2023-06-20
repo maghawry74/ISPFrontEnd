@@ -29,7 +29,9 @@ import { AddRoleComponent } from './component/add-role/add-role.component';
 import { RolesComponent } from './component/roles/roles.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EntityChecksComponent } from './component/entity-checks/entity-checks.component';
-
+import { ForbiddenComponent } from './component/forbidden/forbidden.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { HomeComponent } from './component/home/home.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,10 @@ import { EntityChecksComponent } from './component/entity-checks/entity-checks.c
     BranchsComponent,
     AddRoleComponent,
     RolesComponent,
-    EntityChecksComponent
+    EntityChecksComponent,
+    ForbiddenComponent,
+    NotFoundComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,10 +70,9 @@ import { EntityChecksComponent } from './component/entity-checks/entity-checks.c
     HttpClientModule,
     MatIconModule,
     NgxPaginationModule,
-   
   ],
   providers: [],
   bootstrap: [AppComponent],
   //entryComponents:[MatConfirmDialogComponent]
 })
-export class AppModule { }
+export class AppModule {}

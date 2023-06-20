@@ -118,12 +118,12 @@ export class AddRoleComponent /*implements OnInit*/ {
   }
 
   FromSubmit() {
-    const claims: IRoleClaim[] = [];
+    const claims: string[] = [];
     Object.entries(this.roleFrom.controls).forEach((entry) => {
       if (typeof entry[1].value == 'object') {
         Object.entries(entry[1].value).forEach(([key, value]) => {
           if (value == true || value == 'true') {
-            claims.push({ type: key, value: String(value) });
+            claims.push(key);
           }
         });
       }

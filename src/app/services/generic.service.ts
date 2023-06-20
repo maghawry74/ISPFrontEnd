@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environment/environment';
 
 export abstract class GenericService<T, ID> {
-  private Url = '';
+  protected Url = '';
   private headersOptions: any;
-  constructor(Url: string, private client: HttpClient) {
+  constructor(Url: string, protected client: HttpClient) {
     this.Url = `${environment.APIURL}/${Url}`;
     this.headersOptions = {
       headers: {
