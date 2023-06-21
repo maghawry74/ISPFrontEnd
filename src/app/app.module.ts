@@ -32,7 +32,12 @@ import { EntityChecksComponent } from './component/entity-checks/entity-checks.c
 import { ForbiddenComponent } from './component/forbidden/forbidden.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { HomeComponent } from './component/home/home.component';
-
+import { ClientsComponent } from './component/clients/clients.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +63,8 @@ import { HomeComponent } from './component/home/home.component';
     ForbiddenComponent,
     NotFoundComponent,
     HomeComponent,
+    ClientsComponent,
+    AddClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,6 +77,10 @@ import { HomeComponent } from './component/home/home.component';
     HttpClientModule,
     MatIconModule,
     NgxPaginationModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

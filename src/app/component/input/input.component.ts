@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class InputComponent {
   @Input() id = '';
   @Input() type = '';
-  @Input() control = new FormControl();
+  @Input() control: FormControl = new FormControl();
   @Input() placeHolder = '';
   @Input() label = 'Label';
   @Input() isShown = true;

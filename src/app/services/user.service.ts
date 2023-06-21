@@ -17,7 +17,6 @@ export class UserService extends GenericService<IUser, string> {
       return;
     }
     const token = JSON.parse(tokenString) as LoginResponse;
-    console.log(token);
     if (token) {
       this.IsLogged = true;
       this.Permissions = token.permissions;
@@ -26,6 +25,15 @@ export class UserService extends GenericService<IUser, string> {
   }
   GetToken() {
     return this.token;
+  }
+
+  CheckPermission(Permission: string) {
+    for (let P of this.Permissions) {
+      if (P == Permission) {
+        return true;
+      }
+    }
+    return false;
   }
   Login(Credentials: LoginCredentials) {
     return this.client.post<LoginResponse>(`${this.Url}/Login`, Credentials);

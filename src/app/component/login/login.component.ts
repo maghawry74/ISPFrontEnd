@@ -24,7 +24,7 @@ export class LoginComponent {
 
   LoginSubmitHandler() {
     const loginCredentials = {
-      Email: this.userName.value!,
+      UserName: this.userName.value!,
       Password: this.Password.value!,
     };
     this.userService.Login(loginCredentials).subscribe({

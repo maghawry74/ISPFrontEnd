@@ -29,6 +29,8 @@ import {
   Provider,
   Role,
 } from './models/Permission';
+import { ClientsComponent } from './component/clients/clients.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [LoggedIn] },
   {
@@ -66,6 +68,24 @@ export const routes: Routes = [
     component: AddCentralComponent,
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: Central.Update },
+  },
+  {
+    path: 'Clients',
+    component: ClientsComponent,
+    // canActivate: [LoggedIn, HasPermission],
+    // data: { Permission: Central.Read },
+  },
+  {
+    path: 'Clients/Add',
+    component: AddClientComponent,
+    // canActivate: [LoggedIn, HasPermission],
+    // data: { Permission: Central.Create },
+  },
+  {
+    path: 'Clients/Edit/:id',
+    component: AddClientComponent,
+    // canActivate: [LoggedIn, HasPermission],
+    // data: { Permission: Central.Update },
   },
   {
     path: 'Governorates',
