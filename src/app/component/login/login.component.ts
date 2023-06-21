@@ -37,7 +37,9 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       },
       error: (e: HttpErrorResponse) => {
+        console.log(e)
         if (e.status == 401) {
+
           this.errorMessage = 'Wrong Email Or Password';
         } else {
           this.errorMessage = 'An Error Has Occured, Try Again Later.';
