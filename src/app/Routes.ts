@@ -23,6 +23,7 @@ import { Routes } from '@angular/router';
 import {
   Branch,
   Central,
+  Client,
   Governorate,
   Offer,
   Package,
@@ -72,20 +73,20 @@ export const routes: Routes = [
   {
     path: 'Clients',
     component: ClientsComponent,
-    // canActivate: [LoggedIn, HasPermission],
-    // data: { Permission: Central.Read },
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Client.Read },
   },
   {
     path: 'Clients/Add',
     component: AddClientComponent,
-    // canActivate: [LoggedIn, HasPermission],
-    // data: { Permission: Central.Create },
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Client.Create },
   },
   {
     path: 'Clients/Edit/:id',
     component: AddClientComponent,
-    // canActivate: [LoggedIn, HasPermission],
-    // data: { Permission: Central.Update },
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Client.Update },
   },
   {
     path: 'Governorates',
