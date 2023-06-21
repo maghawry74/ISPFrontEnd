@@ -24,7 +24,7 @@ export class LoginComponent {
 
   LoginSubmitHandler() {
     const loginCredentials = {
-      Email: this.userName.value!,
+      UserName: this.userName.value!,
       Password: this.Password.value!,
     };
     this.userService.Login(loginCredentials).subscribe({
@@ -37,7 +37,9 @@ export class LoginComponent {
         this.router.navigateByUrl('/');
       },
       error: (e: HttpErrorResponse) => {
+        console.log(e)
         if (e.status == 401) {
+
           this.errorMessage = 'Wrong Email Or Password';
         } else {
           this.errorMessage = 'An Error Has Occured, Try Again Later.';

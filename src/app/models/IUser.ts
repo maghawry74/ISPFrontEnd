@@ -9,7 +9,7 @@ export interface IUser {
 }
 
 export interface LoginCredentials {
-  Email: string;
+  UserName: string;
   Password: string;
 }
 export interface LoginResponse {
