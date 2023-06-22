@@ -25,9 +25,8 @@
         </div>
         <div class="my-3">
             <label for="Manager" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Manager</label>
-            <select [formControl]="Manager" id="Manager" data-te-select-init data-te-select-filter="true">
-                <option value="1">Maghawry</option>
-                <option value="2">Mahmoud</option>
+            <select [formControl]="Manager" id="Manager" data-te-select-init>
+                <option selected value=''>Select a Manager</option>
             </select>
         </div>
         <button [disabled]="branchFrom.status=='INVALID'"
