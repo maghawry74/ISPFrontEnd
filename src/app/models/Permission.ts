@@ -53,3 +53,9 @@ export enum User {
   Update = 'Permission.User.Edit',
   Delete = 'Permission.User.Delete',
 }
+export enum Bill {
+  Read = 'Permission.Bill.View',
+  Create = 'Permission.Bill.Create',
+  Update = 'Permission.Bill.Edit',
+  Delete = 'Permission.Bill.Delete',
+}

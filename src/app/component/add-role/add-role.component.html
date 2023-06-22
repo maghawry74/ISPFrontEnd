@@ -21,6 +21,7 @@
         <app-entity-checks [fromGroup]="roleFrom" entity="Provider"></app-entity-checks>
         <app-entity-checks [fromGroup]="roleFrom" entity="Role"></app-entity-checks>
         <app-entity-checks [fromGroup]="roleFrom" entity="User"></app-entity-checks>
+        <app-entity-checks [fromGroup]="roleFrom" entity="Bill"></app-entity-checks>
 
         <button [disabled]="roleFrom.status=='INVALID'"
             [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':roleFrom.status=='INVALID'}" type="submit"

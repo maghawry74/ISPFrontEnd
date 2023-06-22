@@ -21,7 +21,7 @@ import { ProviderService } from 'src/app/services/provider.service';
 export class AddOfferComponent implements OnInit {
   showRouterFee = true;
   Providers: IProvider[] = [];
-  private state: 'update' | 'add' = 'add';
+  state: 'update' | 'add' = 'add';
   OfferName = new FormControl('', [Validators.required]);
   NumberOfMonths = new FormControl('', [Validators.required]);
   NumberOfFreeMonths = new FormControl('', [Validators.required]);

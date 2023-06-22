@@ -1,16 +1,11 @@
-import {
-  AbstractControl,
-  FormControl,
-  ValidationErrors,
-  ValidatorFn,
-} from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 
 export default function IsNumberValidator(control: AbstractControl) {
-  const error = isNaN(control.value)
-    ? {
-        isNan: isNaN(control.value),
-      }
-    : null;
-  control.setErrors(error);
-  return error;
+  if (control.value === null || control.value === undefined) {
+    return null;
+  }
+  if (!/^[0-9]+$/.test(control.value)) {
+    return { isNan: isNaN(control?.value) };
+  }
+  return null;
 }

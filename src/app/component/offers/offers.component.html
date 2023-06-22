@@ -1,7 +1,7 @@
 <div *ngIf="isLoading;else Page" class="spinner "></div>
 <ng-template #Page>
     <div class="mx-4 m flex flex-col items-start justify-center mt-10 gap-5">
-        <h1 class="text-2xl text-left">Centrals</h1>
+        <h1 class="text-2xl text-left">Offers</h1>
         <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/Offers/Add">
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New

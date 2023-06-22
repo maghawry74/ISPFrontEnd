@@ -69,6 +69,7 @@ export class AddBranchComponent implements OnInit {
 
   FromSubmit() {
     const Branch = {
+      id: this.activatedRoute.snapshot.params.id,
       name: this.Name.value,
       tel1: this.Tel1.value,
       tel2: this.Tel2.value,
@@ -87,10 +88,11 @@ export class AddBranchComponent implements OnInit {
           } Successfully`
         );
       },
-      error: () => {
+      error: (e: any) => {
         this.ngService.addAndUpdateSuccess(
           'Error Has Occured. Try Again Later!'
         );
+        console.log(e);
       },
     };
     if (this.state == 'Add') {

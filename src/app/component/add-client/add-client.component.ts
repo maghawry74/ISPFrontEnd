@@ -86,7 +86,7 @@ export class AddClientComponent implements OnInit {
         { value: '', disabled: this.state == 'Update' },
         [Validators.required],
       ],
-      BranchName: [
+      BranchId: [
         { value: '', disabled: this.state == 'Update' },
         [Validators.required],
       ],
@@ -187,7 +187,6 @@ export class AddClientComponent implements OnInit {
       this.governorateService.GetAll(),
     ]).subscribe({
       next: (Data) => {
-        console.log(Data);
         this.Providers = Data[0];
         this.Governorates = Data[1];
       },
@@ -210,7 +209,7 @@ export class AddClientComponent implements OnInit {
           ProviderId: data.provider?.id,
           PackageId: data.package?.id,
           CentralId: data.central?.id,
-          BranchName: data.branch?.name,
+          BranchId: data.branch?.id,
           UserName: data.userName,
           Password: data.password,
           PortSlot: data.portSlot,
@@ -229,7 +228,6 @@ export class AddClientComponent implements OnInit {
           RouterSerial: data.routerSerial,
         });
       });
-      console.log(this.ClientForm.value);
     }
   }
 
@@ -238,7 +236,7 @@ export class AddClientComponent implements OnInit {
       this.clientService
         .Add({
           ...this.ClientForm.value,
-          OrderNumber: String(this.ClientForm.get('this.ClientForm')?.value),
+          OrderNumber: String(this.ClientForm.get('OrderNumber')?.value),
         })
         .subscribe({
           next: () => {

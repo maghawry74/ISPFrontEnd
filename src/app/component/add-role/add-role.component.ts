@@ -10,6 +10,7 @@ import { MinCheckBoxIsSelected } from 'src/app/Validation/MinCheckBoxIsSelected'
 import { IRoleClaim } from 'src/app/models/IRole';
 import { IRoleFrom } from 'src/app/models/IRoleForm';
 import {
+  Bill,
   Branch,
   Central,
   Client,
@@ -93,6 +94,12 @@ export class AddRoleComponent /*implements OnInit*/ {
           [User.Delete]: [false, Validators.required],
           [User.Read]: [false, Validators.required],
           [User.Update]: [false, Validators.required],
+        }),
+        Bill: fb.group({
+          [Bill.Create]: [false, Validators.required],
+          [Bill.Delete]: [false, Validators.required],
+          [Bill.Read]: [false, Validators.required],
+          [Bill.Update]: [false, Validators.required],
         }),
       },
       { Validators: [MinCheckBoxIsSelected.Min(1)] }

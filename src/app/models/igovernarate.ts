@@ -10,6 +10,7 @@ export interface IGovernarateCentralsAndBranches {
 
 export interface IGovernarateBranch {
   name: string;
+  id: Number;
 }
 export interface IGovernarateCentral {
   name: string;
