@@ -1,3 +1,5 @@
+import { IGovernarate } from './igovernarate';
+
 export interface IBranch {
   id: number;
   name: string;
@@ -6,6 +8,6 @@ export interface IBranch {
   phone1: string;
   phone2: string;
   fax: string;
-  governorateCode: string;
+  governorate: IGovernarate;
   managerName: string;
 }

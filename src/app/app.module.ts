@@ -38,6 +38,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ClientDetailsComponent } from './component/client-details/client-details.component';
+import { DetailInfoComponent } from './component/detail-info/detail-info.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     HomeComponent,
     ClientsComponent,
     AddClientComponent,
+    ClientDetailsComponent,
+    DetailInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -38,7 +38,7 @@ export class AddBranchComponent implements OnInit {
             Phone1: data.phone1,
             Phone2: data.phone2,
             Fax: data.fax,
-            Governorate: data.governorateCode,
+            Governorate: String(data.governorate.code),
             Manager: data.managerName,
           });
         },

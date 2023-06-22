@@ -21,6 +21,7 @@ import { HasPermission } from './component/RouteGuards/HasPermission';
 import { AlreadyLogged } from './component/RouteGuards/AlreadyLogged';
 import { Routes } from '@angular/router';
 import {
+  Bill,
   Branch,
   Central,
   Client,
@@ -32,6 +33,7 @@ import {
 } from './models/Permission';
 import { ClientsComponent } from './component/clients/clients.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
+import { ClientDetailsComponent } from './component/client-details/client-details.component';
 export const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [LoggedIn] },
   {
@@ -75,6 +77,12 @@ export const routes: Routes = [
     component: ClientsComponent,
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: Client.Read },
+  },
+  {
+    path: 'Client/Bills/:id',
+    component: ClientDetailsComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Bill.Read },
   },
   {
     path: 'Clients/Add',
