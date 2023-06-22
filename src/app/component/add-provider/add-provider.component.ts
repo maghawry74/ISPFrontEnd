@@ -59,10 +59,10 @@ export class AddProviderComponent implements OnInit {
     let newProv: Iprovider = this.providerForm.value as Iprovider;
     this.ProviderService.Add(newProv).subscribe({
       next: (resp) => {
-        this.router.navigate(['/Providers']);
         this.angularMaterailaServ.addAndUpdateSuccess(
           'Provider Added Successfully'
         );
+        this.providerForm.reset();
       },
       error: (e) => {
         this.angularMaterailaServ.addAndUpdateSuccess(

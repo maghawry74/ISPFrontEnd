@@ -2,7 +2,7 @@
 <ng-template #Page>
     <div class="mx-4 m flex flex-col items-start justify-center mt-10 gap-5">
         <h1 class="text-2xl text-left">Centrals</h1>
-        <a type="button" class="add-btn" routerLink="/Offers/Add">
+        <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/Offers/Add">
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New
         </a>
@@ -88,9 +88,10 @@
                                 {{offer.routerPrice?offer.routerPrice:"Free"}}
                             </th>
                             <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <button (click)="EditOffer(offer.id)"> <i
-                                        class='fa fa-edit edit-btn edit-btn '></i></button>
-                                <app-modal [Message]="'Are You Sure To Delete ' +offer.name + ' Offer'"
+                                <a *ngIf="EditPermission" [routerLink]="'/Offers/Edit/'+offer.id"> <i
+                                        class='fa fa-edit edit-btn edit-btn '></i></a>
+                                <app-modal *ngIf="DeletePermission"
+                                    [Message]="'Are You Sure To Delete ' +offer.name + ' Offer'"
                                     [YesFunction]="DeleteOffer(offer.id)">
                                 </app-modal>
                             </td>

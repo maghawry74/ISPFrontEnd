@@ -1,9 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MinCheckBoxIsSelected } from 'src/app/Validation/MinCheckBoxIsSelected';
 import { IRoleClaim } from 'src/app/models/IRole';
 import { IRoleFrom } from 'src/app/models/IRoleForm';
+import {
+  Branch,
+  Central,
+  Client,
+  Governorate,
+  Offer,
+  Package,
+  Provider,
+  Role,
+  User,
+} from 'src/app/models/Permission';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { RoleService } from 'src/app/services/role.service';
 
@@ -12,58 +28,107 @@ import { RoleService } from 'src/app/services/role.service';
   templateUrl: './add-role.component.html',
   styleUrls: ['./add-role.component.css'],
 })
-export class AddRoleComponent implements OnInit {
+export class AddRoleComponent /*implements OnInit*/ {
   state: 'Update' | 'Add' = 'Add';
-  isAdminSelected = false;
-  roleName = new FormControl('', [Validators.required]);
-  admin = new FormControl<boolean | null>(false);
-  search = new FormControl<boolean | null>(false);
-  addNewClient = new FormControl<boolean | null>(false);
-  clientRequests = new FormControl<boolean | null>(false);
-  roleFrom = new FormGroup({
-    roleName: this.roleName,
-    admin: this.admin,
-    search: this.search,
-    clientRequests: this.clientRequests,
-    addNewClient: this.addNewClient,
-  },[MinCheckBoxIsSelected.Min(1)]);
-
+  roleFrom: FormGroup;
   constructor(
     private ngMaterial: AngularMateralService,
     private roleService: RoleService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    fb: FormBuilder
   ) {
+    this.roleFrom = fb.group(
+      {
+        roleName: ['', Validators.required],
+        Branch: fb.group({
+          [Branch.Create]: [false, Validators.required],
+          [Branch.Delete]: [false, Validators.required],
+          [Branch.Read]: [false, Validators.required],
+          [Branch.Update]: [false, Validators.required],
+        }),
+        Central: fb.group({
+          [Central.Create]: [false, Validators.required],
+          [Central.Delete]: [false, Validators.required],
+          [Central.Read]: [false, Validators.required],
+          [Central.Update]: [false, Validators.required],
+        }),
+        Client: fb.group({
+          [Client.Create]: [false, Validators.required],
+          [Client.Delete]: [false, Validators.required],
+          [Client.Read]: [false, Validators.required],
+          [Client.Update]: [false, Validators.required],
+        }),
+        Governorate: fb.group({
+          [Governorate.Create]: [false, Validators.required],
+          [Governorate.Delete]: [false, Validators.required],
+          [Governorate.Read]: [false, Validators.required],
+          [Governorate.Update]: [false, Validators.required],
+        }),
+        Offer: fb.group({
+          [Offer.Create]: [false, Validators.required],
+          [Offer.Delete]: [false, Validators.required],
+          [Offer.Read]: [false, Validators.required],
+          [Offer.Update]: [false, Validators.required],
+        }),
+        Package: fb.group({
+          [Package.Create]: [false, Validators.required],
+          [Package.Delete]: [false, Validators.required],
+          [Package.Read]: [false, Validators.required],
+          [Package.Update]: [false, Validators.required],
+        }),
+        Provider: fb.group({
+          [Provider.Create]: [false, Validators.required],
+          [Provider.Delete]: [false, Validators.required],
+          [Provider.Read]: [false, Validators.required],
+          [Provider.Update]: [false, Validators.required],
+        }),
+        Role: fb.group({
+          [Role.Create]: [false, Validators.required],
+          [Role.Delete]: [false, Validators.required],
+          [Role.Read]: [false, Validators.required],
+          [Role.Update]: [false, Validators.required],
+        }),
+        User: fb.group({
+          [User.Create]: [false, Validators.required],
+          [User.Delete]: [false, Validators.required],
+          [User.Read]: [false, Validators.required],
+          [User.Update]: [false, Validators.required],
+        }),
+      },
+      { Validators: [MinCheckBoxIsSelected.Min(1)] }
+    );
+
     const id = activatedRoute.snapshot.params.id;
     if (id) {
       this.state = 'Update';
       roleService.GetById(id).subscribe((data) => {
-        let newValues = this.roleFrom.value as IRoleFrom;
-        newValues.roleName = data.name;
-        data.claims.forEach((c) => {
-          newValues[c.type] = c.value;
+        console.log(data);
+        this.roleFrom.patchValue({
+          roleName: data.name,
         });
-        this.roleFrom.setValue(newValues);
+        data.claims.forEach((c) => {
+          const entity = c.type.split('.').at(1) as string;
+          let entityGroup = this.roleFrom.get(entity);
+          entityGroup?.patchValue({
+            [c.type]: c.value,
+          });
+        });
       });
     }
   }
-  ngOnInit(): void {
-    this.admin.valueChanges.subscribe((data) => {
-      this.roleFrom.patchValue({
-        search: false,
-        clientRequests: false,
-        addNewClient: false,
-      });
-      this.isAdminSelected = data!;
-    });
-  }
 
   FromSubmit() {
-    const claims: IRoleClaim[] = [];
+    const claims: string[] = [];
     Object.entries(this.roleFrom.controls).forEach((entry) => {
-      if (entry[1].value == true || entry[1].value == 'true') {
-        claims.push({ type: entry[0], value: entry[1].value.toString() });
+      if (typeof entry[1].value == 'object') {
+        Object.entries(entry[1].value).forEach(([key, value]) => {
+          if (value == true || value == 'true') {
+            claims.push(key);
+          }
+        });
       }
     });
+    console.log(claims);
     const sub = {
       next: () => {
         this.ngMaterial.addAndUpdateSuccess(
@@ -81,18 +146,16 @@ export class AddRoleComponent implements OnInit {
     };
     if (this.state == 'Add') {
       const role = {
-        name: this.roleName.value,
-        normalizedName: this.roleName.value?.toUpperCase(),
+        name: this.roleFrom.get('roleName')?.value,
+        normalizedName: this.roleFrom.get('roleName')?.value.toUpperCase(),
         claims,
       };
       this.roleService.Add(role).subscribe(sub);
     } else {
-      console.log(this.roleFrom.value);
-      console.log(claims);
       const role = {
         id: this.activatedRoute.snapshot.params.id,
-        name: this.roleName.value,
-        normalizedName: this.roleName.value?.toUpperCase(),
+        name: this.roleFrom.get('roleName')?.value,
+        normalizedName: this.roleFrom.get('roleName')?.value.toUpperCase(),
         claims,
       };
       this.roleService.Update(role.id, role).subscribe(sub);

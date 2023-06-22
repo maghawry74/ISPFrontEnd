@@ -66,8 +66,8 @@ export class AddGovernarateComponent implements OnInit {
     this.govService.Add(newGov).subscribe({
       next:(resp)=>
       {
-        this.router.navigate(['/Governorates']);
         this.angularMaterailaServ.addAndUpdateSuccess("Governorate Added Successfully");
+        this.governateForm.reset();
       },
       error:(e)=>{
       this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");

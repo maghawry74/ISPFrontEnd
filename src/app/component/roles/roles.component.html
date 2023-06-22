@@ -2,7 +2,7 @@
 <ng-template #Page>
     <div class="w-1/2 m-auto flex flex-col items-start justify-center mt-10 gap-5">
         <h1 class="text-2xl text-left">Roles</h1>
-        <a type="button" class="add-btn" routerLink="/role/add">
+        <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/role/add">
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New
         </a>
@@ -35,9 +35,10 @@
                                 {{role.name}}
                             </th>
                             <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <a [routerLink]="'/role/edit/'+role.id"> <i
+                                <a *ngIf="EditPermission" [routerLink]="'/role/edit/'+role.id"> <i
                                         class='fa fa-edit edit-btn edit-btn'></i></a>
-                                <app-modal [Message]="'Are You Sure To Delete ' +role.name + ' Central'"
+                                <app-modal *ngIf="DeletePermission"
+                                    [Message]="'Are You Sure To Delete ' +role.name + ' Central'"
                                     [YesFunction]="DeleteRole(role.id)">
                                 </app-modal>
                             </td>

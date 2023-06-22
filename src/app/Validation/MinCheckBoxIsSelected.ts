@@ -10,8 +10,12 @@ export class MinCheckBoxIsSelected {
     return (form: AbstractControl): ValidationErrors | null => {
       const value = form.value;
       for (let val of Object.values(value)) {
-        if (val == true) {
-          return null;
+        if (typeof val == 'object' && val != null) {
+          for (let value of Object.values(val)) {
+            if (value == true || value == 'true') {
+              return null;
+            }
+          }
         }
       }
       return { NoSelection: true };

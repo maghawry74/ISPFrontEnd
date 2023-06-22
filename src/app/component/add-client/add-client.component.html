@@ -1,0 +1,494 @@
+<div class="flex justify-center flex-col items-center py-10 w-full max-h-screen mx-auto">
+    <h1 class="text-5xl text-left">{{state=="Add"?"Add":"Update"}} Client</h1>
+    <form (ngSubmit)="FormHandler()" [formGroup]="ClientForm"
+        class="flex flex-col justify-center  w-3/5 max-h-fit  mx-auto">
+        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+            <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
+                <li role="presentation" class="flex-grow basis-0 text-center">
+                    <a href="#tabs-home02"
+                        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                        data-te-toggle="pill" data-te-target="#tabs-home02" data-te-nav-active role="tab"
+                        aria-controls="tabs-home02" aria-selected="true">Personal Info</a>
+                </li>
+                <li role="presentation" class="flex-grow basis-0 text-center">
+                    <a href="#tabs-profile02"
+                        class="focus:border-transparen my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                        data-te-toggle="pill" data-te-target="#tabs-profile02" role="tab" aria-controls="tabs-profile02"
+                        aria-selected="false">Advanced</a>
+                </li>
+                <li role="presentation" class="flex-grow basis-4 text-center">
+                    <a href="#tabs-messages02"
+                        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                        data-te-toggle="pill" data-te-target="#tabs-messages02" role="tab"
+                        aria-controls="tabs-messages02" aria-selected="false">Provider & Package</a>
+                </li>
+                <li role="presentation" class="flex-grow basis-0 text-center">
+                    <a href="#tabs-contact02"
+                        class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
+                        data-te-toggle="pill" data-te-target="#tabs-contact02" role="tab" aria-controls="tabs-contact02"
+                        aria-selected="false">Finanace</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mb-6">
+            <div class="hidden opacity-100 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-home02" role="tabpanel" aria-labelledby="tabs-home-tab02" data-te-tab-active>
+                <div id="personal-info" class="min-h-[65vh] max-h-[70vh] overflow-auto">
+                    <div class='mb-1'>
+                        <label for="name"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Name*</label>
+                        <input id="name" formControlName="Name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('Name')?.errors?.['required']&&ClientForm.get('Name')?.['touched']">
+                            Name
+                            is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="ssid"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">SSID*</label>
+                        <input id="ssid" formControlName="SSID"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('SSID')?.errors?.['required']&&ClientForm.get('SSID')?.['touched']">
+                            SSID
+                            is
+                            Required
+                        </p>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('SSID')?.errors?.['maxlength']&&ClientForm.get('SSID')?.['touched']">
+                            SSID
+                            Must
+                            Be
+                            14 Number
+                        </p>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('SSID')?.errors?.['minlength']&&ClientForm.get('SSID')?.['touched']">
+                            SSID
+                            Must
+                            Be
+                            14 Number
+                        </p>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('SSID')?.errors?.['isNan']&&ClientForm.get('SSID')?.['touched']">Enter
+                            a
+                            Valid
+                            Number
+                        </p>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="email"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email*</label>
+                        <input id="email" formControlName="Email"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('Email')?.errors?.['required']&&ClientForm.get('Email')?.['touched']">
+                            Email is
+                            Required
+                        </p>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('Email')?.errors?.['email']&&ClientForm.get('Email')?.['touched']">
+                            Enter A
+                            valid
+                            Email
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-5">
+                        <div class='mb-1'>
+                            <label for="tel"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Tel*</label>
+                            <input id="tel" formControlName="Tel"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Tel')?.errors?.['required']&&ClientForm.get('Tel')?.['touched']">
+                                Tel
+                                is
+                                Required
+                            </p>
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Tel')?.errors?.['isNan']&&ClientForm.get('Tel')?.['touched']">
+                                Enter a
+                                Valid
+                                Number
+                            </p>
+                        </div>
+
+                        <div class='mb-1'>
+                            <label for="phone"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Phone*</label>
+                            <input id="phone" formControlName="Phone"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Phone')?.errors?.['required']&&ClientForm.get('Phone')?.['touched']">
+                                Tel
+                                is
+                                Required
+                            </p>
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Phone')?.errors?.['isNan']&&ClientForm.get('Phone')?.['touched']">
+                                Enter a
+                                Valid
+                                Number
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="address"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Address*</label>
+                        <input id="address" formControlName="Address"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('Address')?.errors?.['required']&&ClientForm.get('Address')?.['touched']">
+                            Address
+                            is
+                            Required
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-profile02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
+                <div id="Advanced-info" class=" h-[65vh] overflow-auto">
+                    <div class="grid grid-cols-2 gap-x-5">
+                        <div class='mb-1'>
+                            <label for="PortSlot"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Port
+                                Slot*</label>
+                            <input id="PortSlot" formControlName="PortSlot" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('PortSlot')?.errors?.['required']&&ClientForm.get('PortSlot')?.['touched']">
+                                Port Slot
+                                is
+                                Required
+                            </p>
+                        </div>
+
+                        <div class='mb-1'>
+                            <label for="Slot"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Slot*</label>
+                            <input id="Slot" formControlName="Slot" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Slot')?.errors?.['required']&&ClientForm.get('Slot')?.['touched']">
+                                Slot
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-5">
+                        <div class='mb-1'>
+                            <label for="PortBlock"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">PortBlock
+                                *</label>
+                            <input id="PortBlock" formControlName="PortBlock" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('PortBlock')?.errors?.['required']&&ClientForm.get('PortBlock')?.['touched']">
+                                Port Block
+                                is
+                                Required
+                            </p>
+                        </div>
+
+                        <div class='mb-1'>
+                            <label for="Block"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Block*</label>
+                            <input id="Block" formControlName="Block" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Block')?.errors?.['required']&&ClientForm.get('Block')?.['touched']">
+                                Block
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-5">
+                        <div class='mb-1'>
+                            <label for="VCI"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">VCI*</label>
+                            <input id="VCI" formControlName="VCI" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('VCI')?.errors?.['required']&&ClientForm.get('VCI')?.['touched']">
+                                VCI
+                                is
+                                Required
+                            </p>
+                        </div>
+                        <div class='mb-1'>
+                            <label for="VPI"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">VPI*</label>
+                            <input id="VPI" formControlName="VPI" type="number"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('VPI')?.errors?.['required']&&ClientForm.get('VPI')?.['touched']">
+                                VPI
+                                is
+                                Required
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-5">
+                        <div class='mb-1'>
+                            <label for="UserName"
+                                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">User
+                                Name*</label>
+                            <input id="UserName" formControlName="UserName"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('UserName')?.errors?.['required']&&ClientForm.get('UserName')?.['touched']">
+                                User Name is
+                                Required
+                            </p>
+                        </div>
+
+                        <div class='mb-1'>
+                            <label for="Password" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                                Password*</label>
+                            <input id="Password" formControlName="Password"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <p class="text-red-600 text-base "
+                                *ngIf="ClientForm.get('Password')?.errors?.['required']&&ClientForm.get('Password')?.['touched']">
+                                Password is
+                                Required
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="OperationOrderNumber"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                            Operation Order Number*</label>
+                        <input id="OperationOrderNumber" formControlName="OperationOrderNumber"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('OperationOrderNumber')?.errors?.['required']&&ClientForm.get('OperationOrderNumber')?.['touched']">
+                            Operation Order Number is
+                            Required
+                        </p>
+                    </div>
+
+                    <mat-form-field class="w-full mt-5 h-fit">
+                        <label for="OperationOrderDate"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                            Operation Order Date*</label>
+                        <input id="OperationOrderDate" formControlName="OperationOrderDate" matInput
+                            [matDatepicker]="picker">
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-messages02" role="tabpanel" aria-labelledby="tabs-profile-tab02">
+                <div id="Sub-info" class=" min-h-[65vh] overflow-auto">
+
+                    <div class="my-3">
+                        <label for="Provider"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Provider*</label>
+                        <select formControlName="ProviderId" id="Provider"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option selected value=0>Choose a Provider</option>
+                            <ng-container *ngFor="let provider of Providers;let i=index">
+                                <option [value]="provider.id">{{provider.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('ProviderId')?.errors?.['required']&&ClientForm.get('ProviderId')?.['touched']">
+                            Provider is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class="my-3">
+                        <label for="Offer"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Offer*</label>
+                        <select formControlName="OfferId" id="Offer" data-te-select-init>
+                            <ng-container *ngFor="let offer of Offers;let first=first">
+                                <option [selected]="first" [value]="offer.id">{{offer.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('OfferId')?.errors?.['required']&&ClientForm.get('OfferId')?.['touched']">
+                            Offer is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class="my-3">
+                        <label for="Package"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Package*</label>
+                        <select formControlName="PackageId" id="Package" data-te-select-init>
+                            <ng-container *ngFor="let package of Packages;let first=first">
+                                <option [selected]="first" [value]="package.id">{{package.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('PackageId')?.errors?.['required']&&ClientForm.get('PackageId')?.['touched']">
+                            Package is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class="my-3">
+                        <label for="Governorate"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Governorates*</label>
+                        <select formControlName="GovernorateCode" id="Governorate" data-te-select-init>
+                            <option selected value="0">Choose a Governorate</option>
+                            <ng-container *ngFor="let governorate of Governorates;let first=first">
+                                <option [value]="governorate.code">{{governorate.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('GovernorateCode')?.errors?.['required']&&ClientForm.get('GovernorateCode')?.['touched']">
+                            Provider is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class="my-3">
+                        <label for="Central"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Central*</label>
+                        <select formControlName="CentralId" id="Central" data-te-select-init>
+                            <ng-container *ngFor="let Central of Centrals;let first=first">
+                                <option [selected]="first" [value]="Central.id">{{Central.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('CentralId')?.errors?.['required']&&ClientForm.get('CentralId')?.['touched']">
+                            Central is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class="my-3">
+                        <label for="Branch"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Branch*</label>
+                        <select formControlName="BranchName" id="Branch" data-te-select-init>
+                            <ng-container *ngFor="let Branch of Branchs;let first=first">
+                                <option [selected]="first" [value]="Branch.name">{{Branch.name}}</option>
+                            </ng-container>
+                        </select>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('BranchName')?.errors?.['required']&&ClientForm.get('BranchName')?.['touched']">
+                            Branch is
+                            Required
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="hidden opacity-0 transition-opacity duration-150 ease-linear data-[te-tab-active]:block"
+                id="tabs-contact02" role="tabpanel" aria-labelledby="tabs-contact-tab02">
+                <div id="Finance-info" class=" min-h-[65vh] overflow-auto">
+
+                    <div class='mb-1'>
+                        <label for="PrePaid"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">PrePaid
+                            *</label>
+                        <input id="PrePaid" formControlName="PrePaid" type="number"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('PrePaid')?.errors?.['required']&&ClientForm.get('PrePaid')?.['touched']">
+                            PrePaid
+                            is
+                            Required
+                        </p>
+                    </div>
+                    <div class='mb-1'>
+                        <label for="InstallationFee"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Installation Fee
+                            *</label>
+                        <input id="InstallationFee" formControlName="InstallationFee" type="number"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('InstallationFee')?.errors?.['required']&&ClientForm.get('InstallationFee')?.['touched']">
+                            Installation Fee
+                            is
+                            Required
+                        </p>
+                    </div>
+                    <div class='mb-1'>
+                        <label for="ContractFee"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Contract Fee
+                            *</label>
+                        <input id="ContractFee" formControlName="ContractFee" type="number"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('ContractFee')?.errors?.['required']&&ClientForm.get('ContractFee')?.['touched']">
+                            Contract Fee
+                            is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="PackageIp"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Package Ip
+                            *</label>
+                        <input id="PackageIp" formControlName="PackageIp" type="number"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('PackageIp')?.errors?.['required']&&ClientForm.get('PackageIp')?.['touched']">
+                            Package Ip
+                            is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="OrderNumber"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Order Number
+                            *</label>
+                        <input id="OrderNumber" formControlName="OrderNumber" type="number"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('OrderNumber')?.errors?.['required']&&ClientForm.get('OrderNumber')?.['touched']">
+                            Order Number
+                            is
+                            Required
+                        </p>
+                    </div>
+
+                    <div class='mb-1'>
+                        <label for="RouterSerial"
+                            class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Router Serial
+                            *</label>
+                        <input id="RouterSerial" formControlName="RouterSerial" type="text"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('RouterSerial')?.errors?.['required']&&ClientForm.get('RouterSerial')?.['touched']">
+                            Router Serial
+                            is
+                            Required
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full flex justify-center items-center ">
+            <button [disabled]="ClientForm.status=='INVALID'"
+                [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':ClientForm.status=='INVALID'}" type="submit"
+                class="add-btn">Submit</button>
+            <a type="button" class="cancel-btn mt-0 mx-3" routerLink="/Clients" data-te-ripple-init
+                data-te-ripple-color="light">Back
+            </a>
+        </div>
+    </form>
+</div>

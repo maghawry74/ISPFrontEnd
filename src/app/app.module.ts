@@ -28,8 +28,16 @@ import { BranchsComponent } from './component/branchs/branchs.component';
 import { AddRoleComponent } from './component/add-role/add-role.component';
 import { RolesComponent } from './component/roles/roles.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
+import { EntityChecksComponent } from './component/entity-checks/entity-checks.component';
+import { ForbiddenComponent } from './component/forbidden/forbidden.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
+import { HomeComponent } from './component/home/home.component';
+import { ClientsComponent } from './component/clients/clients.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,7 +58,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AddPackageComponent,
     BranchsComponent,
     AddRoleComponent,
-    RolesComponent
+    RolesComponent,
+    EntityChecksComponent,
+    ForbiddenComponent,
+    NotFoundComponent,
+    HomeComponent,
+    ClientsComponent,
+    AddClientComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,10 +77,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     HttpClientModule,
     MatIconModule,
     NgxPaginationModule,
-   
+    MatDatepickerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
   //entryComponents:[MatConfirmDialogComponent]
 })
-export class AppModule { }
+export class AppModule {}

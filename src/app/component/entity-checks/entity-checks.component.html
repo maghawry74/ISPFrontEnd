@@ -1,0 +1,36 @@
+<div [formGroup]="fromGroup">
+    <div [formGroupName]="entity" class="grid grid-cols-5 gap-2 mt-2">
+        <h4 class="font-body">{{entity}}</h4>
+        <div class="flex items-start mb-2">
+            <div class="flex items-center h-5">
+                <input [formControlName]="'Permission.'+entity+'.View'" type="checkbox" [id]="entity+'Read'"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+            </div>
+            <label [for]="entity+'Read'" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Read</label>
+        </div>
+        <div class="flex items-start mb-2">
+            <div class="flex items-center h-5">
+                <input [formControlName]="'Permission.'+entity+'.Edit'" type="checkbox" [id]="entity+'Update'"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+            </div>
+            <label [for]="entity+'Update'"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Update</label>
+        </div>
+        <div class="flex items-start mb-2">
+            <div class="flex items-center h-5">
+                <input [formControlName]="'Permission.'+entity+'.Create'" type="checkbox" [id]="entity+'Create'"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+            </div>
+            <label [for]="entity+'Create'"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Create</label>
+        </div>
+        <div class="flex items-start mb-2">
+            <div class="flex items-center h-5">
+                <input [formControlName]="'Permission.'+entity+'.Delete'" type="checkbox" [id]="entity+'Delete'"
+                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+            </div>
+            <label [for]="entity+'Delete'"
+                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Delete</label>
+        </div>
+    </div>
+</div>

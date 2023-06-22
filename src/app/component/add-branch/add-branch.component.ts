@@ -22,9 +22,9 @@ export class AddBranchComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private ngService: AngularMateralService
   ) {
-    this.governorateService
-      .GetAll()
-      .subscribe((data) => (this.governorates = data));
+    this.governorateService.GetAll().subscribe((data) => {
+      this.governorates = data;
+    });
 
     const id = activatedRoute.snapshot.params.id;
     if (id) {

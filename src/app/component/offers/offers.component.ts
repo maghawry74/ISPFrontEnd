@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IOfferView } from 'src/app/models/IOffer';
+import { Offer } from 'src/app/models/Permission';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { OfferService } from 'src/app/services/offer.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-offers',
@@ -12,13 +14,20 @@ import { OfferService } from 'src/app/services/offer.service';
 export class OffersComponent implements OnInit {
   isLoading = false;
   isError = false;
-
+  EditPermission = false;
+  DeletePermission = false;
+  CreatePermission = false;
   offers: IOfferView[] = [];
   constructor(
     private OfferService: OfferService,
     private router: Router,
-    private ngMaterialService: AngularMateralService
-  ) {}
+    private ngMaterialService: AngularMateralService,
+    public userService: UserService
+  ) {
+    this.EditPermission = userService.CheckPermission(Offer.Update);
+    this.DeletePermission = userService.CheckPermission(Offer.Delete);
+    this.CreatePermission = userService.CheckPermission(Offer.Create);
+  }
   ngOnInit(): void {
     this.OfferService.GetAll().subscribe({
       next: (data) => {
@@ -34,9 +43,6 @@ export class OffersComponent implements OnInit {
     });
   }
 
-  EditOffer(id: number) {
-    this.router.navigateByUrl(`/Offers/Edit/${id}`);
-  }
   DeleteOffer(id: number) {
     return () => {
       this.OfferService.Delete(id).subscribe({
