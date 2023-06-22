@@ -24,7 +24,6 @@ export class BranchsComponent {
       },
     });
   }
-  EditBranch(id: string) {}
   DeleteBranch(id: string) {
     return () => {};
   }

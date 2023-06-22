@@ -76,7 +76,7 @@
                                 {{branch.managerName||"N/A"}}
                             </th>
                             <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <a [routerLink]="'/branch/edit/'+branch.name" (click)="EditBranch(branch.name)"> <i
+                                <a [routerLink]="'/branch/edit/'+branch.id"> <i
                                         class='fa fa-edit edit-btn edit-btn '></i></a>
                                 <app-modal [Message]="'Are You Sure To Delete ' +branch.name + ' Offer'"
                                     [YesFunction]="DeleteBranch(branch.name)">

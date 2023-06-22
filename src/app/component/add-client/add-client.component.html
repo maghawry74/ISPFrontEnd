@@ -318,6 +318,7 @@
                         <label for="Offer"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Offer*</label>
                         <select formControlName="OfferId" id="Offer" data-te-select-init>
+                            <option selected value="0">Choose an Offer</option>
                             <ng-container *ngFor="let offer of Offers;let first=first">
                                 <option [selected]="first" [value]="offer.id">{{offer.name}}</option>
                             </ng-container>
@@ -333,6 +334,7 @@
                         <label for="Package"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Package*</label>
                         <select formControlName="PackageId" id="Package" data-te-select-init>
+                            <option selected value="0">Choose a Package</option>
                             <ng-container *ngFor="let package of Packages;let first=first">
                                 <option [selected]="first" [value]="package.id">{{package.name}}</option>
                             </ng-container>
@@ -364,6 +366,7 @@
                         <label for="Central"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Central*</label>
                         <select formControlName="CentralId" id="Central" data-te-select-init>
+                            <option selected value="0">Choose a Central</option>
                             <ng-container *ngFor="let Central of Centrals;let first=first">
                                 <option [selected]="first" [value]="Central.id">{{Central.name}}</option>
                             </ng-container>
@@ -378,9 +381,10 @@
                     <div class="my-3">
                         <label for="Branch"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Branch*</label>
-                        <select formControlName="BranchName" id="Branch" data-te-select-init>
+                        <select formControlName="BranchId" id="Branch" data-te-select-init>
+                            <option selected value="0">Choose a Branch</option>
                             <ng-container *ngFor="let Branch of Branchs;let first=first">
-                                <option [selected]="first" [value]="Branch.name">{{Branch.name}}</option>
+                                <option [selected]="first" [value]="Branch.id">{{Branch.name}}</option>
                             </ng-container>
                         </select>
                         <p class="text-red-600 text-base "
