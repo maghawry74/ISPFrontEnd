@@ -32,7 +32,7 @@ export class AddCentralComponent implements OnInit {
           console.log(data);
           this.centralFrom.patchValue({
             CentralName: data.name,
-           // Governorate: data.governorate.code.toString(),
+           Governorate: data.governorate.code.toString(),
           });
         },
       });
