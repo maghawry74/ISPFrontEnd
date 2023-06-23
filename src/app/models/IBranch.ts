@@ -8,6 +8,6 @@ export interface IBranch {
   phone1: string;
   phone2: string;
   fax: string;
-  governorate: IGovernarate;
+  governorate?: IGovernarate;
   managerName: string;
 }

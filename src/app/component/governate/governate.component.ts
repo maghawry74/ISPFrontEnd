@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { IGovernarate } from '../../models/igovernarate';
 import { GovernorateService } from '../../services/governorate.service';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
+import { UserService } from 'src/app/services/user.service';
+import { Governorate } from 'src/app/models/Permission';
 
 @Component({
   selector: 'app-governate',
@@ -11,14 +13,23 @@ import { AngularMateralService } from 'src/app/services/angular-materal.service'
 })
 export class GovernateComponent implements OnInit {
   governateList: IGovernarate[] = [];
+  EditPermission = false;
+  DeletePermission = false;
+  CreatePermission = false;
   isLoading = true;
   isError = false;
   p:number = 1;
   constructor(
     private router:Router,
     private GovernorateService:GovernorateService,
-    private AngularMateralService:AngularMateralService
-    ){}
+    private AngularMateralService:AngularMateralService,
+    public userService: UserService
+    ){
+        this.EditPermission = userService.CheckPermission(Governorate.Update);
+        this.DeletePermission = userService.CheckPermission(Governorate.Delete);
+        this.CreatePermission = userService.CheckPermission(Governorate.Create)
+    
+    }
   ngOnInit(): void {
     this.GovernorateService.GetAll().subscribe({
       next:(data)=>{

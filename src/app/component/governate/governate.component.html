@@ -5,7 +5,7 @@
     </div>
     <div
         class="p-3 bg-white rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.09),0_10px_20px_-2px_rgba(0,0,0,0.07)] w-1/2 m-auto">
-        <button type="button" class="add-btn" (click)="goToAddComp()">
+        <button *ngIf="CreatePermission" type="button" class="add-btn" (click)="goToAddComp()">
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New
         </button>
@@ -41,9 +41,9 @@
                                             {{item.name}}</td>
                                         <td class="px-6 py-4 text-lg">{{item.code}}</td>
                                         <td>
-                                            <button (click)="toEditGov(item.code)"> <i
+                                            <button  *ngIf="EditPermission" (click)="toEditGov(item.code)"> <i
                                                     class='fa fa-edit edit-btn edit-btn'></i></button>
-                                            <button (click)="deleteGovernate(item.code)"><i
+                                            <button *ngIf="DeletePermission" (click)="deleteGovernate(item.code)"><i
                                                     class="fa fa-trash-o remove-btn remove-btn"></i></button>
                                         </td>
                                     </tr>

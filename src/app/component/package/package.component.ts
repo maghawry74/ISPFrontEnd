@@ -1,8 +1,10 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IPackageView } from 'src/app/models/IPackage';
+import { Package } from 'src/app/models/Permission';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { PackageService } from 'src/app/services/package.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-package',
@@ -13,11 +15,20 @@ export class PackageComponent implements OnInit{
   packageList:IPackageView[]=[];
   isLoading = true;
   isError = false;
+  EditPermission = false;
+  DeletePermission = false;
+  CreatePermission = false;
   p: number = 1;
   constructor(private packageService:PackageService,
                private router:Router,
-               private AngularMateralService:AngularMateralService
-    ){}
+               private AngularMateralService:AngularMateralService,
+               public userService: UserService
+
+    ){
+      this.EditPermission = userService.CheckPermission(Package.Update);
+      this.DeletePermission = userService.CheckPermission(Package.Delete);
+      this.CreatePermission = userService.CheckPermission(Package.Create)
+    }
   ngOnInit(): void {
 
     this.packageService.GetAll().subscribe({

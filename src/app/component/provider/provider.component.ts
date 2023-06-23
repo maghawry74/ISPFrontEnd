@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Provider } from 'src/app/models/Permission';
 import { Iprovider } from 'src/app/models/iprovider';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { ProviderService } from 'src/app/services/provider.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-provider',
@@ -13,11 +15,18 @@ export class ProviderComponent implements OnInit {
 providersList:Iprovider[]=[];
 isLoading = true;
 isError = false;
+EditPermission = false;
+DeletePermission = false;
+CreatePermission = false;
 constructor(private providerService:ProviderService, 
   private router:Router,
-  private AngularMateralService:AngularMateralService
+  private AngularMateralService:AngularMateralService,
+  public userService: UserService
   )
 {
+        this.EditPermission = userService.CheckPermission(Provider.Update);
+        this.DeletePermission = userService.CheckPermission(Provider.Delete);
+        this.CreatePermission = userService.CheckPermission(Provider.Create)
 }
   ngOnInit(): void {
     this.providerService.GetAll().subscribe({
