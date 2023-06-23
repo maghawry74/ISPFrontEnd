@@ -55,7 +55,7 @@ export class AddBranchComponent implements OnInit {
   Phone1 = new FormControl('', [Validators.required, IsNumberValidator]);
   Phone2 = new FormControl('', [Validators.required, IsNumberValidator]);
   Fax = new FormControl('', [Validators.required, IsNumberValidator]);
-  Manager = new FormControl('');
+  Manager = new FormControl<string | null>(null);
   branchFrom = new FormGroup({
     Name: this.Name,
     Tel1: this.Tel1,
@@ -79,7 +79,6 @@ export class AddBranchComponent implements OnInit {
       managerId: this.Manager.value,
       governorateCode: this.Governorate.value,
     };
-
     const Sub = {
       next: () => {
         this.ngService.addAndUpdateSuccess(
