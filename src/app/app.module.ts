@@ -88,6 +88,5 @@ import { DetailInfoComponent } from './component/detail-info/detail-info.compone
   ],
   providers: [],
   bootstrap: [AppComponent],
-  //entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule {}

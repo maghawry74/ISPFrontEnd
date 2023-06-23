@@ -1,1 +1,3 @@
-<router-outlet></router-outlet>
+<main [@routeAnimations]="outletref.isActivated? outletref.activatedRoute:''">
+    <router-outlet #outletref="outlet"></router-outlet>
+</main>
