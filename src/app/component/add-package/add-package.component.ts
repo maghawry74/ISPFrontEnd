@@ -85,19 +85,17 @@ export class AddPackageComponent implements OnInit {
   addPackage() {
     let newPackage = this.packageForm.value;
     this.packageService.Add(newPackage).subscribe({
-      next: (resp) => {
-        this.angularMaterailaServ.addAndUpdateSuccess(
-          'Package Added Successfully'
-        );
-        this.packageForm.reset();
-      },
-      error: (e) => {
-        console.log(e);
-        this.angularMaterailaServ.addAndUpdateSuccess(
-          "'An Error Occured Try Again Later'"
-        );
-      },
-    });
+    next:(resp)=>{
+      this.router.navigate(['/Packages']);
+      this.angularMaterailaServ.addAndUpdateSuccess("Package Added Successfully");
+      
+    },
+    error:(e)=>{
+      console.log(e);
+      this.angularMaterailaServ.addAndUpdateSuccess("'An Error Occured Try Again Later'");
+    }
+  })
+
   }
   updatePack() {
     const updatedPack = {
