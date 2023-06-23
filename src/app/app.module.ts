@@ -90,6 +90,5 @@ import { UserComponent } from './component/user/user.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  //entryComponents:[MatConfirmDialogComponent]
 })
 export class AppModule {}
