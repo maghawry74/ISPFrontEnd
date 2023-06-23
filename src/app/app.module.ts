@@ -40,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ClientDetailsComponent } from './component/client-details/client-details.component';
 import { DetailInfoComponent } from './component/detail-info/detail-info.component';
+import { UserComponent } from './component/user/user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +70,7 @@ import { DetailInfoComponent } from './component/detail-info/detail-info.compone
     AddClientComponent,
     ClientDetailsComponent,
     DetailInfoComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,

@@ -17,3 +17,12 @@ export interface LoginResponse {
   permissions: string[];
   expireDate: Date;
 }
+export interface IUserView{
+  id: string;
+  userName:string;
+  email:string;
+  phoneNumber:string;
+  branch:string;
+  role:string;
+  status:boolean
+}

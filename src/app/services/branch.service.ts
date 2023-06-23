@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class BranchService extends GenericService<IBranch, string> {
+export class BranchService extends GenericService<IBranch, number> {
   constructor(client: HttpClient) {
     super('Branch', client);
   }

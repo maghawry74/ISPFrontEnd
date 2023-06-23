@@ -19,6 +19,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
 import { HomeComponent } from './component/home/home.component';
 import { HasPermission } from './component/RouteGuards/HasPermission';
 import { AlreadyLogged } from './component/RouteGuards/AlreadyLogged';
+import { UserComponent } from './component/user/user.component';
 import { Routes } from '@angular/router';
 import {
   Bill,
@@ -189,4 +190,6 @@ export const routes: Routes = [
   { path: 'Login', component: LoginComponent, canActivate: [AlreadyLogged] },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: NotFoundComponent },
+  
+  {path:'Users',component: UserComponent}
 ];
