@@ -3,7 +3,7 @@ import { environment } from 'src/environment/environment';
 
 export abstract class GenericService<T, ID> {
   protected Url = '';
-  private headersOptions: any;
+  protected headersOptions: any;
   constructor(Url: string, protected client: HttpClient) {
     this.Url = `${environment.APIURL}/${Url}`;
     this.headersOptions = {

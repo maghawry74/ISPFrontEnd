@@ -6,7 +6,7 @@
             <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
             New
         </a>
-        <h1 *ngIf="clients.length==0;else Table" class="text-center w-full mt-10">There Are No Centrals !</h1>
+        <h1 *ngIf="clients.length==0;else Table" class="text-center w-full mt-10">There Are No Clients !</h1>
         <ng-template #Table>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
                 <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
@@ -88,6 +88,9 @@
                                         class='fa fa-edit edit-btn edit-btn'></i></a>
                                 <button *ngIf="DeletePermission"><i
                                         class="fa fa-trash-o remove-btn remove-btn"></i></button>
+                                <a [routerLink]="'/Client/Bills/'+client.ssid" *ngIf="EditPermission">
+                                    <img class="w-[28px]" src="/assets/Icons/info.png" alt="">
+                                </a>
                             </td>
                         </tr>
                     </tbody>

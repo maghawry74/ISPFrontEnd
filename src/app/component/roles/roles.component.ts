@@ -39,7 +39,10 @@ export class RolesComponent {
   }
 
   DeleteRole(id: string) {
-    return () => {
+    this.ngMaterial.openConfirmDialog("Are you sure you want to delete this Role?")
+    .afterClosed().subscribe(resp=>{
+      if(resp)
+      {
       this.roleService.Delete(id).subscribe({
         next: () => {
           this.ngMaterial.addAndUpdateSuccess(
@@ -54,6 +57,8 @@ export class RolesComponent {
           console.log(e);
         },
       });
-    };
+    }
+    })
+
   }
 }

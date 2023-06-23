@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MinCheckBoxIsSelected } from 'src/app/Validation/MinCheckBoxIsSelected';
 import { IRoleClaim } from 'src/app/models/IRole';
 import { IRoleFrom } from 'src/app/models/IRoleForm';
@@ -36,7 +36,8 @@ export class AddRoleComponent /*implements OnInit*/ {
     private ngMaterial: AngularMateralService,
     private roleService: RoleService,
     private activatedRoute: ActivatedRoute,
-    fb: FormBuilder
+    fb: FormBuilder,
+    private router:Router
   ) {
     this.roleFrom = fb.group(
       {
@@ -158,6 +159,7 @@ export class AddRoleComponent /*implements OnInit*/ {
         claims,
       };
       this.roleService.Add(role).subscribe(sub);
+      this.router.navigate(["/roles"])
     } else {
       const role = {
         id: this.activatedRoute.snapshot.params.id,
@@ -166,6 +168,8 @@ export class AddRoleComponent /*implements OnInit*/ {
         claims,
       };
       this.roleService.Update(role.id, role).subscribe(sub);
+      this.router.navigate(["/roles"])
+      
     }
   }
 }
