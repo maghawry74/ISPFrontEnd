@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { HttpClient } from '@angular/common/http';
-import { IUser, IUserView, LoginCredentials, LoginResponse } from '../models/IUser';
+import {
+  IUser,
+  IUserView,
+  LoginCredentials,
+  LoginResponse,
+} from '../models/IUser';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +16,7 @@ export class UserService extends GenericService<IUserView, string> {
   IsLogged = false;
   Permissions: string[] = [];
   private token = '';
+  Name = '';
   constructor(httpClient: HttpClient, private router: Router) {
     super('User', httpClient);
     let tokenString = decodeURIComponent(document.cookie).split('token=')[1];
@@ -19,9 +25,11 @@ export class UserService extends GenericService<IUserView, string> {
     }
     const token = JSON.parse(tokenString) as LoginResponse;
     if (token) {
+      console.log(token);
       this.IsLogged = true;
       this.Permissions = token.permissions;
       this.token = token.token;
+      this.Name = token.name;
     }
   }
   GetToken() {
@@ -46,6 +54,7 @@ export class UserService extends GenericService<IUserView, string> {
     this.IsLogged = false;
     this.Permissions = [];
     this.token = '';
+
     this.router.navigateByUrl('/Login');
   }
 }

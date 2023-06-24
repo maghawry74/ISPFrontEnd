@@ -1,5 +1,5 @@
-import { IBranch, IBranchInUser } from "./IBranch";
-import { IRole } from "./IRole";
+import { IBranch, IBranchInUser } from './IBranch';
+import { IRole } from './IRole';
 
 export interface IUser {
   id: string;
@@ -19,13 +19,14 @@ export interface LoginResponse {
   token: string;
   permissions: string[];
   expireDate: Date;
+  name: string;
 }
-export interface IUserView{
+export interface IUserView {
   id: string;
-  userName:string;
-  email:string;
-  phoneNumber:string;
-  branch:IBranchInUser;
-  role:IRole;
-  status:boolean
+  userName: string;
+  email: string;
+  phoneNumber: string;
+  branch: IBranchInUser;
+  role: IRole;
+  status: boolean;
 }

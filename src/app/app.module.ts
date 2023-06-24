@@ -43,6 +43,7 @@ import { DetailInfoComponent } from './component/detail-info/detail-info.compone
 import { UserComponent } from './component/user/user.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
+import { CardComponent } from './component/card/card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,6 +76,7 @@ import { SideNavComponent } from './component/side-nav/side-nav.component';
     UserComponent,
     AddUserComponent,
     SideNavComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

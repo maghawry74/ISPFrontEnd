@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Info } from 'src/app/models/Info';
+import { SharedService } from 'src/app/services/shared.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +10,11 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   today: Date;
-
-  constructor() {
+  ISpInfo: Info | null = null;
+  UserName = 'Ya User';
+  constructor(private sharedService: SharedService, userService: UserService) {
     this.today = new Date();
+    this.UserName = userService.Name;
+    sharedService.GetInfo().subscribe((data) => (this.ISpInfo = data));
   }
 }

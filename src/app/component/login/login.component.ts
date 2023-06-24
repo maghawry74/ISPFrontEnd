@@ -35,6 +35,7 @@ export class LoginComponent {
         document.cookie = `token=${decodedData};expires=${data.expireDate}`;
         this.userService.IsLogged = true;
         this.userService.Permissions = data.permissions;
+        this.userService.Name = data.name;
         this.userService.SetToken(data.token);
         this.router.navigateByUrl('/');
       },
