@@ -1,6 +1,6 @@
 <div class="grid grid-cols-8">
     <app-side-nav *ngIf="showSideNav" class="col-span-1"></app-side-nav>
-    <main [ngClass]="{'col-span-7':showSideNav,'col-span-8 ':!showSideNav}"
+    <main [ngClass]="{'col-span-7':showSideNav,'col-span-8 ':!showSideNav}" class="relative"
         [@routeAnimations]="outletref.isActivated? outletref.activatedRoute:''">
         <router-outlet #outletref="outlet"></router-outlet>
     </main>
