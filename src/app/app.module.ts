@@ -41,6 +41,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { ClientDetailsComponent } from './component/client-details/client-details.component';
 import { DetailInfoComponent } from './component/detail-info/detail-info.component';
 import { UserComponent } from './component/user/user.component';
+import { SideNavComponent } from './component/side-nav/side-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -71,6 +72,7 @@ import { UserComponent } from './component/user/user.component';
     ClientDetailsComponent,
     DetailInfoComponent,
     UserComponent,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
-<div class="p-10">
+<div class="p-10  flex flex-col items-start">
     <p class="text-center text-4xl">Client Bills
     </p>
     <div *ngIf="isLoading;else Page" class="spinner "></div>
     <ng-template #Page>
-        <div class="w-full px-5 m-auto flex flex-col items-start justify-center mt-10 gap-5">
+        <div class="min-w-[85vw] px-5 m-auto flex flex-col items-start justify-center mt-10 gap-5">
             <h1 class="text-2xl text-left">Bills</h1>
             <button class="px-5 py-2 rounded-md bg-indigo-500 text-white" (click)="GetNextBill()">Get Next
                 Bill</button>

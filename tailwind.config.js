@@ -3,6 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,ts}",
     "./node_modules/tw-elements/dist/js/**/*.js",
+    "node_modules/@preline/overlay/*.js",
   ],
   theme: {
     extend: {},

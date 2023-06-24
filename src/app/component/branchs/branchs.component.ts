@@ -17,16 +17,17 @@ export class BranchsComponent implements OnInit {
   EditPermission = false;
   DeletePermission = false;
   CreatePermission = false;
-  constructor(private branchService: BranchService,
+  constructor(
+    private branchService: BranchService,
     private ngMaterialService: AngularMateralService,
     public userService: UserService
-    ) {
-      this.EditPermission = userService.CheckPermission(Branch.Update);
-      this.DeletePermission = userService.CheckPermission(Branch.Delete);
-      this.CreatePermission = userService.CheckPermission(Branch.Create);
+  ) {
+    this.EditPermission = userService.CheckPermission(Branch.Update);
+    this.DeletePermission = userService.CheckPermission(Branch.Delete);
+    this.CreatePermission = userService.CheckPermission(Branch.Create);
   }
   ngOnInit(): void {
-   this.branchService.GetAll().subscribe({
+    this.branchService.GetAll().subscribe({
       next: (data) => {
         this.isLoading = false;
         this.branchs = data;
@@ -40,24 +41,24 @@ export class BranchsComponent implements OnInit {
   }
   DeleteBranch(id: number) {
     this.ngMaterialService
-    .openConfirmDialog('Are you sure you want to delete this Branch?')
-    .afterClosed()
-    .subscribe(resp=>{
-      if(resp)
-      {
-        this.branchService.Delete(id).subscribe({
-          next: (data) => {
-            this.branchs = this.branchs.filter((b) => b.id != id);
-            this.ngMaterialService.addAndUpdateSuccess(
-              'Branch Has Been Deleted Successfully'
-            );
-          },
-          error:(e)=>{
-            this.ngMaterialService.addAndUpdateSuccess("'An Error Occured. Try Again Later !'");
-          }
-        })
-      }
-    })
-   
+      .openConfirmDialog('Are you sure you want to delete this Branch?')
+      .afterClosed()
+      .subscribe((resp) => {
+        if (resp) {
+          this.branchService.Delete(id).subscribe({
+            next: (data) => {
+              this.branchs = this.branchs.filter((b) => b.id != id);
+              this.ngMaterialService.addAndUpdateSuccess(
+                'Branch Has Been Deleted Successfully'
+              );
+            },
+            error: (e) => {
+              this.ngMaterialService.addAndUpdateSuccess(
+                "'An Error Occured. Try Again Later !'"
+              );
+            },
+          });
+        }
+      });
   }
 }

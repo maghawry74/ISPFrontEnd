@@ -34,12 +34,13 @@ export class LoginComponent {
         var decodedData = encodeURIComponent(JSON.stringify(data));
         document.cookie = `token=${decodedData};expires=${data.expireDate}`;
         this.userService.IsLogged = true;
+        this.userService.Permissions = data.permissions;
+        this.userService.SetToken(data.token);
         this.router.navigateByUrl('/');
       },
       error: (e: HttpErrorResponse) => {
-        console.log(e)
+        console.log(e);
         if (e.status == 401) {
-
           this.errorMessage = 'Wrong Email Or Password';
         } else {
           this.errorMessage = 'An Error Has Occured, Try Again Later.';

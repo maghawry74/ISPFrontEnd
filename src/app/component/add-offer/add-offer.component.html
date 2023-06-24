@@ -1,4 +1,4 @@
-<div class="flex justify-center flex-col items-center h-screen w-1/2 mx-auto">
+<div class="flex justify-center flex-col items-center h-screen  mx-auto">
     <h1 class="text-5xl text-left">{{state=='add'?"Add":"Update"}} Offer</h1>
     <form (ngSubmit)="FormHandler()" [formGroup]="OfferForm" class="">
         <app-input [control]="OfferName" label="Offer Name*" id="offer-name"></app-input>

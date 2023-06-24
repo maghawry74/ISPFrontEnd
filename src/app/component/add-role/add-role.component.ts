@@ -37,7 +37,7 @@ export class AddRoleComponent /*implements OnInit*/ {
     private roleService: RoleService,
     private activatedRoute: ActivatedRoute,
     fb: FormBuilder,
-    private router:Router
+    private router: Router
   ) {
     this.roleFrom = fb.group(
       {
@@ -127,6 +127,7 @@ export class AddRoleComponent /*implements OnInit*/ {
 
   FromSubmit() {
     const claims: string[] = [];
+
     Object.entries(this.roleFrom.controls).forEach((entry) => {
       if (typeof entry[1].value == 'object') {
         Object.entries(entry[1].value).forEach(([key, value]) => {
@@ -159,7 +160,7 @@ export class AddRoleComponent /*implements OnInit*/ {
         claims,
       };
       this.roleService.Add(role).subscribe(sub);
-      this.router.navigate(["/roles"])
+      this.router.navigate(['/roles']);
     } else {
       const role = {
         id: this.activatedRoute.snapshot.params.id,
@@ -168,8 +169,7 @@ export class AddRoleComponent /*implements OnInit*/ {
         claims,
       };
       this.roleService.Update(role.id, role).subscribe(sub);
-      this.router.navigate(["/roles"])
-      
+      this.router.navigate(['/roles']);
     }
   }
 }

@@ -1,7 +1,6 @@
-<div class="flex justify-center flex-col items-center py-10 w-full max-h-screen mx-auto">
+<div class="flex justify-center flex-col items-center py-10  max-h-screen mx-auto w-full">
     <h1 class="text-5xl text-left">{{state=="Add"?"Add":"Update"}} Client</h1>
-    <form (ngSubmit)="FormHandler()" [formGroup]="ClientForm"
-        class="flex flex-col justify-center  w-3/5 max-h-fit  mx-auto">
+    <form (ngSubmit)="FormHandler()" [formGroup]="ClientForm" class="flex flex-col justify-center  max-h-fit  mx-auto">
         <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
             <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
                 <li role="presentation" class="flex-grow basis-0 text-center">
