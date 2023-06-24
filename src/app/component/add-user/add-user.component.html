@@ -1,0 +1,119 @@
+<div
+    class="block w-1/2 m-auto mt-14 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+    <div class="lg:w-1/2 xs:w-full md:w-full m-auto  border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{formTitle}}</h1>
+    </div>
+    <form [formGroup]="userForm" (ngSubmit)="addUser()">
+        <div class="p-3">
+            <!--userName input-->
+            <div class="mb-8">
+                <label for="userName" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">
+                    userName *</label>
+                <input type="text" id="userName"
+                    class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    formControlName="userName" name="userName" placeholder="Enter userName">
+                <div [hidden]="userName?.untouched||userName?.valid">
+                    <small class="text-red-600 text-base" *ngIf="userName?.errors?.['required']">
+                        UserName Is Required
+                    </small>
+                </div>
+            </div>
+            <!--password input-->
+            <div class="mb-8">
+                <label for="password" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">
+                    Password *</label>
+                <input type="password" id="password"
+                    class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    formControlName="password" name="password" placeholder="Enter Password">
+                <div [hidden]="password?.untouched||password?.valid">
+                    <small class="text-red-600 text-base" *ngIf="password?.errors?.['required']">
+                        password Is Required
+                    </small><br>
+                    <small class="text-red-600 text-base" *ngIf="password?.errors?.['minLength']">
+                        password Must Be at least 4 characters
+                    </small>
+                </div>
+            </div>
+            <!--email input-->
+            <div class="mb-8">
+                <label for="email" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Email
+                    *</label>
+                <input type="email" id="email"
+                    class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    formControlName="email" name="email" placeholder="Enter Email">
+                <div [hidden]="email?.untouched||email?.valid">
+                    <small class="text-red-600 text-base" *ngIf="email?.errors?.['required']">
+                        Email Is Required
+                    </small>
+                </div>
+            </div>
+            <!--phoneNumber input-->
+            <div class="mb-8">
+                <label for="phoneNumber"
+                    class="block mb-2 font-semibold text-lg  text-gray-900 dark:text-white">phoneNumber
+                    *</label>
+                <input type="text" formControlName="phoneNumber" name="phoneNumber" id="phoneNumber"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Enter PhoneNumber">
+                <div [hidden]="phoneNumber?.untouched||phoneNumber?.valid" class="mb-5">
+                    <small class="text-red-600 text-base" *ngIf="phoneNumber?.errors?.['required']">PhoneNumber Is
+                        Required</small>
+                </div>
+            </div>
+            <!--role input-->
+            <div class="mb-8">
+                <label for="roleId" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Role Name
+                    *</label>
+                <select data-te-select-filter="true"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="roleId" id="roleId" formControlName="roleId">
+                    <option *ngFor="let role of roleList" value="{{role.id}}">{{role.name}}</option>
+                </select>
+                <div [hidden]="roleId?.untouched||roleId?.valid">
+                    <small class="text-red-600 text-base" *ngIf="roleId?.errors?.['required']">
+                        Role Is Required
+                    </small>
+                </div>
+            </div>
+            <!--role input-->
+            <div class="mb-8">
+                <label for="branchId" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">Branch Name
+                    *</label>
+                <select data-te-select-filter="true"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="branchId" id="branchId" formControlName="branchId">
+                    <option *ngFor="let branch of branchList" value="{{branch.id}}">{{branch.name}}</option>
+                </select>
+                <div [hidden]="branchId?.untouched||branchId?.valid">
+                    <small class="text-red-600 text-base" *ngIf="branchId?.errors?.['required']">
+                        Branch Is Required
+                    </small>
+                </div>
+            </div>
+            <!--Submit button-->
+            <!--Add button-->
+            <button type="submit" *ngIf="UpdateOrDelete"
+                class="inline-block rounded-2xl  bg-primary px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+                data-te-ripple-init data-te-ripple-color="light" [disabled]="userForm.invalid"
+                [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':userForm.invalid}"> Add
+            </button>
+            <!--update Button-->
+            <!-- <button type="button" *ngIf="!UpdateOrDelete" class="submit-btn" data-te-ripple-init
+                data-te-ripple-color="light" [disabled]="userForm.invalid" (click)="updateUser()"
+                [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':userForm.invalid}">Update
+            </button> -->
+            <button type="button" class="cancel-btn" data-te-ripple-init data-te-ripple-color="light"
+                (click)="backToPackList()">Back
+            </button>
+        </div>
+    </form>
+</div>
+<br>
+<div>
+    value:{{userForm.value|json}}
+</div>
+<div>
+    for test:form errors
+    <br>
+    {{userForm.errors|json}}
+</div>
