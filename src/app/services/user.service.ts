@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { HttpClient } from '@angular/common/http';
-import { IUser, LoginCredentials, LoginResponse } from '../models/IUser';
+import { IUser, IUserView, LoginCredentials, LoginResponse } from '../models/IUser';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends GenericService<IUser, string> {
+export class UserService extends GenericService<IUserView, string> {
   IsLogged = false;
   Permissions: string[] = [];
   private token = '';
