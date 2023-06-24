@@ -19,13 +19,13 @@
                 </div>
             </div>
             <!--password input-->
-            <div class="mb-8">
+            <div class="mb-8" *ngIf="UpdateOrDelete">
                 <label for="password" class="block font-semibold  mb-2 text-lg  text-gray-900 dark:text-white">
                     Password *</label>
                 <input type="password" id="password"
                     class="bg-gray-50 text-lg border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     formControlName="password" name="password" placeholder="Enter Password">
-                <div [hidden]="password?.untouched||password?.valid">
+                <div  [hidden]="password?.untouched||password?.valid">
                     <small class="text-red-600 text-base" *ngIf="password?.errors?.['required']">
                         password Is Required
                     </small><br>
@@ -44,6 +44,9 @@
                 <div [hidden]="email?.untouched||email?.valid">
                     <small class="text-red-600 text-base" *ngIf="email?.errors?.['required']">
                         Email Is Required
+                    </small><br>
+                    <small class="text-red-600 text-base" *ngIf="email?.errors?.['pattern']">
+                        Email Not Vaild Enter Valid Email
                     </small>
                 </div>
             </div>
@@ -98,10 +101,10 @@
                 [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':userForm.invalid}"> Add
             </button>
             <!--update Button-->
-            <!-- <button type="button" *ngIf="!UpdateOrDelete" class="submit-btn" data-te-ripple-init
+            <button type="button" *ngIf="!UpdateOrDelete" class="submit-btn" data-te-ripple-init
                 data-te-ripple-color="light" [disabled]="userForm.invalid" (click)="updateUser()"
                 [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':userForm.invalid}">Update
-            </button> -->
+            </button>
             <button type="button" class="cancel-btn" data-te-ripple-init data-te-ripple-color="light"
                 (click)="backToPackList()">Back
             </button>
@@ -116,4 +119,6 @@
     for test:form errors
     <br>
     {{userForm.errors|json}}
+    <br>
+    {{email?.errors|json}}
 </div>

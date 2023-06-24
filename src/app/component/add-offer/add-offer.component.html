@@ -1,5 +1,7 @@
-<div class="flex justify-center flex-col items-center h-screen  mx-auto">
-    <h1 class="text-5xl text-left">{{state=='add'?"Add":"Update"}} Offer</h1>
+<div class="flex flex-col justify-center items-center w-1/2 mx-auto h-screen">
+    <div class="lg:w-1/2 xs:w-full mb-3 md:w-full border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{state=='add'?"Add":"Update"}} Offer</h1>
+    </div>
     <form (ngSubmit)="FormHandler()" [formGroup]="OfferForm" class="">
         <app-input [control]="OfferName" label="Offer Name*" id="offer-name"></app-input>
         <div class="my-3">

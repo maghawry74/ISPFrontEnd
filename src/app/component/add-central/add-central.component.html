@@ -1,5 +1,7 @@
-<div class="flex flex-col justify-center items-center w-full mx-auto h-screen">
-    <h1>{{formTitle}}</h1>
+<div class="flex flex-col justify-center items-center w-1/2 mx-auto h-screen">
+    <div class="lg:w-1/2 xs:w-full md:w-full border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{formTitle}}</h1>
+    </div>
     <form (ngSubmit)="FromSubmit()" [formGroup]="centralFrom" class="w-full">
         <app-input [id]="'name'" label="Central Name" [control]="CentralName"></app-input>
         <div class="my-3">
@@ -21,7 +23,4 @@
         <a routerLink="/Centrals" class="cancel-btn" data-te-ripple-init data-te-ripple-color="light">Back
         </a>
     </form>
-</div>
-<div>
-    for test:{{centralFrom.value|json}}
 </div>

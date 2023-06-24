@@ -1,5 +1,7 @@
-<div class="flex flex-col justify-center items-center w-full h-screen">
-    <h1>{{state=="Add"?"Add":"Update"}} Branch </h1>
+<div class="flex flex-col justify-center items-center w-1/2 mx-auto h-screen">
+    <div class="lg:w-1/2 xs:w-full md:w-full border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{state=="Add"?"Add":"Update"}} Branch </h1>
+    </div>
     <form (ngSubmit)="FromSubmit()" [formGroup]="branchFrom" class="w-full">
         <app-input [id]="'name'" label="Name*" [control]="Name"></app-input>
         <div class="grid grid-cols-2 gap-2">

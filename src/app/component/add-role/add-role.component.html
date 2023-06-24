@@ -1,5 +1,7 @@
-<div class="flex flex-col justify-center items-center w-full mt-5 mx-auto h-screen">
-    <h1>{{state=="Add"?"Add":"Update"}} Role</h1>
+<div class="flex flex-col justify-center items-center w-1/2 mx-auto h-screen">
+    <div class="lg:w-1/2 xs:w-full md:w-full border-primary border-2  rounded-3xl hover:border-primary-400">
+        <h1 class="text-primary  text-center pt-3 font-bold">{{state=="Add"?"Add":"Update"}} Role</h1>
+    </div>
     <form (ngSubmit)="FromSubmit()" [formGroup]="roleFrom" class="w-full pb-20">
         <label for="role-name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role Name</label>
         <input formControlName="roleName" placeholder="Role Name" id="role-name"

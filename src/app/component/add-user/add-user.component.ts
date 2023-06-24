@@ -37,7 +37,7 @@ export class AddUserComponent implements OnInit{
     this.userForm = fb.group({
       userName:['',[Validators.required]],
       password:['',[Validators.required,Validators.minLength(4)]],
-      email:['',[Validators.required]],
+      email:['',[Validators.required,Validators.pattern(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)]],
       phoneNumber:['',[Validators.required]],
       roleId:['',[Validators.required]],
       branchId:['',[Validators.required]],
@@ -53,23 +53,25 @@ export class AddUserComponent implements OnInit{
   }
   ngOnInit(): void {
     initTE({ Ripple, Input, Select });
-    // this.ActivatedRoute.paramMap.subscribe(resp=>{
-    //   this.currentId = resp.get('id') as string;
-    //   if(this.currentId.length>0)
-    //   {
-    //     this.UpdateOrDelete = false;
-    //     this.formTitle = 'Update Employee';
-    //     this.userService.GetById(this.currentId).subscribe(user=>{
-    //       this.userForm.patchValue({
-    //        userName:user.userName,
-    //        password:user.,
-
-
-    //       })
-    //     })
+    this.ActivatedRoute.paramMap.subscribe(resp=>{
+      this.currentId = resp.get('id') as string;
+      if(this.currentId.length>0)
+      {
+        this.UpdateOrDelete = false;
+        this.formTitle = 'Update Employee';
+        this.userService.GetById(this.currentId).subscribe(user=>{
+          this.userForm.patchValue({
+           userName:user.userName,
+           password:"gehad123",
+           email:user.email,
+           phoneNumber:user.phoneNumber,
+           branchId:user.branch.id.toString(),
+           roleId:user.role.id,
+          })
+        })
         
-    //   }
-    // });
+      }
+    });
   }
   get userName()
   {
@@ -100,14 +102,42 @@ export class AddUserComponent implements OnInit{
   addUser()
   {
     let newUser = this.userForm.value;
+    console.log(newUser);
     this.userService.Add(newUser).subscribe({
       next:resp=>{
         this.router.navigate(['/Users']);
         this.angularMaterailaServ.addAndUpdateSuccess("Employee Added Successfully")
       },
       error:e=>{
+        console.log(e);
         this.angularMaterailaServ.addAndUpdateSuccess("An Error Occured Try Again Later")
       }
     })
+  }
+  updateUser()
+  {
+
+    const updateUser={
+      id:this.currentId,
+      userName:this.userName?.value,
+      email:this.email?.value,
+      phoneNumber:this.phoneNumber?.value,
+      branch:this.branchId?.value,
+      role:this.roleId?.value,
+      status:true
+    }
+    this.userService.Update(this.currentId, updateUser).subscribe({
+      next: (resp) => {
+        this.router.navigate(['/Users']);
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          'Employee Updated Successfully'
+        );
+      },
+      error: (e) => {
+        this.angularMaterailaServ.addAndUpdateSuccess(
+          "'An Error Occured Try Again Later'"
+        );
+      },
+    });
   }
 }
