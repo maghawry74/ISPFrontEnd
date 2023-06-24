@@ -11,3 +11,8 @@ export interface IBranch {
   governorate?: IGovernarate;
   managerName: string;
 }
+export interface IBranchInUser
+{
+  id:number,
+  name:string
+}

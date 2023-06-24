@@ -1,90 +1,92 @@
 <div *ngIf="isLoading;else Page" class="spinner "></div>
 <ng-template #Page>
-    <div class="flex flex-col items-start justify-center mt-10 gap-5 w-full">
-        <h1 class="text-2xl text-left">Branchs</h1>
-        <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/branch/add">
-            <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
-            New
-        </a>
-        <h1 *ngIf="branchs.length==0;else Table" class="text-center w-full mt-10">There Are No Branchs !</h1>
-        <ng-template #Table>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
-                <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tel1
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Tel2
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Phone1
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Phone2
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Fax
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Governrate
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Manager
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="isError"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th colspan="4" scope="row"
-                                class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                                An Error Has Occured !
-                            </th>
-                        </tr>
-                        <tr *ngFor="let branch of branchs"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.name}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.tel1}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.tel2}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.phone1}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.phone2}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.fax}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.governorate?.name}}
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                {{branch.managerName||"N/A"}}
-                            </th>
-                            <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <a *ngIf="EditPermission" [routerLink]="'/branch/edit/'+branch.id"> <i
-                                        class='fa fa-edit edit-btn edit-btn '></i></a>
-                                <button *ngIf="DeletePermission" (click)="DeleteBranch(branch.id)"><i
-                                        class="fa fa-trash-o remove-btn remove-btn"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </ng-template>
+    <div class="m-10">
+        <div class="flex flex-col items-start justify-center mt-10 gap-5 w-full">
+            <p class="text-3xl text-center w-full font-semibold col-start-4 col-span-3 text-gray-900">Branchs</p>
+            <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/branch/add">
+                <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
+                New
+            </a>
+            <h1 *ngIf="branchs.length==0;else Table" class="text-center w-full mt-10">There Are No Branchs !</h1>
+            <ng-template #Table>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
+                    <table class="w-full text-sm text-center text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tel1
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Tel2
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Phone1
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Phone2
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Fax
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Governrate
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Manager
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="isError"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th colspan="4" scope="row"
+                                    class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                                    An Error Has Occured !
+                                </th>
+                            </tr>
+                            <tr *ngFor="let branch of branchs"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.name}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.tel1}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.tel2}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.phone1}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.phone2}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.fax}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.governorate?.name}}
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    {{branch.managerName||"N/A"}}
+                                </th>
+                                <td class="px-6 py-4 text-right flex justify-center items-center">
+                                    <a *ngIf="EditPermission" [routerLink]="'/branch/edit/'+branch.id"> <i
+                                            class='fa fa-edit edit-btn edit-btn '></i></a>
+                                    <button *ngIf="DeletePermission" (click)="DeleteBranch(branch.id)"><i
+                                            class="fa fa-trash-o remove-btn remove-btn"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </ng-template>

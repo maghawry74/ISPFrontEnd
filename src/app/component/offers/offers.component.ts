@@ -44,21 +44,28 @@ export class OffersComponent implements OnInit {
   }
 
   DeleteOffer(id: number) {
-    return () => {
-      this.OfferService.Delete(id).subscribe({
-        next: () => {
-          this.ngMaterialService.addAndUpdateSuccess(
-            'Offer Has Been Deleted Successfully'
-          );
-          this.offers = this.offers.filter((o) => o.id != id);
-        },
-        error: (e) => {
-          this.ngMaterialService.addAndUpdateSuccess(
-            'An Error Occured. Try Again Later!'
-          );
-          console.log(e);
-        },
-      });
-    };
+    this.ngMaterialService.openConfirmDialog("Are you sure you want to delete this Offer?")
+    .afterClosed()
+    .subscribe(resp=>
+      {
+        if(resp)
+        {
+          this.OfferService.Delete(id).subscribe({
+            next: () => {
+              this.ngMaterialService.addAndUpdateSuccess(
+                'Offer Has Been Deleted Successfully'
+              );
+              this.offers = this.offers.filter((o) => o.id != id);
+            },
+            error: (e) => {
+              this.ngMaterialService.addAndUpdateSuccess(
+                'An Error Occured. Try Again Later!'
+              );
+              console.log(e);
+            },
+          });
+        }
+      })
+     
   }
 }

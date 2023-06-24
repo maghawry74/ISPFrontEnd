@@ -1,65 +1,68 @@
 <div *ngIf="isLoading;else Page" class="spinner "></div>
 <ng-template #Page>
-    <div class="w-full m-auto flex flex-col items-start justify-center mt-10 gap-5">
-        <h1 class="text-2xl text-left">Centrals</h1>
-        <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/Centrals/Add">
-            <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
-            New
-        </a>
-        <h1 *ngIf="centrals.length==0;else Table" class="text-center w-full mt-10">There Are No Centrals !</h1>
-        <ng-template #Table>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
-                <table class="w-full text-[16px] text-center text-gray-500 dark:text-gray-400">
-                    <thead class="text-[18px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                #
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Name
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Governorate
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngIf="isError"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th colspan="4" scope="row"
-                                class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
-                                An Error Has Occured !
-                            </th>
-                        </tr>
-                        <tr *ngFor="let central of centrals|paginate: { itemsPerPage: 10, currentPage:p};let i=index"
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <th scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{i+1}}
-                            </th>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                {{central.name}}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{central.governorate.name}}
-                            </td>
-                            <td class="px-6 py-4 text-right flex justify-center items-center">
-                                <button *ngIf="EditPermission" (click)="EditCentral(central.id)"> <i
-                                        class='fa fa-edit edit-btn edit-btn'></i></button>
-                                <button *ngIf="DeletePermission" (click)="DeleteCentral(central.id)"><i
-                                        class="fa fa-trash-o remove-btn remove-btn"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <div class="mt-6 ">
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div>
-                </table>
-            </div>
-        </ng-template>
+    <div class="m-10">
+        <div class="w-full m-auto flex flex-col items-start justify-center mt-10 gap-5">
+            <p class="text-3xl text-center w-full font-semibold col-start-4 col-span-3 text-gray-900">Centrals</p>
+            <a *ngIf="CreatePermission" type="button" class="add-btn" routerLink="/Centrals/Add">
+                <i class="fa fa-plus-circle text-white text-lg" aria-hidden="true"></i>
+                New
+            </a>
+            <h1 *ngIf="centrals.length==0;else Table" class="text-center w-full mt-10">There Are No Centrals !</h1>
+            <ng-template #Table>
+                <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full mx-auto">
+                    <table class="w-full text-[16px] text-center text-gray-500 dark:text-gray-400">
+                        <thead
+                            class="text-[18px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                <th scope="col" class="px-6 py-3">
+                                    #
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Governorate
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="isError"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th colspan="4" scope="row"
+                                    class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                                    An Error Has Occured !
+                                </th>
+                            </tr>
+                            <tr *ngFor="let central of centrals|paginate: { itemsPerPage: 10, currentPage:p};let i=index"
+                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <th scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{i+1}}
+                                </th>
+                                <td scope="row"
+                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{central.name}}
+                                </td>
+                                <td class="px-6 py-4">
+                                    {{central.governorate.name}}
+                                </td>
+                                <td class="px-6 py-4 text-right flex justify-center items-center">
+                                    <button *ngIf="EditPermission" (click)="EditCentral(central.id)"> <i
+                                            class='fa fa-edit edit-btn edit-btn'></i></button>
+                                    <button *ngIf="DeletePermission" (click)="DeleteCentral(central.id)"><i
+                                            class="fa fa-trash-o remove-btn remove-btn"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <div class="mt-6 ">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </table>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </ng-template>
