@@ -31,10 +31,12 @@ import {
   Package,
   Provider,
   Role,
+  User,
 } from './models/Permission';
 import { ClientsComponent } from './component/clients/clients.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { ClientDetailsComponent } from './component/client-details/client-details.component';
+import { AddUserComponent } from './component/add-user/add-user.component';
 export const routes: Routes = [
   {
     path: '',
@@ -213,11 +215,28 @@ export const routes: Routes = [
     component: AddRoleComponent,
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: Role.Update },
-    pathMatch: 'full',
+  },
+  {
+    path:'Users',
+    component: UserComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: User.Read },
+  },
+  {
+    path:'User/Add',
+    component:AddUserComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: User.Create },
+  },
+  {
+    path:'User/Edit/:id',
+    component: AddUserComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: User.Update},
   },
   { path: 'Login', component: LoginComponent, canActivate: [AlreadyLogged] },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: NotFoundComponent },
-
-  { path: 'Users', component: UserComponent },
+  
+ 
 ];

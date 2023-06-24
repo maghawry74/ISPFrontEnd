@@ -1,3 +1,6 @@
+import { IBranch } from "./IBranch";
+import { IRole } from "./IRole";
+
 export interface IUser {
   id: string;
   name: string;
@@ -22,7 +25,7 @@ export interface IUserView{
   userName:string;
   email:string;
   phoneNumber:string;
-  branch:string;
-  role:string;
+  branch:IBranch;
+  role:IRole;
   status:boolean
 }
