@@ -8,63 +8,63 @@
                     <span class="ml-3">Home</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadBranch">
                 <a routerLink="/branch" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/branch.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Branchs</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadCentral">
                 <a routerLink="/Centrals" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/central.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Centrals</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadClient">
                 <a routerLink="/Clients" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/user.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Clients</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadGovernorate">
                 <a routerLink="/Governorates" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/Governorates.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Governorates</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadPackage">
                 <a routerLink="/Packages" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/Packages.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Packages</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadProvider">
                 <a routerLink="/Providers" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/Providers.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Providers</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadOffer">
                 <a routerLink="/offers" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/offers.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Offers</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadRole">
                 <a routerLink="/roles" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/roles.png" class="w-[20px]" alt="">
                     <span class="flex-1 ml-3 whitespace-nowrap">Roles</span>
                 </a>
             </li>
-            <li>
+            <li *ngIf="ReadEmployee">
                 <a routerLink="/Users" routerLinkActive="bg-blue-100"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <img src="assets/Icons/group.png" class="w-[20px]" alt="">

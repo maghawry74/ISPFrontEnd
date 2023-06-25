@@ -1,13 +1,13 @@
-<div class="grid grid-rows-6 w-full grid-cols-1 py-10 gap-5">
-    <div class="flex justify-between row-span-1 col-span-1 mx-5">
+<div class=" w-full  py-10 gap-5">
+    <div class="flex justify-between items-center row-span-1 col-span-1 mx-5 bg-gray-50 py-5 px-5">
         <h1 class="text-6xl text-left w-full">Welcome Ya {{UserName}}</h1>
-        <h1 class="text-6xl text-right w-full">{{today | date: 'short'}}</h1>
+        <h1 class="text-6xl text-right w-full">{{today | date: 'YYYY/MM/dd, HH:MM a'}}</h1>
     </div>
-    <div class="flex justify-center items-center gap-10 row-span-5">
-        <app-card name="Employees" class="bg-[#ECF2FF] py-4 px-6" [number]="ISpInfo?.employeesNumber!">
+    <div class="flex justify-center items-center gap-10 mt-10 ">
+        <app-card name="Employees" class="bg-[#ECF2FF] py-4 px-6" [number]="ISpInfo?.countEmployee!">
             <img src="/assets/Icons/employee.png" />
         </app-card>
-        <app-card name="Clients" class="bg-[#FEF5E5] py-4 px-8" [number]="ISpInfo?.clientsNumber!">
+        <app-card name="Clients" class="bg-[#FEF5E5] py-4 px-9" [number]="ISpInfo?.countClient!">
             <img src="/assets/Icons/client.png" name="Clients" />
         </app-card>
     </div>

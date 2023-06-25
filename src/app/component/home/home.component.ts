@@ -15,6 +15,6 @@ export class HomeComponent {
   constructor(private sharedService: SharedService, userService: UserService) {
     this.today = new Date();
     this.UserName = userService.Name;
-    sharedService.GetInfo().subscribe((data) => (this.ISpInfo = data));
+    sharedService.GetInfo().subscribe((data: Info) => (this.ISpInfo = data));
   }
 }

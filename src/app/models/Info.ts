@@ -1,4 +1,4 @@
 export interface Info {
-  employeesNumber: number;
-  clientsNumber: number;
+  countEmployee: number;
+  countClient: number;
 }
