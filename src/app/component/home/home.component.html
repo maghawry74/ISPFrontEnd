@@ -4,10 +4,10 @@
         <h1 class="text-6xl text-right w-full">{{today | date: 'short'}}</h1>
     </div>
     <div class="flex justify-center items-center gap-10 row-span-5">
-        <app-card name="Employees" class="bg-[#ECF2FF] py-4 px-6" [number]="ISpInfo?.employeesNumber!">
+        <app-card name="Employees" class="bg-[#ECF2FF] py-4 px-6" [number]="ISpInfo?.countEmployee!">
             <img src="/assets/Icons/employee.png" />
         </app-card>
-        <app-card name="Clients" class="bg-[#FEF5E5] py-4 px-8" [number]="ISpInfo?.clientsNumber!">
+        <app-card name="Clients" class="bg-[#FEF5E5] py-4 px-8" [number]="ISpInfo?.countClient!">
             <img src="/assets/Icons/client.png" name="Clients" />
         </app-card>
     </div>

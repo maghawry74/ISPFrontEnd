@@ -80,7 +80,7 @@
                                     <a [routerLink]="'Edit/'+client.ssid" *ngIf="EditPermission"> <i
                                             class='fa fa-edit edit-btn edit-btn'></i></a>
                                     <button *ngIf="DeletePermission"><i
-                                            class="fa fa-trash-o remove-btn remove-btn"></i></button>
+                                            class="fa fa-trash-o remove-btn remove-btn" (click)="deleteClient(client.ssid)"></i></button>
                                     <a [routerLink]="'/Client/Bills/'+client.ssid" *ngIf="EditPermission">
                                         <img class="w-[28px]" src="/assets/Icons/info.png" alt="">
                                     </a>

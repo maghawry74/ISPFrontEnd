@@ -145,6 +145,7 @@ export class AddRoleComponent /*implements OnInit*/ {
             this.state == 'Add' ? 'Added' : 'Updated'
           } Successfully`
         );
+        this.router.navigate(['/roles']);
       },
       error: (e: Error) => {
         this.ngMaterial.addAndUpdateSuccess(
@@ -160,7 +161,6 @@ export class AddRoleComponent /*implements OnInit*/ {
         claims,
       };
       this.roleService.Add(role).subscribe(sub);
-      this.router.navigate(['/roles']);
     } else {
       const role = {
         id: this.activatedRoute.snapshot.params.id,

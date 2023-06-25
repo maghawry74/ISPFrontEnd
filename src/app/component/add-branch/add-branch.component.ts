@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import IsNumberValidator from 'src/app/Validation/IsNumberValidator';
 import { IGovernarate } from 'src/app/models/igovernarate';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
@@ -20,7 +20,8 @@ export class AddBranchComponent implements OnInit {
     private branchService: BranchService,
     private governorateService: GovernorateService,
     private activatedRoute: ActivatedRoute,
-    private ngService: AngularMateralService
+    private ngService: AngularMateralService,
+    private router:Router
   ) {
     this.governorateService.GetAll().subscribe((data) => {
       this.governorates = data;
@@ -86,6 +87,7 @@ export class AddBranchComponent implements OnInit {
             this.state == 'Add' ? 'Added' : 'Updated'
           } Successfully`
         );
+        this.router.navigate(['/branch'])
       },
       error: (e: any) => {
         this.ngService.addAndUpdateSuccess(

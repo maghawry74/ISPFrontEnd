@@ -28,7 +28,7 @@ export class ClientService extends GenericService<IClient, string> {
 
   PayBill(data: { ssid: string; id: number }) {
     return this.client.put(
-      `${this.BillURL}/paybill`,
+      `${this.BillURL}/paybill/${data.id}`,
       data,
       this.headersOptions
     );
