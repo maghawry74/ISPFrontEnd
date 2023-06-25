@@ -53,7 +53,7 @@
                                     An Error Has Occured !
                                 </th>
                             </tr>
-                            <tr *ngFor="let offer of offers"
+                            <tr *ngFor="let offer of offers| paginate: { itemsPerPage: 10, currentPage: p }"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="col" class="px-6 py-3">
                                     {{offer.name}}
@@ -68,10 +68,10 @@
                                     {{offer.cancelFee}}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{offer.numberOfFreeMonths}}
+                                    {{offer.numberOfMonths}}
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    {{offer.numberOfMonths}}
+                                    {{offer.numberOfFreeMonths}}
                                 </th>
                                 <th scope="col" class="px-6 py-3 relative">
                                     <img class="w-[28px] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 "
@@ -96,6 +96,9 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <div class="mt-6 " *ngIf="offers.length>10">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
                     </table>
                 </div>
             </ng-template>

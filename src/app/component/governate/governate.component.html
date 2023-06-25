@@ -49,7 +49,7 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <div class="mt-6 ">
+                                    <div class="mt-6 " *ngIf="governateList.length>10">
                                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
                                     </div>
                                 </table>

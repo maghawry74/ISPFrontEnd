@@ -15,6 +15,7 @@ export class ClientsComponent {
   CreatePermission = true;
   isLoading = true;
   isError = false;
+  p:number=1;
 
   constructor(private clientService: ClientService, private AngularMateralService:AngularMateralService) {
     clientService.GetAll().subscribe({

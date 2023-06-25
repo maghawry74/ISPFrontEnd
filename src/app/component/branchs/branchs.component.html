@@ -50,7 +50,7 @@
                                     An Error Has Occured !
                                 </th>
                             </tr>
-                            <tr *ngFor="let branch of branchs"
+                            <tr *ngFor="let branch of branchs| paginate: { itemsPerPage: 10, currentPage: p}"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="col" class="px-6 py-3">
                                     {{branch.name}}
@@ -84,6 +84,9 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <div class="mt-6 " *ngIf="branchs.length>10">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
                     </table>
                 </div>
             </ng-template>

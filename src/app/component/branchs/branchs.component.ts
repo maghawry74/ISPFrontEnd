@@ -17,6 +17,7 @@ export class BranchsComponent implements OnInit {
   EditPermission = false;
   DeletePermission = false;
   CreatePermission = false;
+  p:number=1;
   constructor(
     private branchService: BranchService,
     private ngMaterialService: AngularMateralService,

@@ -18,6 +18,7 @@ export class OffersComponent implements OnInit {
   DeletePermission = false;
   CreatePermission = false;
   offers: IOfferView[] = [];
+  p:number = 1;
   constructor(
     private OfferService: OfferService,
     private router: Router,

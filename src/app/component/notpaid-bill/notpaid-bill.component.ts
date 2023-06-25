@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { AngularMateralService } from '../../services/angular-materal.service';
+import { IBill, IBillview } from 'src/app/models/IBill';
 
 @Component({
   selector: 'app-notpaid-bill',
@@ -8,7 +9,7 @@ import { AngularMateralService } from '../../services/angular-materal.service';
   styleUrls: ['./notpaid-bill.component.css'],
 })
 export class NotpaidBillComponent implements OnInit {
-  notBaidBillList: any;
+  notBaidBillList:IBillview[]=[];
   p: number = 1;
   isLoading = true;
   isError = false;

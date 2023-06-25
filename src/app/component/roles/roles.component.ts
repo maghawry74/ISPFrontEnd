@@ -17,6 +17,7 @@ export class RolesComponent {
   EditPermission = false;
   DeletePermission = false;
   CreatePermission = false;
+  p:number = 1;
   constructor(
     private roleService: RoleService,
     private ngMaterial: AngularMateralService,

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { IClient } from '../models/IClient';
 import { HttpClient } from '@angular/common/http';
-import { IBill } from '../models/IBill';
+import { IBill, IBillview } from '../models/IBill';
 import { environment } from 'src/environment/environment';
 @Injectable({
   providedIn: 'root',
@@ -35,6 +35,6 @@ export class ClientService extends GenericService<IClient, string> {
   }
   notPayBill()
   {
-    return this.client.get(`${this.BillURL}/NotpaidBill`)
+    return this.client.get<IBillview[]>(`${this.BillURL}/NotpaidBill`)
   }
 }

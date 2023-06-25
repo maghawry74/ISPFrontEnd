@@ -50,7 +50,7 @@
                                     An Error Has Occured !
                                 </th>
                             </tr>
-                            <tr *ngFor="let client of clients"
+                            <tr *ngFor="let client of clients| paginate: { itemsPerPage: 10, currentPage: p}"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td scope="row" class="p-3">
                                     {{client.ssid}}
@@ -87,6 +87,9 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <div class="mt-6 " *ngIf="clients.length>10">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
                     </table>
                 </div>
             </ng-template>

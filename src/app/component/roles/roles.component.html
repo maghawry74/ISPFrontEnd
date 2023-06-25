@@ -30,7 +30,7 @@
                                     An Error Has Occured !
                                 </th>
                             </tr>
-                            <tr *ngFor="let role of roles"
+                            <tr *ngFor="let role of roles | paginate: { itemsPerPage: 10, currentPage: p }"
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -44,6 +44,9 @@
                                 </td>
                             </tr>
                         </tbody>
+                        <div class="mt-6 " *ngIf="roles.length>10">
+                            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
                     </table>
                 </div>
             </ng-template>

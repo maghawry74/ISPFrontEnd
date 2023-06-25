@@ -7,6 +7,7 @@ export function IsUniqueSSN(clientService: ClientService) {
   return (control: AbstractControl): Observable<ValidationErrors | null> => {
     return clientService.GetById(control.value).pipe(
       map((res) => {
+        console.log(res)
         return { IsUsed: true };
       }),
       catchError(() => {

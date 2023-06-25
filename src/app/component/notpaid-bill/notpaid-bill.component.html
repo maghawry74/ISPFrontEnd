@@ -39,24 +39,27 @@
                                             *ngFor="let bill of notBaidBillList | paginate: { itemsPerPage: 10, currentPage: p };let i =index">
                                             <td scope="row"
                                                 class="px-6 py-4 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{bill.ClientSSn}}
+                                                {{bill.clientSSn}}
                                             </td>
                                             <td scope="row"
                                                 class="px-6 py-4 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                {{bill.ClientName}}
+                                                {{bill.clientName}}
                                             </td>
                                             <td class="px-6 py-4 text-lg">
-                                                {{bill.ClientPhone}}
+                                                {{bill.clientPhone}}
                                             </td>
                                             <td class="px-6 py-4 text-lg">
-                                                {{bill.FromDate}}
+                                                {{bill.amount}}
+                                            </td>
+                                            <td class="px-6 py-4 text-lg">
+                                                {{bill.fromDate|date:"YYYY/MM/dd"}}
                                             </td>
                                             <td class="px-6 py-4 text-lg ">
-                                                {{bill.ToDate}}
+                                                {{bill.toDate|date:"YYYY/MM/dd"}}
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <div class="mt-6 ">
+                                    <div class="mt-6 " *ngIf="notBaidBillList.length>10">
                                         <pagination-controls (pageChange)="p = $event"></pagination-controls>
                                     </div>
                                 </table>

@@ -13,3 +13,16 @@ export interface IBill {
   client: IClient;
   OntheFly?: boolean;
 }
+
+export interface IBillview
+{
+  id:number,
+  fromDate:Date,
+  toDate:Date,
+  amount:number,
+  isPaid:boolean,
+  userId:string,
+  clientSSn:string,
+  clientName:string,
+  clientPhone:string,
+}
