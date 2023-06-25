@@ -33,4 +33,8 @@ export class ClientService extends GenericService<IClient, string> {
       this.headersOptions
     );
   }
+  notPayBill()
+  {
+    return this.client.get(`${this.BillURL}/NotpaidBill`)
+  }
 }

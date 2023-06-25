@@ -1,0 +1,69 @@
+<div *ngIf="isLoading;else Page" class="spinner "></div>
+<ng-template #Page>
+    <div class="m-10">
+        <div class="mb-5">
+            <p class="text-2xl text-center font-semibold col-start-4 col-span-3 text-gray-900">Not Baid BillList</p>
+        </div>
+        <div
+            class="p-3 bg-white rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.09),0_10px_20px_-2px_rgba(0,0,0,0.07)] ">
+            <div class="flex flex-col ">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                        <h1 *ngIf="notBaidBillList.length==0;else Table" class="text-center w-full mt-10">There Are No Unpaid Bills
+                            !</h1>
+                        <ng-template #Table>
+                            <div class="overflow-hidden">
+                                <table class="min-w-full text-center text-sm font-light">
+                                    <!--class="border-b bg-gradient-to-r from-cyan-200 to-slate-500 font-medium dark:border-neutral-500 dark:text-neutral-800"-->
+                                    <thead
+                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                        <tr scope="col" class="px-6 py-3">
+                                            <th scope="col" class=" px-6 py-4 text-sm">ClientSsn</th>
+                                            <th scope="col" class=" px-6 py-4 text-sm">ClientName</th>
+                                            <th scope="col" class=" px-6 py-4 text-sm">ClientPhone</th>
+                                            <th scope="col" class=" px-6 py-4 text-sm">Amount</th>
+                                            <th scope="col" class=" px-6 py-4 text-sm">FromDate</th>
+                                            <th scope="col" class=" px-6 py-4 text-sm">ToDate</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngIf="isError"
+                                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            <th colspan="4" scope="row"
+                                                class="px-6 py-4 font-medium text-xl text-gray-900 whitespace-nowrap dark:text-white">
+                                                An Error Has Occured !
+                                            </th>
+                                        </tr>
+                                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                                            *ngFor="let bill of notBaidBillList | paginate: { itemsPerPage: 10, currentPage: p };let i =index">
+                                            <td scope="row"
+                                                class="px-6 py-4 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{bill.ClientSSn}}
+                                            </td>
+                                            <td scope="row"
+                                                class="px-6 py-4 text-lg font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{bill.ClientName}}
+                                            </td>
+                                            <td class="px-6 py-4 text-lg">
+                                                {{bill.ClientPhone}}
+                                            </td>
+                                            <td class="px-6 py-4 text-lg">
+                                                {{bill.FromDate}}
+                                            </td>
+                                            <td class="px-6 py-4 text-lg ">
+                                                {{bill.ToDate}}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <div class="mt-6 ">
+                                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                                    </div>
+                                </table>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

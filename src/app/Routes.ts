@@ -37,6 +37,7 @@ import { ClientsComponent } from './component/clients/clients.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { ClientDetailsComponent } from './component/client-details/client-details.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
+import { NotpaidBillComponent } from './component/notpaid-bill/notpaid-bill.component';
 export const routes: Routes = [
   {
     path: '',
@@ -133,6 +134,9 @@ export const routes: Routes = [
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: Governorate.Update },
     pathMatch: 'full',
+  },
+  {
+    path:"NotBaidBillList",component:NotpaidBillComponent
   },
   {
     path: 'Packages',

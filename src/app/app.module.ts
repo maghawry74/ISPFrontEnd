@@ -44,6 +44,7 @@ import { UserComponent } from './component/user/user.component';
 import { AddUserComponent } from './component/add-user/add-user.component';
 import { SideNavComponent } from './component/side-nav/side-nav.component';
 import { CardComponent } from './component/card/card.component';
+import { NotpaidBillComponent } from './component/notpaid-bill/notpaid-bill.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +78,7 @@ import { CardComponent } from './component/card/card.component';
     AddUserComponent,
     SideNavComponent,
     CardComponent,
+    NotpaidBillComponent,
   ],
   imports: [
     BrowserModule,
