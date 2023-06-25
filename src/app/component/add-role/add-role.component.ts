@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import CheckRead from 'src/app/Validation/CheckRead';
 import { MinCheckBoxIsSelected } from 'src/app/Validation/MinCheckBoxIsSelected';
 import { IRoleClaim } from 'src/app/models/IRole';
 import { IRoleFrom } from 'src/app/models/IRoleForm';
@@ -43,69 +44,68 @@ export class AddRoleComponent /*implements OnInit*/ {
       {
         roleName: ['', Validators.required],
         Branch: fb.group({
-          [Branch.Create]: [false, Validators.required],
-          [Branch.Delete]: [false, Validators.required],
-          [Branch.Read]: [false, Validators.required],
-          [Branch.Update]: [false, Validators.required],
+          [Branch.Create]: [false, CheckRead(Branch.Read)],
+          [Branch.Delete]: [false, CheckRead(Branch.Read)],
+          [Branch.Read]: [false],
+          [Branch.Update]: [false, CheckRead(Branch.Read)],
         }),
         Central: fb.group({
-          [Central.Create]: [false, Validators.required],
-          [Central.Delete]: [false, Validators.required],
-          [Central.Read]: [false, Validators.required],
-          [Central.Update]: [false, Validators.required],
+          [Central.Create]: [false, CheckRead(Central.Read)],
+          [Central.Delete]: [false, CheckRead(Central.Read)],
+          [Central.Read]: [false],
+          [Central.Update]: [false, CheckRead(Central.Read)],
         }),
         Client: fb.group({
-          [Client.Create]: [false, Validators.required],
-          [Client.Delete]: [false, Validators.required],
-          [Client.Read]: [false, Validators.required],
-          [Client.Update]: [false, Validators.required],
+          [Client.Create]: [false, CheckRead(Client.Read)],
+          [Client.Delete]: [false, CheckRead(Client.Read)],
+          [Client.Read]: [false],
+          [Client.Update]: [false, CheckRead(Client.Read)],
         }),
         Governorate: fb.group({
-          [Governorate.Create]: [false, Validators.required],
-          [Governorate.Delete]: [false, Validators.required],
-          [Governorate.Read]: [false, Validators.required],
-          [Governorate.Update]: [false, Validators.required],
+          [Governorate.Create]: [false, CheckRead(Governorate.Read)],
+          [Governorate.Delete]: [false, CheckRead(Governorate.Read)],
+          [Governorate.Read]: [false],
+          [Governorate.Update]: [false, CheckRead(Governorate.Read)],
         }),
         Offer: fb.group({
-          [Offer.Create]: [false, Validators.required],
-          [Offer.Delete]: [false, Validators.required],
-          [Offer.Read]: [false, Validators.required],
-          [Offer.Update]: [false, Validators.required],
+          [Offer.Create]: [false, CheckRead(Offer.Read)],
+          [Offer.Delete]: [false, CheckRead(Offer.Read)],
+          [Offer.Read]: [false],
+          [Offer.Update]: [false, CheckRead(Offer.Read)],
         }),
         Package: fb.group({
-          [Package.Create]: [false, Validators.required],
-          [Package.Delete]: [false, Validators.required],
-          [Package.Read]: [false, Validators.required],
-          [Package.Update]: [false, Validators.required],
+          [Package.Create]: [false, CheckRead(Package.Read)],
+          [Package.Delete]: [false, CheckRead(Package.Read)],
+          [Package.Read]: [false],
+          [Package.Update]: [false, CheckRead(Package.Read)],
         }),
         Provider: fb.group({
-          [Provider.Create]: [false, Validators.required],
-          [Provider.Delete]: [false, Validators.required],
-          [Provider.Read]: [false, Validators.required],
-          [Provider.Update]: [false, Validators.required],
+          [Provider.Create]: [false, CheckRead(Provider.Read)],
+          [Provider.Delete]: [false, CheckRead(Provider.Read)],
+          [Provider.Read]: [false],
+          [Provider.Update]: [false, CheckRead(Provider.Read)],
         }),
         Role: fb.group({
-          [Role.Create]: [false, Validators.required],
-          [Role.Delete]: [false, Validators.required],
-          [Role.Read]: [false, Validators.required],
-          [Role.Update]: [false, Validators.required],
+          [Role.Create]: [false, CheckRead(Role.Read)],
+          [Role.Delete]: [false, CheckRead(Role.Read)],
+          [Role.Read]: [false],
+          [Role.Update]: [false, CheckRead(Role.Read)],
         }),
         User: fb.group({
-          [User.Create]: [false, Validators.required],
-          [User.Delete]: [false, Validators.required],
-          [User.Read]: [false, Validators.required],
-          [User.Update]: [false, Validators.required],
+          [User.Create]: [false, CheckRead(User.Read)],
+          [User.Delete]: [false, CheckRead(User.Read)],
+          [User.Read]: [false],
+          [User.Update]: [false, CheckRead(User.Read)],
         }),
         Bill: fb.group({
-          [Bill.Create]: [false, Validators.required],
-          [Bill.Delete]: [false, Validators.required],
-          [Bill.Read]: [false, Validators.required],
-          [Bill.Update]: [false, Validators.required],
+          [Bill.Create]: [false, CheckRead(Bill.Read)],
+          [Bill.Delete]: [false, CheckRead(Bill.Read)],
+          [Bill.Read]: [false],
+          [Bill.Update]: [false, CheckRead(Bill.Read)],
         }),
       },
       { Validators: [MinCheckBoxIsSelected.Min(1)] }
     );
-
     const id = activatedRoute.snapshot.params.id;
     if (id) {
       this.state = 'Update';
