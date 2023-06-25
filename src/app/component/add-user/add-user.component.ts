@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { Location } from '@angular/common';
 import { AngularMateralService } from 'src/app/services/angular-materal.service';
+import { checkEmailValidation } from 'src/app/Validation/emailValidation';
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
@@ -37,7 +38,7 @@ export class AddUserComponent implements OnInit{
     this.userForm = fb.group({
       userName:['',[Validators.required]],
       password:['',[Validators.required,Validators.minLength(4)]],
-      email:['',[Validators.required,Validators.pattern(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)]],
+      email:['',[Validators.required,Validators.pattern(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i),checkEmailValidation(this.userService)]],
       phoneNumber:['',[Validators.required]],
       roleId:['',[Validators.required]],
       branchId:['',[Validators.required]],

@@ -8,6 +8,8 @@ import {
   LoginResponse,
 } from '../models/IUser';
 import { Router } from '@angular/router';
+import { environment } from 'src/environment/environment';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,7 +19,8 @@ export class UserService extends GenericService<IUserView, string> {
   Permissions: string[] = [];
   private token = '';
   Name = '';
-  constructor(httpClient: HttpClient, private router: Router) {
+  APIURL = '';
+  constructor(httpClient: HttpClient, private router: Router,private http:HttpClient) {
     super('User', httpClient);
     let tokenString = decodeURIComponent(document.cookie).split('token=')[1];
     if (!tokenString) {
@@ -31,6 +34,11 @@ export class UserService extends GenericService<IUserView, string> {
       this.token = token.token;
       this.Name = token.name;
     }
+    this.APIURL=environment.APIURL;
+  }
+  checkExistingUser(email:string):Observable<boolean>
+  {
+    return this.http.get<boolean>(`${this.APIURL}/User/${email}`);
   }
   GetToken() {
     return this.token;

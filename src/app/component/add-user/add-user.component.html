@@ -47,7 +47,11 @@
                     </small><br>
                     <small class="text-red-600 text-base" *ngIf="email?.errors?.['pattern']">
                         Email Not Vaild Enter Valid Email
+                    </small><br>
+                    <small class="text-red-600 text-base" *ngIf="email?.errors?.['userAlreadyExists']">
+                        This Email Already Exists Enter Another Email
                     </small>
+                    
                 </div>
             </div>
             <!--phoneNumber input-->
