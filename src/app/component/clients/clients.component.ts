@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IClient } from 'src/app/models/IClient';
+import { AngularMateralService } from 'src/app/services/angular-materal.service';
 import { ClientService } from 'src/app/services/client.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class ClientsComponent {
   isLoading = true;
   isError = false;
 
-  constructor(private clientService: ClientService) {
+  constructor(private clientService: ClientService, private AngularMateralService:AngularMateralService) {
     clientService.GetAll().subscribe({
       next: (data) => {
         console.log(data);
@@ -28,5 +29,28 @@ export class ClientsComponent {
         this.isError = true;
       },
     });
+  }
+  deleteClient(ssid:string)
+  {
+    this.AngularMateralService
+      .openConfirmDialog('Are you sure you want to delete this Client?')
+      .afterClosed()
+      .subscribe((resp) => {
+        if (resp) {
+          this.clientService.Delete(ssid).subscribe({
+            next: (data) => {
+              this.clients = this.clients.filter((b) => b.ssid != ssid);
+              this.AngularMateralService.addAndUpdateSuccess(
+                'Branch Has Been Deleted Successfully'
+              );
+            },
+            error: (e) => {
+              this.AngularMateralService.addAndUpdateSuccess(
+                "'An Error Occured. Try Again Later !'"
+              );
+            },
+          });
+        }
+      });
   }
 }
