@@ -3,9 +3,8 @@ import {
   AsyncValidatorFn,
   ValidationErrors,
 } from '@angular/forms';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { UserService } from '../services/user.service';
-
 export function checkEmailValidation(
   userService: UserService
 ): AsyncValidatorFn {
@@ -13,7 +12,8 @@ export function checkEmailValidation(
     return userService
       .checkExistingUser(control.value)
       .pipe(
-        map((resp: boolean) => (resp ? { userAlreadyExists: true } : null))
+        map((resp: boolean) => (resp ? { userAlreadyExists: true }:null)),
+        catchError(() => of(null))
       );
   };
 }

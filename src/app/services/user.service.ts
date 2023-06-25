@@ -36,9 +36,9 @@ export class UserService extends GenericService<IUserView, string> {
     }
     this.APIURL=environment.APIURL;
   }
-  checkExistingUser(email:string):Observable<boolean>
+  checkExistingUser(email:string)
   {
-    return this.http.get<boolean>(`${this.APIURL}/User/${email}`);
+    return this.http.get<boolean>(`${this.APIURL}/User/CheckEmail/${email}`);
   }
   GetToken() {
     return this.token;

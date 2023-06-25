@@ -38,7 +38,7 @@ export class AddUserComponent implements OnInit{
     this.userForm = fb.group({
       userName:['',[Validators.required]],
       password:['',[Validators.required,Validators.minLength(4)]],
-      email:['',[Validators.required,Validators.pattern(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i),checkEmailValidation(this.userService)]],
+      email:['',[Validators.required,Validators.pattern(/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i)],[checkEmailValidation(this.userService)]],
       phoneNumber:['',[Validators.required]],
       roleId:['',[Validators.required]],
       branchId:['',[Validators.required]],
