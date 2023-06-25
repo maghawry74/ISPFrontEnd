@@ -2,14 +2,15 @@
 <ng-template #Page>
     <div class="m-10">
         <div class="mb-5">
-            <p class="text-2xl text-center font-semibold col-start-4 col-span-3 text-gray-900">Not Baid BillList</p>
+            <p class="text-2xl text-center font-semibold col-start-4 col-span-3 text-gray-900">Not Paid Bills</p>
         </div>
         <div
             class="p-3 bg-white rounded-lg shadow-[0_2px_15px_-3px_rgba(0,0,0,0.09),0_10px_20px_-2px_rgba(0,0,0,0.07)] ">
             <div class="flex flex-col ">
                 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <h1 *ngIf="notBaidBillList.length==0;else Table" class="text-center w-full mt-10">There Are No Unpaid Bills
+                        <h1 *ngIf="notBaidBillList.length==0;else Table" class="text-center w-full mt-10">There Are No
+                            Bills
                             !</h1>
                         <ng-template #Table>
                             <div class="overflow-hidden">

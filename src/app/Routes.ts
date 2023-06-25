@@ -136,7 +136,8 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path:"NotBaidBillList",component:NotpaidBillComponent
+    path: 'NotBaidBillList',
+    component: NotpaidBillComponent,
   },
   {
     path: 'Packages',
@@ -221,26 +222,30 @@ export const routes: Routes = [
     data: { Permission: Role.Update },
   },
   {
-    path:'Users',
+    path: 'Users',
     component: UserComponent,
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: User.Read },
   },
   {
-    path:'User/Add',
-    component:AddUserComponent,
+    path: 'User/Add',
+    component: AddUserComponent,
     canActivate: [LoggedIn, HasPermission],
     data: { Permission: User.Create },
   },
   {
-    path:'User/Edit/:id',
+    path: 'User/Edit/:id',
     component: AddUserComponent,
     canActivate: [LoggedIn, HasPermission],
-    data: { Permission: User.Update},
+    data: { Permission: User.Update },
+  },
+  {
+    path: 'UnpaidBill',
+    component: NotpaidBillComponent,
+    canActivate: [LoggedIn, HasPermission],
+    data: { Permission: Bill.Read },
   },
   { path: 'Login', component: LoginComponent, canActivate: [AlreadyLogged] },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: '**', component: NotFoundComponent },
-  
- 
 ];
