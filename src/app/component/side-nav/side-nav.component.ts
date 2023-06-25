@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  Bill,
   Branch,
   Central,
   Client,
@@ -27,6 +28,7 @@ export class SideNavComponent {
   ReadOffer = false;
   ReadRole = false;
   ReadEmployee = false;
+  ReadBill = false;
   constructor(private userService: UserService) {
     this.ReadBranch = userService.CheckPermission(Branch.Read);
     this.ReadCentral = userService.CheckPermission(Central.Read);
@@ -37,6 +39,7 @@ export class SideNavComponent {
     this.ReadOffer = userService.CheckPermission(Offer.Read);
     this.ReadRole = userService.CheckPermission(Role.Read);
     this.ReadEmployee = userService.CheckPermission(User.Read);
+    this.ReadBill = userService.CheckPermission(Bill.Read);
   }
   SignOut() {
     this.userService.LogOut();

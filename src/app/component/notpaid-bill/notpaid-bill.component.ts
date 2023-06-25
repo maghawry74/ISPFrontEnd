@@ -12,12 +12,11 @@ export class NotpaidBillComponent implements OnInit {
   p: number = 1;
   isLoading = true;
   isError = false;
-  constructor(
-    private clientService: ClientService,
-  ) {}
+  constructor(private clientService: ClientService) {}
   ngOnInit(): void {
     this.clientService.notPayBill().subscribe({
       next: (data) => {
+        console.log(data);
         this.isLoading = false;
         this.notBaidBillList = data;
       },
