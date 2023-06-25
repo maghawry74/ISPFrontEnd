@@ -2,7 +2,8 @@
     <div class="lg:w-1/2 xs:w-full mb-3 md:w-full border-primary border-2  rounded-3xl hover:border-primary-400">
         <h1 class="text-primary  text-center pt-3 font-bold">{{state=="Add"?"Add":"Update"}} Client</h1>
     </div>
-    <form (ngSubmit)="FormHandler()" [formGroup]="ClientForm" class="flex w-full flex-col justify-center  max-h-fit  mx-auto">
+    <form (ngSubmit)="FormHandler()" [formGroup]="ClientForm"
+        class="flex w-full flex-col justify-center  max-h-fit  mx-auto">
         <div class="mb-4  border-b border-gray-200 dark:border-gray-700 w-full">
             <ul class="mb-5 flex list-none flex-row flex-wrap border-b-0 pl-0" role="tablist" data-te-nav-ref>
                 <li role="presentation" class="flex-grow basis-0 text-center">
@@ -17,7 +18,7 @@
                         data-te-toggle="pill" data-te-target="#tabs-profile02" role="tab" aria-controls="tabs-profile02"
                         aria-selected="false">Advanced</a>
                 </li>
-                <li role="presentation" class="flex-grow basis-4 text-center">
+                <li role="presentation" class="flex-grow basis-6 text-center">
                     <a href="#tabs-messages02"
                         class="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
                         data-te-toggle="pill" data-te-target="#tabs-messages02" role="tab"
@@ -80,8 +81,11 @@
                             Valid
                             Number
                         </p>
+                        <p class="text-red-600 text-base "
+                            *ngIf="ClientForm.get('SSID')?.errors?.['IsUsed']&&ClientForm.get('SSID')?.['touched']">SSID
+                            Is Used Before
+                        </p>
                     </div>
-
                     <div class='mb-1'>
                         <label for="email"
                             class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">Email*</label>

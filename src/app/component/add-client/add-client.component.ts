@@ -16,6 +16,7 @@ import { ClientService } from 'src/app/services/client.service';
 import { GovernorateService } from 'src/app/services/governorate.service';
 import { ProviderService } from 'src/app/services/provider.service';
 import { Select, initTE, Tab } from 'tw-elements';
+import { IsUniqueSSN } from 'src/app/Validation/SSNValidator';
 @Component({
   selector: 'app-add-client',
   templateUrl: './add-client.component.html',
@@ -55,6 +56,7 @@ export class AddClientComponent implements OnInit {
           Validators.minLength(14),
           IsNumberValidator,
         ],
+        [IsUniqueSSN(this.clientService)],
       ],
       Email: [
         { value: '', disabled: this.state == 'Update' },
