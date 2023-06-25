@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
+  buttonMessage = 'Login';
   LoginForm: FormGroup;
   errorMessage = '';
   userName = new FormControl('', [Validators.required]);
@@ -27,6 +28,7 @@ export class LoginComponent {
       UserName: this.userName.value!,
       Password: this.Password.value!,
     };
+    this.buttonMessage = 'Loading...';
     this.userService.Login(loginCredentials).subscribe({
       next: (data) => {
         console.log(data);
@@ -41,8 +43,9 @@ export class LoginComponent {
       },
       error: (e: HttpErrorResponse) => {
         console.log(e);
+        this.buttonMessage = 'Login';
         if (e.status == 401) {
-          this.errorMessage = 'Wrong Email Or Password';
+          this.errorMessage = 'Wrong User Name Or Password';
         } else {
           this.errorMessage = 'An Error Has Occured, Try Again Later.';
         }
