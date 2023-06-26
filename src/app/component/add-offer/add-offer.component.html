@@ -32,6 +32,7 @@
         <app-input [control]="FreeRouter" (Onchecked)="disableRouterfee($event)" label="Free Router" id="free-router"
             [type]="'checkbox'"></app-input>
         <app-input [control]="IsPercent" label="Is Percent" id="is-percent" [type]="'checkbox'"></app-input>
+        <app-input [control]="IsTotalBill" label="Total Bill" id="is-percent" [type]="'checkbox'"></app-input>
         <button [disabled]="OfferForm.status=='INVALID'"
             [ngClass]="{'bg-gray-400 opacity-50 hover:bg-gray-500':OfferForm.status=='INVALID'}" type="submit"
             class="add-btn">Submit</button>

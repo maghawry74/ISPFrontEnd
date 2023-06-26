@@ -32,6 +32,7 @@ export class AddOfferComponent implements OnInit {
   FreeRouter = new FormControl<boolean | null>(false);
   RouterFee = new FormControl('');
   Provider = new FormControl('', [Validators.required]);
+  IsTotalBill = new FormControl<Boolean | null>(false);
   OfferForm = new FormGroup(
     {
       OfferName: this.OfferName,
@@ -44,6 +45,7 @@ export class AddOfferComponent implements OnInit {
       FreeRouter: this.FreeRouter,
       RouterFee: this.RouterFee,
       Provider: this.Provider,
+      IsTotalBill: this.IsTotalBill,
     },
     [
       FreeMonthsValidator.checkFreeMonths(
@@ -85,6 +87,7 @@ export class AddOfferComponent implements OnInit {
             FreeRouter: data.freeRouter,
             RouterFee: data.routerPrice.toString(),
             Provider: data.provider.id.toString(),
+            IsTotalBill: data.isPercent,
           });
         },
       });
@@ -102,6 +105,7 @@ export class AddOfferComponent implements OnInit {
       freeRouter: Boolean(this.FreeRouter.value),
       routerPrice: Number(this.RouterFee.value),
       providerId: Number(this.Provider.value),
+      isTotalBill: Boolean(this.IsTotalBill.value),
     };
     console.log(Offer);
     const sub = {

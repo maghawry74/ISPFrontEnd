@@ -3,6 +3,7 @@ export interface IOfferView {
   name: string;
   discount: number;
   isPercent: boolean;
+  isTotalBill: boolean;
   cancelFee: number;
   numberOfMonths: number;
   freeMonthsFirst: boolean;
@@ -23,6 +24,7 @@ export interface IOfferAddOrUpdate {
   freeRouter: boolean;
   routerPrice: number;
   providerId: number;
+  isTotalBill: boolean;
 }
 
 export interface IProvider {
